@@ -1,0 +1,1280 @@
+/* ==========================================================================
+   VERTEX EXPEDITION - FEUILLE DE STYLE PRINCIPALE (style.css)
+   Esthétique Technique / Laboratoire Alpin / Dark Mode HUD
+   ========================================================================== */
+
+:root {
+  /* Palette de Base */
+  --bg-deep: #080b0e;
+  --bg-base: #0d1216;
+  --bg-card: #131a20;
+  --bg-card-hover: #172129;
+  --bg-surface: #1c2730;
+  --bg-elevated: #222f3a;
+
+  /* Lignes et Bordures Techniques */
+  --border-subtle: #202a32;
+  --border-medium: #2e3d48;
+  --border-focus: #ff6b00;
+
+  /* Accents de Marque */
+  --accent-amber: #ff6b00;
+  --accent-amber-hover: #e05e00;
+  --accent-amber-glow: rgba(255, 107, 0, 0.25);
+  --accent-cyan: #00d2ff;
+  --accent-cyan-dim: rgba(0, 210, 255, 0.15);
+  --accent-emerald: #2ecc71;
+  --accent-emerald-dim: rgba(46, 204, 113, 0.15);
+
+  /* Typographie et Textes */
+  --text-primary: #f0f4f8;
+  --text-secondary: #9aa9b8;
+  --text-muted: #5e6f7f;
+  --text-amber: #ff8533;
+
+  /* Polices de Caractères */
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, 'Courier New', monospace;
+  --font-display: 'Outfit', 'Inter', sans-serif;
+
+  /* Élévations et Ombres */
+  --shadow-subtle: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.55);
+  --shadow-glow: 0 0 25px rgba(255, 107, 0, 0.2);
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+
+  --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Réinitialisation et Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Typographie Générale */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--accent-amber);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: #ffa149;
+}
+
+/* Éléments Monospace et Badges Techniques */
+.tech-mono {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.tech-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-amber);
+  margin-bottom: 0.75rem;
+}
+
+.tech-kicker::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-amber);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent-amber);
+}
+
+/* ==========================================================================
+   BARRE SUPÉRIEURE DE TÉLÉMÉTRIE (HUD)
+   ========================================================================== */
+.top-telemetry-bar {
+  background-color: #05080a;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 6px 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.telemetry-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  border-right: 1px solid var(--border-subtle);
+}
+
+.telemetry-item:last-child {
+  border-right: none;
+}
+
+.telemetry-item strong {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--accent-emerald);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--accent-emerald);
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ==========================================================================
+   BARRE DE NAVIGATION PRINCIPALE
+   ========================================================================== */
+.vertex-navbar {
+  background-color: rgba(13, 18, 22, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  transition: var(--transition);
+}
+
+.navbar-brand-custom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary) !important;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brand-icon {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, var(--accent-amber) 0%, #ff9438 100%);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  display: inline-block;
+  box-shadow: 0 0 12px var(--accent-amber-glow);
+}
+
+.brand-sub {
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  color: var(--accent-amber);
+  display: block;
+  letter-spacing: 0.25em;
+  margin-top: -3px;
+}
+
+.nav-link-custom {
+  color: var(--text-secondary) !important;
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 8px 14px !important;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-link-custom:hover,
+.nav-link-custom.active {
+  color: var(--text-primary) !important;
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.nav-link-custom.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background-color: var(--accent-amber);
+  box-shadow: 0 0 8px var(--accent-amber);
+}
+
+/* Champ de Recherche Technique */
+.tech-search-wrapper {
+  position: relative;
+  min-width: 240px;
+}
+
+.tech-search-input {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 8px 12px 8px 34px;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  transition: var(--transition);
+}
+
+.tech-search-input:focus {
+  background-color: var(--bg-surface);
+  border-color: var(--accent-amber);
+  outline: none;
+  box-shadow: 0 0 10px var(--accent-amber-glow);
+}
+
+.tech-search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.tech-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Déclencheur du Panier */
+.cart-trigger-btn {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.cart-trigger-btn:hover {
+  border-color: var(--accent-amber);
+  color: var(--accent-amber);
+  background-color: var(--bg-surface);
+}
+
+.cart-count-badge {
+  background-color: var(--accent-amber);
+  color: #000;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+}
+
+/* ==========================================================================
+   BOUTONS ET COMPOSANTS UI
+   ========================================================================== */
+.btn-vertex-primary {
+  background: linear-gradient(135deg, var(--accent-amber) 0%, #e65c00 100%);
+  color: #000 !important;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 18px var(--accent-amber-glow);
+  transition: var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-vertex-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 107, 0, 0.4);
+  color: #000 !important;
+}
+
+.btn-vertex-outline {
+  background-color: transparent;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-medium);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 11px 22px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-vertex-outline:hover {
+  border-color: var(--text-secondary);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #fff !important;
+}
+
+.btn-sm-tech {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+}
+
+/* Badges de Statut */
+.badge-amber {
+  background-color: rgba(255, 107, 0, 0.15);
+  color: var(--accent-amber);
+  border: 1px solid rgba(255, 107, 0, 0.35);
+}
+
+.badge-emerald {
+  background-color: var(--accent-emerald-dim);
+  color: var(--accent-emerald);
+  border: 1px solid rgba(46, 204, 113, 0.35);
+}
+
+.badge-cyan {
+  background-color: var(--accent-cyan-dim);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 210, 255, 0.35);
+}
+
+.tech-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ==========================================================================
+   SECTION HERO
+   ========================================================================== */
+.hero-section {
+  padding: 70px 0 50px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 107, 0, 0.07) 0%, transparent 50%),
+              radial-gradient(circle at 10% 80%, rgba(0, 210, 255, 0.04) 0%, transparent 40%);
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 107, 0, 0.1);
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  color: var(--accent-amber);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-size: 3.4rem;
+  line-height: 1.1;
+  font-weight: 800;
+  margin-bottom: 22px;
+}
+
+.hero-lead {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 580px;
+  margin-bottom: 30px;
+}
+
+/* Badges de Spécifications du Hero */
+.hero-specs-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 40px;
+  padding-top: 25px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.hero-spec-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-spec-item .spec-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hero-spec-item .spec-value {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Carte Produit Phare du Hero */
+.hero-product-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition: var(--transition);
+}
+
+.hero-product-card:hover {
+  border-color: var(--border-focus);
+}
+
+.hero-image-wrapper {
+  position: relative;
+  height: 440px;
+  overflow: hidden;
+}
+
+.hero-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-product-card:hover .hero-image-wrapper img {
+  transform: scale(1.05);
+}
+
+.hero-badge-overlay {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: rgba(13, 18, 22, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-medium);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent-amber);
+}
+
+.hero-card-footer {
+  padding: 20px;
+  background-color: var(--bg-card);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 2px;
+}
+
+.hero-card-meta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.hero-price-tag {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-amber);
+}
+
+/* ==========================================================================
+   CATÉGORIES TECHNIQUES SPÉCIALISÉES (01, 02, 03, 04)
+   ========================================================================== */
+.categories-section {
+  padding: 50px 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: var(--bg-base);
+}
+
+.category-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+  transition: var(--transition);
+}
+
+.category-card:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-medium);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+.category-card:hover::before {
+  background-color: var(--accent-amber);
+}
+
+.category-num-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.category-number {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-amber);
+  font-weight: 700;
+}
+
+.category-volume-pill {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  background-color: var(--bg-surface);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.category-title {
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+}
+
+.category-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.category-link {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-amber);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.category-card:hover .category-link {
+  gap: 10px;
+}
+
+/* ==========================================================================
+   CARTES PRODUITS TECHNIQUES (LES 5 ARTICLES)
+   ========================================================================== */
+.products-section {
+  padding: 60px 0;
+}
+
+.product-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: var(--transition);
+  position: relative;
+}
+
+.product-card:hover {
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-4px);
+}
+
+.product-thumb-container {
+  position: relative;
+  height: 250px;
+  background-color: #0c1014;
+  overflow: hidden;
+}
+
+.product-thumb-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover .product-thumb-container img {
+  transform: scale(1.06);
+}
+
+.product-ref-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  background-color: rgba(13, 18, 22, 0.85);
+  backdrop-filter: blur(4px);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.product-badge-overlay {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.product-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-category-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+
+.product-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.product-short-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Grille des Spécifications Techniques (Volume, Poids, Matériau, Imperméabilité) */
+.product-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 12px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  margin-bottom: 18px;
+}
+
+.spec-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.spec-cell-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.spec-cell-value {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.product-price-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-price {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.product-old-price {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+/* ==========================================================================
+   MATRICE DE VOLUME ("De quel volume avez-vous besoin ?")
+   ========================================================================== */
+.volume-matrix-section {
+  padding: 70px 0;
+  background-color: var(--bg-base);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.matrix-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+  position: relative;
+}
+
+.matrix-card.featured-matrix {
+  border-color: rgba(255, 107, 0, 0.4);
+  background: linear-gradient(180deg, rgba(255, 107, 0, 0.05) 0%, var(--bg-card) 40%);
+}
+
+.matrix-card:hover {
+  border-color: var(--accent-amber);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+.matrix-liters {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.matrix-duration {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-amber);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.matrix-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.matrix-checklist li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.matrix-checklist li i {
+  color: var(--accent-amber);
+  font-size: 0.8rem;
+}
+
+.matrix-recommendation {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.matrix-recommendation strong {
+  color: var(--text-primary);
+  display: block;
+  font-size: 0.82rem;
+}
+
+/* ==========================================================================
+   INGÉNIERIE ANATOMIQUE & ÉCLATÉ TECHNIQUE
+   ========================================================================== */
+.engineering-section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.schematic-box {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.schematic-callout {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: var(--transition);
+}
+
+.schematic-callout:hover {
+  border-color: var(--accent-amber);
+  background-color: var(--bg-elevated);
+}
+
+.callout-num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-amber);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.callout-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.callout-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   DURABILITÉ, CIRCULARITÉ ET DONS
+   ========================================================================== */
+.durability-banner {
+  background: linear-gradient(135deg, #111a21 0%, #0d1318 100%);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  margin: 50px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.durability-stat-box {
+  background-color: rgba(8, 12, 16, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  text-align: center;
+}
+
+.durability-number {
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: var(--accent-amber);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   PAGES SPÉCIFIQUES: QUI SOMMES-NOUS, CONTACT, INSCRIPTION
+   ========================================================================== */
+.page-header-technical {
+  padding: 50px 0 35px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 40px;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 107, 0, 0.06) 0%, transparent 60%);
+}
+
+.team-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  height: 100%;
+  transition: var(--transition);
+}
+
+.team-card:hover {
+  border-color: var(--accent-amber);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+.team-avatar-box {
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.team-avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-card-body {
+  padding: 20px;
+}
+
+.team-role {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-amber);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.team-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.team-bio {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* Formulaires Techniques (Contact & Inscription) */
+.tech-form-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 35px;
+  box-shadow: var(--shadow-card);
+}
+
+.form-label-tech {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.form-control-tech {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  font-size: 0.92rem;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  transition: var(--transition);
+}
+
+.form-control-tech:focus {
+  background-color: var(--bg-elevated);
+  border-color: var(--accent-amber);
+  color: #fff;
+  outline: none;
+  box-shadow: 0 0 12px var(--accent-amber-glow);
+}
+
+.form-select-tech {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  font-size: 0.92rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.form-select-tech:focus {
+  border-color: var(--accent-amber);
+}
+
+.form-check-tech .form-check-input {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  cursor: pointer;
+}
+
+.form-check-tech .form-check-input:checked {
+  background-color: var(--accent-amber);
+  border-color: var(--accent-amber);
+}
+
+.form-check-tech .form-check-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   DRAWER / OFFCANVAS PANIER D'EXPÉDITION
+   ========================================================================== */
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 420px;
+  max-width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-card);
+  border-left: 1px solid var(--border-medium);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
+  z-index: 1060;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cart-drawer.open {
+  right: 0;
+}
+
+.cart-drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1050;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.cart-drawer-backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.cart-free-shipping {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  margin-bottom: 18px;
+}
+
+.cart-item-card {
+  display: flex;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.cart-item-thumb {
+  width: 70px;
+  height: 70px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  background-color: var(--bg-deep);
+}
+
+.cart-item-info {
+  flex-grow: 1;
+}
+
+.cart-item-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.cart-item-meta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.cart-footer {
+  padding: 20px;
+  border-top: 1px solid var(--border-subtle);
+  background-color: var(--bg-base);
+}
+
+/* ==========================================================================
+   PIED DE PAGE (FOOTER)
+   ========================================================================== */
+.vertex-footer {
+  background-color: #05080a;
+  border-top: 1px solid var(--border-subtle);
+  padding: 60px 0 30px;
+  margin-top: 60px;
+}
+
+.footer-col-title {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover {
+  color: var(--accent-amber);
+}
+
+.footer-bottom {
+  padding-top: 30px;
+  margin-top: 40px;
+  border-top: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   RESPONSIVITÉ
+   ========================================================================== */
+@media (max-width: 991.98px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-image-wrapper {
+    height: 320px;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .hero-title {
+    font-size: 2.1rem;
+  }
+  .telemetry-item {
+    font-size: 0.65rem;
+    padding: 0 6px;
+  }
+  .cart-drawer {
+    width: 100vw;
+  }
+}
