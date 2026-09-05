@@ -16,8 +16,8 @@ include __DIR__ . '/includes/navbar.php';
      ========================================================================== -->
 <div class="page-header-technical">
     <div class="container-fluid px-lg-5">
-        <span class="tech-kicker">COMMUNAUTÉ ET IDENTIFIANTS</span>
-        <h1 class="fw-bold mb-2">Créer un ID d'Expédition Officiel</h1>
+        <span class="tech-kicker">ESPACE MEMBRE</span>
+        <h1 class="fw-bold mb-2">Créer un compte</h1>
         <p class="text-secondary fs-5 mb-0" style="max-width: 720px;">
             Enregistrez votre équipement, activez votre garantie à vie auprès de l'atelier arctique et accédez aux bulletins météo d'altitude avant chaque traversée.
         </p>
@@ -35,9 +35,8 @@ include __DIR__ . '/includes/navbar.php';
                 <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom border-secondary border-opacity-25">
                     <div>
                         <h2 class="fs-4 fw-bold mb-1">Inscription d'un Alpiniste / Voyageur</h2>
-                        <span class="small tech-mono text-muted">GÉNÉRATION D'UN IDENTIFIANT D'EXPÉDITION UNIQUE</span>
+                        <span class="small tech-mono text-muted">REJOIGNEZ LA COMMUNAUTÉ</span>
                     </div>
-                    <span class="badge badge-amber tech-mono">MAQUETTE V1</span>
                 </div>
 
                 <form id="registerFormDemo" onsubmit="event.preventDefault(); alert('Note V1 : Ce formulaire d\'inscription a été fidèlement maquetté graphiquement. La création de compte serveur interviendra dans la Version 2.');">
@@ -53,9 +52,9 @@ include __DIR__ . '/includes/navbar.php';
                         <!-- Indicatif / Call-sign -->
                         <div class="col-md-6">
                             <label for="regCallsign" class="form-label-tech">
-                                <i class="bi bi-person-gear text-amber me-1"></i> Indicatif / Call-sign en Raid
+                                <i class="bi bi-person-gear text-amber me-1"></i> Pseudo (optionnel)
                             </label>
-                            <input type="text" id="regCallsign" class="form-control-tech" placeholder="Ex. Apex_Alpinist_90">
+                            <input type="text" id="regCallsign" class="form-control-tech" placeholder="Ex. Marc_Alpinist">
                         </div>
 
                         <!-- E-mail -->
@@ -117,7 +116,7 @@ include __DIR__ . '/includes/navbar.php';
                         <!-- Bouton d'Inscription -->
                         <div class="col-12 pt-2">
                             <button type="submit" class="btn btn-vertex-primary w-100 justify-content-center py-3">
-                                <i class="bi bi-person-check-fill me-2"></i> Créer mon ID d'Expédition VERTEX
+                                <i class="bi bi-person-check-fill me-2"></i> Créer mon compte
                             </button>
                         </div>
 

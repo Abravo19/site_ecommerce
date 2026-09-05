@@ -16,8 +16,8 @@ include __DIR__ . '/includes/navbar.php';
      ========================================================================== -->
 <div class="page-header-technical">
     <div class="container-fluid px-lg-5">
-        <span class="tech-kicker">COMMUNICATION TECHNIQUE // CANAL DIRECT</span>
-        <h1 class="fw-bold mb-2">Canal de Télémétrie et Support Base</h1>
+        <span class="tech-kicker">SUPPORT CLIENT</span>
+        <h1 class="fw-bold mb-2">Contactez-nous</h1>
         <p class="text-secondary fs-5 mb-0" style="max-width: 700px;">
             Des interrogations sur le litrage adapté à votre traversée ou besoin d'activer la garantie à vie en atelier ? Échangez directement avec nos ingénieurs et guides.
         </p>
@@ -35,9 +35,8 @@ include __DIR__ . '/includes/navbar.php';
                 <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom border-secondary border-opacity-25">
                     <div>
                         <h2 class="fs-4 fw-bold mb-1">Formulaire de Communication Technique</h2>
-                        <span class="small tech-mono text-muted">TRANSMISSION SÉCURISÉE CHIFFRÉE // CANAL T-01</span>
+                        <span class="small tech-mono text-muted">FORMULAIRE DE CONTACT</span>
                     </div>
-                    <span class="badge badge-amber tech-mono">MAQUETTE V1</span>
                 </div>
 
                 <form id="contactFormDemo" onsubmit="event.preventDefault(); alert('Note V1 : Ce formulaire a été fidèlement maquetté graphiquement. L\'envoi serveur sera connecté dans la Version 2.');">
@@ -99,10 +98,9 @@ include __DIR__ . '/includes/navbar.php';
                             </div>
                         </div>
 
-                        <!-- Bouton d'Envoi -->
                         <div class="col-12 pt-2">
                             <button type="submit" class="btn btn-vertex-primary w-100 justify-content-center py-3">
-                                <i class="bi bi-send-fill me-2"></i> Émettre le Message vers la Base Centrale
+                                <i class="bi bi-send-fill me-2"></i> Envoyer le message
                             </button>
                         </div>
                     </div>

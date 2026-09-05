@@ -22,7 +22,7 @@ include __DIR__ . '/includes/navbar.php';
             <!-- Colonne Gauche : Présentation et Spécifications -->
             <div class="col-lg-7">
                 <div class="hero-pill">
-                    <i class="bi bi-shield-shaded me-1"></i> COLLECTION ALPINE LAB 2026 // TESTÉ À -35°C
+                    <i class="bi bi-shield-shaded me-1"></i> COLLECTION ALPINE 2026
                 </div>
                 <h1 class="hero-title">
                     Équipement sans compromis pour terrain hostile
@@ -72,7 +72,7 @@ include __DIR__ . '/includes/navbar.php';
                     </div>
                     <div class="hero-card-footer">
                         <div>
-                            <div class="hero-card-meta">SAC D'EXPÉDITION // V.02</div>
+                            <div class="hero-card-meta">SAC D'EXPÉDITION</div>
                             <h3 class="hero-card-title"><?php echo htmlspecialchars($featuredProduct['name']); ?></h3>
                             <div class="text-success small tech-mono">
                                 <i class="bi bi-check2-circle me-1"></i> TEST VALIDÉ : GROENLAND (-35°C)
@@ -199,7 +199,7 @@ include __DIR__ . '/includes/navbar.php';
     <div class="container-fluid px-lg-5">
         <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4">
             <div>
-                <span class="tech-kicker">MATÉRIEL PRINCIPAL // SÉRIE 9000</span>
+                <span class="tech-kicker">MATÉRIEL PRINCIPAL</span>
                 <h2 class="fw-bold mb-0">Sacs à Dos de Haute Performance</h2>
             </div>
             <div class="mt-3 mt-md-0">
@@ -295,13 +295,13 @@ include __DIR__ . '/includes/navbar.php';
                 <!-- Colonne Gauche : Callouts 01 et 02 -->
                 <div class="col-lg-3">
                     <div class="schematic-callout">
-                        <div class="callout-num">01 // CHÂSSIS</div>
+                        <div class="callout-num">CHÂSSIS</div>
                         <h4 class="callout-title">Châssis en Aluminium 7075</h4>
                         <p class="callout-desc">Exosquelette anatomique à flexion torsionnelle active qui transfère 85% de la charge vers les hanches.</p>
                     </div>
 
                     <div class="schematic-callout">
-                        <div class="callout-num">02 // RESPIRABILITÉ</div>
+                        <div class="callout-num">RESPIRABILITÉ</div>
                         <h4 class="callout-title">Panneau Dorsal AirMesh 3D</h4>
                         <p class="callout-desc">Canaux thermo-convectifs de ventilation réduisant la sudation dorsale de 28% pendant les ascensions soutenues.</p>
                     </div>
@@ -311,7 +311,7 @@ include __DIR__ . '/includes/navbar.php';
                 <div class="col-lg-6 text-center">
                     <div class="p-4 bg-dark rounded border border-secondary border-opacity-25 position-relative">
                         <span class="badge badge-amber position-absolute top-0 start-50 translate-middle tech-mono">
-                            SCHÉMA BIOMÉCANIQUE ACTIF // SÉRIE 9000
+                            SCHÉMA BIOMÉCANIQUE
                         </span>
                         <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80" 
                              alt="Éclaté Technique Vertex" class="img-fluid rounded my-3" style="max-height: 320px; object-fit: contain;">
@@ -332,13 +332,13 @@ include __DIR__ . '/includes/navbar.php';
                 <!-- Colonne Droite : Callouts 03 et 04 -->
                 <div class="col-lg-3">
                     <div class="schematic-callout">
-                        <div class="callout-num">03 // SUSPENSION</div>
+                        <div class="callout-num">SUSPENSION</div>
                         <h4 class="callout-title">Ceinture Lombaire Pivotante</h4>
                         <p class="callout-desc">Accompagne la cadence naturelle en marche avec crampons ou skis, éliminant les points de friction latérale.</p>
                     </div>
 
                     <div class="schematic-callout">
-                        <div class="callout-num">04 // RUPTURE PAR LE FROID</div>
+                        <div class="callout-num">RÉSISTANCE AU FROID</div>
                         <h4 class="callout-title">Boucles Duraflex® Anti-Gel</h4>
                         <p class="callout-desc">Polymère formulé pour ne pas casser jusqu'à -45°C. Manipulables avec des moufles d'expédition polaire.</p>
                     </div>
@@ -453,11 +453,11 @@ include __DIR__ . '/includes/navbar.php';
     <div class="container-fluid px-lg-5">
         <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4">
             <div>
-                <span class="tech-kicker">RAPPORTS DE TERRAIN // VALIDATION EN CONDITIONS RÉELLES</span>
+                <span class="tech-kicker">RAPPORTS DE TERRAIN</span>
                 <h2 class="fw-bold mb-0">Retours d'Expérience depuis les Glaciers</h2>
             </div>
             <div class="small tech-mono text-muted mt-2 mt-md-0">
-                SITES D'ESSAIS : MASSIF DU MONT-BLANC // PATAGONIE DU SUD
+                SITES D'ESSAIS : MASSIF DU MONT-BLANC, PATAGONIE DU SUD
             </div>
         </div>
 
@@ -469,7 +469,7 @@ include __DIR__ . '/includes/navbar.php';
                              alt="Marc Soler" class="rounded-circle" style="width: 48px; height: 48px; object-fit: cover;">
                         <div>
                             <h5 class="mb-0 fs-6 fw-bold">Marc Soler</h5>
-                            <span class="tech-mono text-amber small">Guide UIAGM // Chamonix</span>
+                            <span class="tech-mono text-amber small">Guide UIAGM - Chamonix</span>
                         </div>
                     </div>
                     <p class="small text-secondary mb-0">
@@ -485,7 +485,7 @@ include __DIR__ . '/includes/navbar.php';
                              alt="Elena Santoro" class="rounded-circle" style="width: 48px; height: 48px; object-fit: cover;">
                         <div>
                             <h5 class="mb-0 fs-6 fw-bold">Elena Santoro</h5>
-                            <span class="tech-mono text-success small">Athlète Ultra-Trail // Dolomites</span>
+                            <span class="tech-mono text-success small">Athlète Ultra-Trail - Dolomites</span>
                         </div>
                     </div>
                     <p class="small text-secondary mb-0">
@@ -501,7 +501,7 @@ include __DIR__ . '/includes/navbar.php';
                              alt="Dr. Henrik Lind" class="rounded-circle" style="width: 48px; height: 48px; object-fit: cover;">
                         <div>
                             <h5 class="mb-0 fs-6 fw-bold">Dr. Henrik Lind</h5>
-                            <span class="tech-mono text-info small">Géophysicien Polaire // Svalbard Camp</span>
+                            <span class="tech-mono text-info small">Géophysicien Polaire - Svalbard Camp</span>
                         </div>
                     </div>
                     <p class="small text-secondary mb-0">

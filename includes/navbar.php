@@ -61,16 +61,16 @@ if (!isset($current_page)) {
 
             <!-- Moteur de Recherche et Actions -->
             <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
-                <!-- Champ de Recherche HUD -->
+                <!-- Champ de Recherche -->
                 <div class="tech-search-wrapper">
                     <i class="bi bi-search tech-search-icon"></i>
-                    <input type="text" class="tech-search-input" placeholder="Rechercher litrage, poids, Cordura..." aria-label="Recherche technique">
+                    <input type="text" class="tech-search-input" placeholder="Rechercher un produit..." aria-label="Recherche">
                 </div>
 
-                <!-- Bouton Panier d'Expédition -->
-                <button class="cart-trigger-btn d-none d-lg-inline-flex" id="openCartNavBtn" aria-label="Voir le matériel sélectionné">
+                <!-- Bouton Panier -->
+                <button class="cart-trigger-btn d-none d-lg-inline-flex" id="openCartNavBtn" aria-label="Voir le panier">
                     <i class="bi bi-backpack2-fill text-amber fs-6"></i>
-                    <span class="tech-mono fw-bold">ÉQUIPEMENT</span>
+                    <span class="tech-mono fw-bold">PANIER</span>
                     <span class="cart-count-badge" id="cartCountBadge" style="display: none;">0</span>
                 </button>
             </div>
