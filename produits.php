@@ -20,7 +20,7 @@ include __DIR__ . '/includes/navbar.php';
     <div class="container-fluid px-lg-5">
         <div class="row align-items-center">
             <div class="col-lg-8">
-                <span class="tech-kicker">INVENTAIRE TECHNIQUE ACTIF // SÉRIE 9000</span>
+                <span class="tech-kicker">NOTRE COLLECTION</span>
                 <h1 class="fw-bold mb-2">Équipement d'Expédition et de Traversée</h1>
                 <p class="text-secondary mb-0" style="max-width: 680px;">
                     Tous les articles sont soumis à des essais de fatigue mécanique en chambre climatique. Consultez les attributs spécifiques de litrage, poids sur balance de laboratoire, matériaux et imperméabilité.
@@ -62,7 +62,7 @@ include __DIR__ . '/includes/navbar.php';
         </div>
 
         <div class="small tech-mono text-muted">
-            <i class="bi bi-info-circle me-1 text-info"></i> Limite V1 active : 5 articles emblématiques
+            <i class="bi bi-info-circle me-1 text-info"></i> Collection actuelle
         </div>
     </div>
 </div>
@@ -167,17 +167,7 @@ include __DIR__ . '/includes/navbar.php';
         <?php endforeach; ?>
     </div>
 
-    <!-- Encadré des Nouveautés en Cours -->
-    <div class="p-4 bg-dark rounded border border-secondary border-opacity-25 text-center mt-4">
-        <span class="tech-kicker">PLAN DE PRODUCTION ALPINE LAB</span>
-        <h4 class="fw-bold mb-2">Prochains lancements en préparation (Version 2)</h4>
-        <p class="text-secondary small mx-auto mb-3" style="max-width: 620px;">
-            Nous menons actuellement des tests sur des prototypes de duvets d'expédition 900 cuin (-25°C), de baudriers ultralégers de ski-alpinisme et de bâtons de carbone télescopiques qui enrichiront le catalogue lors de la phase suivante.
-        </p>
-        <a href="contact.php" class="btn btn-vertex-outline btn-sm-tech">
-            Suggérer du matériel à l'équipe d'ingénierie <i class="bi bi-arrow-right ms-1"></i>
-        </a>
-    </div>
+    <!-- Section nouveautés retirée (contenu généré par IA) -->
 </div>
 
 <?php include __DIR__ . '/includes/footer.php'; ?>

@@ -36,39 +36,17 @@ if (!isset($current_page)) {
 </head>
 <body>
 
-<!-- BARRE SUPÉRIEURE DE TÉLÉMÉTRIE TECHNIQUE (HUD) -->
-<div class="top-telemetry-bar d-none d-lg-block">
+<!-- Barre d'Annonce -->
+<div class="bg-dark text-white py-2 small d-none d-lg-block border-bottom border-secondary border-opacity-25">
     <div class="container-fluid px-4">
         <div class="d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-center">
-                <div class="telemetry-item">
-                    <span class="text-amber"><i class="bi bi-broadcast me-1"></i> LAB ALPIN :</span>
-                    <strong>TÉLÉMÉTRIE EN DIRECT</strong>
-                </div>
-                <div class="telemetry-item">
-                    <i class="bi bi-snow me-1 text-info"></i> TEMP. TEST BASE :
-                    <strong>-22°C MASSIF DU MONT-BLANC</strong>
-                </div>
-                <div class="telemetry-item">
-                    <i class="bi bi-clock-history me-1 text-warning"></i> DÉPARTS EXPÉDITION :
-                    <strong>COMMANDES TECHNIQUES &lt; 18:00 H</strong>
-                </div>
+            <div class="text-secondary">
+                Livraison standard offerte à partir de 150 €
             </div>
-
-            <div class="d-flex align-items-center">
-                <div class="telemetry-item">
-                    <span class="pulse-dot me-1"></span> RÉSEAU OPÉRATIONNEL :
-                    <strong>100% OPÉRATIONNEL</strong>
-                </div>
-                <div class="telemetry-item">
-                    <i class="bi bi-globe2 me-1"></i> DEVISE :
-                    <strong class="text-white">EUR (€)</strong>
-                </div>
-                <div class="telemetry-item">
-                    <a href="contact.php" class="text-secondary text-decoration-none hover-white">
-                        <i class="bi bi-headset me-1 text-amber"></i> SUPPORT TECHNIQUE
-                    </a>
-                </div>
+            <div>
+                <a href="contact.php" class="text-secondary text-decoration-none hover-white">
+                    <i class="bi bi-headset me-1 text-amber"></i> Support Client
+                </a>
             </div>
         </div>
     </div>

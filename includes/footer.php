@@ -7,18 +7,17 @@
 <!-- PIED DE PAGE PRINCIPAL -->
 <footer class="vertex-footer">
     <div class="container-fluid px-lg-5">
-        <!-- Bulletin de Télémétrie -->
+        <!-- Newsletter -->
         <div class="row align-items-center mb-5 pb-4 border-bottom border-secondary border-opacity-25">
             <div class="col-lg-6 mb-3 mb-lg-0">
-                <span class="tech-kicker">TÉLÉMÉTRIE & BULLETIN MÉTÉOROLOGIQUE</span>
-                <h4 class="fw-bold mb-1">Rapports d'itinéraire, tests de matériaux et séries limitées</h4>
-                <p class="text-secondary small mb-0">Zéro spam commercial : uniquement télémétrie alpine, fenêtres météo favorables et avancées d'ingénierie.</p>
+                <h4 class="fw-bold mb-1">Restez informé</h4>
+                <p class="text-secondary small mb-0">Inscrivez-vous à notre newsletter pour recevoir nos dernières actualités et nouveautés.</p>
             </div>
             <div class="col-lg-6">
-                <form class="d-flex gap-2" onsubmit="event.preventDefault(); alert('Fréquence connectée. Vous recevrez les mises à jour techniques d\'expédition.');">
-                    <input type="email" class="form-control-tech" placeholder="entrez votre canal ou e-mail technique..." required>
+                <form class="d-flex gap-2" onsubmit="event.preventDefault(); alert('Merci pour votre inscription à la newsletter.');">
+                    <input type="email" class="form-control-tech" placeholder="Votre adresse e-mail..." required>
                     <button type="submit" class="btn btn-vertex-primary text-nowrap">
-                        <i class="bi bi-broadcast-pin me-1"></i> Connecter la Fréquence
+                        S'abonner
                     </button>
                 </form>
             </div>
@@ -35,12 +34,8 @@
                     </div>
                 </div>
                 <p class="small text-secondary mb-3">
-                    Ingénierie anatomique, suspension à charge active et tissus ripstop thermo-soudés conçus pour endurer les conditions les plus rudes en haute montagne et milieu polaire.
+                    Ingénierie anatomique, suspension à charge active et tissus ripstop conçus pour endurer les conditions les plus rudes en haute montagne.
                 </p>
-                <div class="tech-mono text-muted small">
-                    COORD : 45°49'57"N 6°51'51"E<br>
-                    ALTITUDE LAB : 3.842 M (Aiguille du Midi)
-                </div>
             </div>
 
             <div class="col-lg-3 col-md-6">
@@ -66,21 +61,11 @@
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <div class="footer-col-title">ÉTAT DES OPÉRATIONS</div>
-                <div class="p-3 bg-dark border border-secondary border-opacity-25 rounded mb-3">
-                    <div class="d-flex align-items-center justify-content-between mb-2">
-                        <span class="small tech-mono text-muted">CENTRE LOGISTIQUE :</span>
-                        <span class="badge badge-emerald"><i class="bi bi-circle-fill me-1" style="font-size: 6px;"></i> EN LIGNE</span>
-                    </div>
-                    <div class="small text-secondary">
-                        Expéditions express vers refuges et camps de base via service logistique alpin. Départ quotidien avant 18:00 h.
-                    </div>
-                </div>
+                <div class="footer-col-title">RÉSEAUX SOCIAUX</div>
                 <div class="d-flex gap-3 text-secondary fs-5">
                     <a href="#" class="text-secondary hover-white" title="Instagram"><i class="bi bi-instagram"></i></a>
                     <a href="#" class="text-secondary hover-white" title="YouTube"><i class="bi bi-youtube"></i></a>
                     <a href="#" class="text-secondary hover-white" title="Strava"><i class="bi bi-activity"></i></a>
-                    <a href="#" class="text-secondary hover-white" title="GitHub"><i class="bi bi-github"></i></a>
                 </div>
             </div>
         </div>
@@ -93,7 +78,6 @@
             <div class="d-flex gap-4">
                 <a href="#" class="text-muted text-decoration-none hover-white">Mentions Légales</a>
                 <a href="#" class="text-muted text-decoration-none hover-white">Politique de Confidentialité</a>
-                <a href="#" class="text-muted text-decoration-none hover-white">Normes ISO 9001</a>
             </div>
         </div>
     </div>

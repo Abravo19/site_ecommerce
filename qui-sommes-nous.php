@@ -30,7 +30,7 @@ include __DIR__ . '/includes/navbar.php';
 <section class="container-fluid px-lg-5 mb-5 pb-4">
     <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4">
         <div>
-            <span class="tech-kicker">CORPS TECHNIQUE // MEMBRES DE L'EXPÉDITION</span>
+            <span class="tech-kicker">L'ÉQUIPE</span>
             <h2 class="fw-bold mb-0">L'Équipe Derrière le Matériel</h2>
         </div>
         <p class="text-muted small mb-0 mt-2 mt-md-0" style="max-width: 440px;">
@@ -112,7 +112,7 @@ include __DIR__ . '/includes/navbar.php';
     <div class="p-5 bg-dark rounded border border-warning border-opacity-25 position-relative overflow-hidden">
         <div class="row align-items-center gy-4">
             <div class="col-lg-7">
-                <span class="tech-kicker text-warning">RESPONSABILITÉ ÉCOLOGIQUE // 1% FOR THE PLANET</span>
+                <span class="tech-kicker text-warning">1% FOR THE PLANET</span>
                 <h2 class="fw-bold mb-3">
                     Dons Directs pour la Préservation des Glaciers
                 </h2>
@@ -188,7 +188,7 @@ include __DIR__ . '/includes/navbar.php';
                 <img src="https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=800&q=80" 
                      alt="Atelier de réparation Vertex" class="img-fluid rounded mb-3">
                 <div class="small tech-mono text-muted text-center">
-                    ATELIER CENTRAL // CHAMONIX-MONT-BLANC // POSTES DE THERMOSOUDAGE LASER
+                    ATELIER CENTRAL - CHAMONIX-MONT-BLANC
                 </div>
             </div>
         </div>
