@@ -10,14 +10,15 @@
         <!-- Newsletter -->
         <div class="row align-items-center mb-5 pb-4 border-bottom border-secondary border-opacity-25">
             <div class="col-lg-6 mb-3 mb-lg-0">
-                <h4 class="fw-bold mb-1">Restez informé</h4>
-                <p class="text-secondary small mb-0">Inscrivez-vous à notre newsletter pour recevoir nos dernières actualités et nouveautés.</p>
+                <span class="tech-kicker">NEWSLETTER</span>
+                <h4 class="fw-bold mb-1">Nouveautés produits et sorties de collection</h4>
+                <p class="text-secondary small mb-0">Recevez un e-mail quand un nouveau sac ou une nouvelle série est disponible. Pas de spam.</p>
             </div>
             <div class="col-lg-6">
-                <form class="d-flex gap-2" onsubmit="event.preventDefault(); alert('Merci pour votre inscription à la newsletter.');">
+                <form class="d-flex gap-2" onsubmit="event.preventDefault(); alert('Inscription à la newsletter enregistrée (fonctionnalité activée en V2).');">
                     <input type="email" class="form-control-tech" placeholder="Votre adresse e-mail..." required>
                     <button type="submit" class="btn btn-vertex-primary text-nowrap">
-                        S'abonner
+                        <i class="bi bi-envelope-fill me-1"></i> S'inscrire
                     </button>
                 </form>
             </div>
@@ -34,8 +35,12 @@
                     </div>
                 </div>
                 <p class="small text-secondary mb-3">
-                    Ingénierie anatomique, suspension à charge active et tissus ripstop conçus pour endurer les conditions les plus rudes en haute montagne.
+                    Ingénierie anatomique, suspension à charge active et tissus ripstop thermo-soudés conçus pour endurer les conditions les plus rudes en haute montagne et milieu polaire.
                 </p>
+                <div class="tech-mono text-muted small">
+                    COORD : 45°49'57"N 6°51'51"E<br>
+                    ALTITUDE LAB : 3.842 M (Aiguille du Midi)
+                </div>
             </div>
 
             <div class="col-lg-3 col-md-6">
@@ -45,7 +50,6 @@
                     <li><a href="produits.php?cat=fastpacking">Fastpacking & Ultra-Trail (15L - 30L)</a></li>
                     <li><a href="produits.php?cat=voyage">Sacs Duffel Étanche IP68</a></li>
                     <li><a href="produits.php?cat=refuge">Abris & Bivouacs d'Urgence</a></li>
-                    <li><a href="index.php#volume">Matrice des Litrages par Durée</a></li>
                 </ul>
             </div>
 
@@ -61,7 +65,10 @@
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <div class="footer-col-title">RÉSEAUX SOCIAUX</div>
+                <div class="footer-col-title">SUIVEZ-NOUS</div>
+                <p class="small text-secondary mb-3">
+                    Photos de terrain, nouveaux produits et coulisses de l'atelier.
+                </p>
                 <div class="d-flex gap-3 text-secondary fs-5">
                     <a href="#" class="text-secondary hover-white" title="Instagram"><i class="bi bi-instagram"></i></a>
                     <a href="#" class="text-secondary hover-white" title="YouTube"><i class="bi bi-youtube"></i></a>
@@ -78,6 +85,7 @@
             <div class="d-flex gap-4">
                 <a href="#" class="text-muted text-decoration-none hover-white">Mentions Légales</a>
                 <a href="#" class="text-muted text-decoration-none hover-white">Politique de Confidentialité</a>
+                <a href="#" class="text-muted text-decoration-none hover-white">Normes ISO 9001</a>
             </div>
         </div>
     </div>

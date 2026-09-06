@@ -22,7 +22,7 @@ include __DIR__ . '/includes/navbar.php';
             <!-- Colonne Gauche : Présentation et Spécifications -->
             <div class="col-lg-7">
                 <div class="hero-pill">
-                    <i class="bi bi-shield-shaded me-1"></i> COLLECTION ALPINE 2026
+                    <i class="bi bi-shield-shaded me-1"></i> COLLECTION ALPINE LAB 2026 // TESTÉ À -35°C
                 </div>
                 <h1 class="hero-title">
                     Équipement sans compromis pour terrain hostile
@@ -34,9 +34,6 @@ include __DIR__ . '/includes/navbar.php';
                 <div class="d-flex flex-wrap gap-3">
                     <a href="produits.php" class="btn btn-vertex-primary">
                         Explorer les Sacs Pro <i class="bi bi-arrow-right ms-1"></i>
-                    </a>
-                    <a href="#volume" class="btn btn-vertex-outline">
-                        <i class="bi bi-sliders me-1"></i> Guide des Litrages & Réglage
                     </a>
                 </div>
 
@@ -72,7 +69,7 @@ include __DIR__ . '/includes/navbar.php';
                     </div>
                     <div class="hero-card-footer">
                         <div>
-                            <div class="hero-card-meta">SAC D'EXPÉDITION</div>
+                            <div class="hero-card-meta">SAC D'EXPÉDITION // V.02</div>
                             <h3 class="hero-card-title"><?php echo htmlspecialchars($featuredProduct['name']); ?></h3>
                             <div class="text-success small tech-mono">
                                 <i class="bi bi-check2-circle me-1"></i> TEST VALIDÉ : GROENLAND (-35°C)
@@ -199,7 +196,7 @@ include __DIR__ . '/includes/navbar.php';
     <div class="container-fluid px-lg-5">
         <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4">
             <div>
-                <span class="tech-kicker">MATÉRIEL PRINCIPAL</span>
+                <span class="tech-kicker">MATÉRIEL PRINCIPAL // SÉRIE 9000</span>
                 <h2 class="fw-bold mb-0">Sacs à Dos de Haute Performance</h2>
             </div>
             <div class="mt-3 mt-md-0">
@@ -273,283 +270,6 @@ include __DIR__ . '/includes/navbar.php';
                 </div>
             </div>
             <?php endforeach; ?>
-        </div>
-    </div>
-</section>
-
-<!-- ==========================================================================
-     INGÉNIERIE ANATOMIQUE ET RÉSISTANCE EXTRÊME
-     ========================================================================== -->
-<section class="engineering-section">
-    <div class="container-fluid px-lg-5">
-        <div class="text-center mb-5">
-            <span class="tech-kicker">ÉTUDE DES MATÉRIAUX ET BIOMÉCANIQUE</span>
-            <h2 class="fw-bold">Ingénierie Anatomique et Résistance Extrême</h2>
-            <p class="text-secondary mx-auto" style="max-width: 650px;">
-                Chaque couture est thermo-tensionnée pour supporter des tractions supérieures à 150 N/mm². Nous développons des solutions de durabilité active conformes aux normes alpines internationales.
-            </p>
-        </div>
-
-        <div class="schematic-box">
-            <div class="row align-items-center g-4">
-                <!-- Colonne Gauche : Callouts 01 et 02 -->
-                <div class="col-lg-3">
-                    <div class="schematic-callout">
-                        <div class="callout-num">CHÂSSIS</div>
-                        <h4 class="callout-title">Châssis en Aluminium 7075</h4>
-                        <p class="callout-desc">Exosquelette anatomique à flexion torsionnelle active qui transfère 85% de la charge vers les hanches.</p>
-                    </div>
-
-                    <div class="schematic-callout">
-                        <div class="callout-num">RESPIRABILITÉ</div>
-                        <h4 class="callout-title">Panneau Dorsal AirMesh 3D</h4>
-                        <p class="callout-desc">Canaux thermo-convectifs de ventilation réduisant la sudation dorsale de 28% pendant les ascensions soutenues.</p>
-                    </div>
-                </div>
-
-                <!-- Centre : Diagramme Technique -->
-                <div class="col-lg-6 text-center">
-                    <div class="p-4 bg-dark rounded border border-secondary border-opacity-25 position-relative">
-                        <span class="badge badge-amber position-absolute top-0 start-50 translate-middle tech-mono">
-                            SCHÉMA BIOMÉCANIQUE
-                        </span>
-                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80" 
-                             alt="Éclaté Technique Vertex" class="img-fluid rounded my-3" style="max-height: 320px; object-fit: contain;">
-                        
-                        <div class="row g-2 pt-3 border-top border-secondary border-opacity-25">
-                            <div class="col-6">
-                                <div class="tech-mono text-amber fw-bold fs-4">35.000</div>
-                                <div class="small text-muted" style="font-size: 0.7rem;">CYCLES MARTINDALE ABRASION</div>
-                            </div>
-                            <div class="col-6">
-                                <div class="tech-mono text-info fw-bold fs-4">0%</div>
-                                <div class="small text-muted" style="font-size: 0.7rem;">ABSORPTION D'EAU MEMBRANE</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Colonne Droite : Callouts 03 et 04 -->
-                <div class="col-lg-3">
-                    <div class="schematic-callout">
-                        <div class="callout-num">SUSPENSION</div>
-                        <h4 class="callout-title">Ceinture Lombaire Pivotante</h4>
-                        <p class="callout-desc">Accompagne la cadence naturelle en marche avec crampons ou skis, éliminant les points de friction latérale.</p>
-                    </div>
-
-                    <div class="schematic-callout">
-                        <div class="callout-num">RÉSISTANCE AU FROID</div>
-                        <h4 class="callout-title">Boucles Duraflex® Anti-Gel</h4>
-                        <p class="callout-desc">Polymère formulé pour ne pas casser jusqu'à -45°C. Manipulables avec des moufles d'expédition polaire.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ==========================================================================
-     MATRICE DE VOLUME ("De quel volume avez-vous besoin ?")
-     ========================================================================== -->
-<section class="volume-matrix-section" id="volume">
-    <div class="container-fluid px-lg-5">
-        <div class="text-center mb-5">
-            <span class="tech-kicker">MATRICE DE VOLUME ET AUTONOMIE</span>
-            <h2 class="fw-bold">De quel volume avez-vous besoin pour votre prochaine expédition ?</h2>
-            <p class="text-secondary mx-auto" style="max-width: 600px;">
-                Déterminez la capacité idéale en fonction de la durée du périple, de l'isolation thermique requise et du degré d'autosuffisance.
-            </p>
-        </div>
-
-        <div class="row g-4">
-            <!-- 15 - 30 L -->
-            <div class="col-lg-3 col-md-6">
-                <div class="matrix-card" data-filter="fastpacking">
-                    <div>
-                        <div class="matrix-liters">15 — 30 L</div>
-                        <div class="matrix-duration">Journée / Fast-Trail / Via Ferrata</div>
-                        <p class="small text-secondary mb-3">Sorties non-stop d'une journée. Priorité à l'aérodynamisme, la légèreté extrême et le maintien au torse.</p>
-                        <ul class="matrix-checklist">
-                            <li><i class="bi bi-check2"></i> Coupe-vent et couche thermique</li>
-                            <li><i class="bi bi-check2"></i> Poche à eau d'hydratation 2L</li>
-                            <li><i class="bi bi-check2"></i> Trousse de secours et lampe frontale</li>
-                        </ul>
-                    </div>
-                    <div class="matrix-recommendation">
-                        MODÈLE SUGGÉRÉ :
-                        <strong>CHRONO 25L ULTRALIGHT</strong>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 35 - 50 L -->
-            <div class="col-lg-3 col-md-6">
-                <div class="matrix-card" data-filter="voyage">
-                    <div>
-                        <div class="matrix-liters">35 — 50 L</div>
-                        <div class="matrix-duration">Week-end / Refuge Alpin</div>
-                        <p class="small text-secondary mb-3">Traversées de 2 à 3 jours avec nuitée en refuge gardé ou bivouac estival ultraléger.</p>
-                        <ul class="matrix-checklist">
-                            <li><i class="bi bi-check2"></i> Vêtements de rechange et nécessaire</li>
-                            <li><i class="bi bi-check2"></i> Réchaud et vivres pour 2 jours</li>
-                            <li><i class="bi bi-check2"></i> Drap de sac ou sac de bivouac</li>
-                        </ul>
-                    </div>
-                    <div class="matrix-recommendation">
-                        MODÈLE SUGGÉRÉ :
-                        <strong>BORA DUFFEL OU FAST-PACK 40L</strong>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 60 - 75 L (Le plus populaire) -->
-            <div class="col-lg-3 col-md-6">
-                <div class="matrix-card featured-matrix" data-filter="expedition">
-                    <div>
-                        <span class="badge badge-amber mb-2 tech-mono">LE PLUS POPULAIRE</span>
-                        <div class="matrix-liters text-amber">60 — 75 L</div>
-                        <div class="matrix-duration">Traversée Alpine de 4 à 7 Jours</div>
-                        <p class="small text-secondary mb-3">Autonomie complète en haute montagne avec tente, réchaud et matériel technique glaciaire.</p>
-                        <ul class="matrix-checklist">
-                            <li><i class="bi bi-check2 text-amber"></i> Tente, duvet -10°C et matelas</li>
-                            <li><i class="bi bi-check2 text-amber"></i> Crampons, baudrier et piolet</li>
-                            <li><i class="bi bi-check2 text-amber"></i> Charge recommandée : 14 à 22 kg</li>
-                        </ul>
-                    </div>
-                    <div class="matrix-recommendation">
-                        MODÈLE SUGGÉRÉ :
-                        <strong class="text-amber">VERTEX APEX 65L PRO</strong>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 80 - 110 L -->
-            <div class="col-lg-3 col-md-6">
-                <div class="matrix-card" data-filter="expedition">
-                    <div>
-                        <div class="matrix-liters">80 — 110 L</div>
-                        <div class="matrix-duration">Grande Expédition & Camp de Base</div>
-                        <p class="small text-secondary mb-3">Expéditions polaires et sommets majeurs. Conçu pour le portage de charges lourdes et traction de traîneau.</p>
-                        <ul class="matrix-checklist">
-                            <li><i class="bi bi-check2"></i> Sac de couchage grand froid polaire</li>
-                            <li><i class="bi bi-check2"></i> Ravitaillement pour 10 à 20 jours</li>
-                            <li><i class="bi bi-check2"></i> Charge recommandée : jusqu'à 35 kg</li>
-                        </ul>
-                    </div>
-                    <div class="matrix-recommendation">
-                        MODÈLE SUGGÉRÉ :
-                        <strong>SERAC EXPEDITION 85+10</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ==========================================================================
-     RETOURS D'EXPÉRIENCE DEPUIS LES GLACIERS
-     ========================================================================== -->
-<section class="py-5">
-    <div class="container-fluid px-lg-5">
-        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4">
-            <div>
-                <span class="tech-kicker">RAPPORTS DE TERRAIN</span>
-                <h2 class="fw-bold mb-0">Retours d'Expérience depuis les Glaciers</h2>
-            </div>
-            <div class="small tech-mono text-muted mt-2 mt-md-0">
-                SITES D'ESSAIS : MASSIF DU MONT-BLANC, PATAGONIE DU SUD
-            </div>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-lg-4">
-                <div class="p-4 bg-dark rounded border border-secondary border-opacity-25 h-100">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" 
-                             alt="Marc Soler" class="rounded-circle" style="width: 48px; height: 48px; object-fit: cover;">
-                        <div>
-                            <h5 class="mb-0 fs-6 fw-bold">Marc Soler</h5>
-                            <span class="tech-mono text-amber small">Guide UIAGM - Chamonix</span>
-                        </div>
-                    </div>
-                    <p class="small text-secondary mb-0">
-                        "La répartition du poids de l'Apex 65L est remarquable. Pendant 6 jours sur l'éperon Frendo, le panneau dorsal a évité l'accumulation d'humidité et le tissu Cordura a résisté aux frottements répétés contre le granite abrasif sans aucune déchirure."
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="p-4 bg-dark rounded border border-secondary border-opacity-25 h-100">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" 
-                             alt="Elena Santoro" class="rounded-circle" style="width: 48px; height: 48px; object-fit: cover;">
-                        <div>
-                            <h5 class="mb-0 fs-6 fw-bold">Elena Santoro</h5>
-                            <span class="tech-mono text-success small">Athlète Ultra-Trail - Dolomites</span>
-                        </div>
-                    </div>
-                    <p class="small text-secondary mb-0">
-                        "Avec le Chrono 25L en Dyneema, j'ai gagné près de 500 grammes en course par rapport à mon ancien sac. Zéro ballottement dans les descentes pierreuses et les flasques restent parfaitement accessibles."
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="p-4 bg-dark rounded border border-secondary border-opacity-25 h-100">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" 
-                             alt="Dr. Henrik Lind" class="rounded-circle" style="width: 48px; height: 48px; object-fit: cover;">
-                        <div>
-                            <h5 class="mb-0 fs-6 fw-bold">Dr. Henrik Lind</h5>
-                            <span class="tech-mono text-info small">Géophysicien Polaire - Svalbard Camp</span>
-                        </div>
-                    </div>
-                    <p class="small text-secondary mb-0">
-                        "Les boucles Duraflex anti-gel tiennent parole : à -38°C dans le fjord de Van Keulen, d'autres boucles cèdent sous l'impact. Le Serac 85 a traversé deux semaines de blizzard arctique sans rupture de fermeture."
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ==========================================================================
-     DURABILITÉ, CIRCULARITÉ ET ATELIER DE RÉPARATION
-     ========================================================================== -->
-<section class="container-fluid px-lg-5">
-    <div class="durability-banner">
-        <div class="row align-items-center gy-4">
-            <div class="col-lg-8">
-                <span class="tech-kicker text-warning">ENGAGEMENT DE CIRCULARITÉ TOTALE</span>
-                <h2 class="fw-bold mb-3">
-                    Conçu pour durer toute une vie. En cas de bris en expédition, nous réparons sans frais.
-                </h2>
-                <p class="text-secondary mb-4" style="max-width: 680px;">
-                    Nous refusons l'obsolescence programmée. Notre atelier de réparation à Chamonix restaure les déchirures, thermo-soude les zips étanches et remplace les tiges en aluminium pour que votre sac VERTEX vous accompagne pendant des décennies.
-                </p>
-                <div class="d-flex flex-wrap gap-4 pt-2">
-                    <div class="d-flex align-items-center gap-2 small tech-mono text-white">
-                        <i class="bi bi-shield-check text-success fs-5"></i> GARANTIE À VIE
-                    </div>
-                    <div class="d-flex align-items-center gap-2 small tech-mono text-white">
-                        <i class="bi bi-recycle text-amber fs-5"></i> 100% TISSUS RÉCUPÉRABLES
-                    </div>
-                    <div class="d-flex align-items-center gap-2 small tech-mono text-white">
-                        <i class="bi bi-heart-pulse text-info fs-5"></i> ATELIER ARCTIQUE PERMANENT
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 text-center">
-                <div class="durability-stat-box">
-                    <div class="small tech-mono text-muted mb-1">MÉTRIQUE DE RÉPARABILITÉ 2024</div>
-                    <div class="durability-number">94.8%</div>
-                    <p class="small text-secondary mb-3">Des équipements retournés à l'atelier ont été remis en service actif chez leurs propriétaires en moins de 10 jours ouvrés.</p>
-                    <a href="qui-sommes-nous.php#reparation" class="btn btn-vertex-outline btn-sm-tech w-100">
-                        Découvrir le Protocole de Réparation
-                    </a>
-                </div>
-            </div>
         </div>
     </div>
 </section>
