@@ -1,6 +1,6 @@
 <?php
 /**
- * VERTEX EXPEDITION - En-tête Commun & Téléométrie Supérieure (HUD)
+ * VERTEX EXPEDITION - En-tête Commun (balises meta, polices, feuilles de style)
  */
 if (!isset($page_title)) {
     $page_title = 'VERTEX EXPEDITION | Équipement Outdoor, Sacs à Dos et Matériel de Voyage';
@@ -35,19 +35,3 @@ if (!isset($current_page)) {
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
-<!-- Barre d'Annonce -->
-<div class="bg-dark text-white py-2 small d-none d-lg-block border-bottom border-secondary border-opacity-25">
-    <div class="container-fluid px-4">
-        <div class="d-flex align-items-center justify-content-between">
-            <div class="text-secondary">
-                Livraison standard offerte à partir de 150 €
-            </div>
-            <div>
-                <a href="contact.php" class="text-secondary text-decoration-none hover-white">
-                    <i class="bi bi-headset me-1 text-amber"></i> Support Client
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
