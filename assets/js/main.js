@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initCartSystem();
     initCatalogFilters();
     initSearchHUD();
-    initVolumeMatrix();
 });
 
 function initCartSystem() {
@@ -52,10 +51,10 @@ function initCartSystem() {
         if (cart.length === 0) {
             cartItemsContainer.innerHTML = `
                 <div class="text-center py-5">
-                    <i class="bi bi-box-seam display-4 text-muted mb-3 d-block"></i>
-                    <p class="text-muted mb-3">Votre équipement d'expédition est vide.</p>
+                    <i class="bi bi-bag-x display-4 text-muted mb-3 d-block"></i>
+                    <p class="text-muted mb-3">Votre panier est vide.</p>
                     <a href="produits.php" class="btn btn-vertex-outline btn-sm-tech">
-                        Explorer le Catalogue de Matériel
+                        Explorer les sacs à dos
                     </a>
                 </div>
             `;
@@ -102,11 +101,11 @@ function initCartSystem() {
             freeShippingBar.style.width = `${percentage}%`;
 
             if (total >= freeShippingThreshold) {
-                freeShippingText.innerHTML = '<span class="text-success"><i class="bi bi-check-circle-fill me-1"></i>Livraison d\'Expédition Gratuite Débloquée !</span>';
+                freeShippingText.innerHTML = '<span class="text-success"><i class="bi bi-check-circle-fill me-1"></i>Livraison gratuite offerte !</span>';
                 freeShippingBar.className = 'progress-bar bg-success';
             } else {
                 const remaining = (freeShippingThreshold - total).toFixed(2);
-                freeShippingText.innerHTML = `Ajoutez <strong class="text-amber">${remaining} €</strong> pour la Livraison Gratuite`;
+                freeShippingText.innerHTML = `Ajoutez <strong class="text-amber">${remaining} €</strong> pour la livraison offerte`;
                 freeShippingBar.className = 'progress-bar bg-warning';
             }
         }
@@ -141,7 +140,7 @@ function initCartSystem() {
         }
         renderCart();
         openCart();
-        showFeedbackToast(`Ajouté à l'équipement d'expédition : ${productData.name}`);
+        showFeedbackToast(`Ajouté au panier : ${productData.name}`);
     };
 
     // Détection des boutons d'ajout au panier
@@ -179,18 +178,18 @@ function showFeedbackToast(message) {
         toast.style.fontFamily = 'monospace';
         toast.style.fontSize = '0.85rem';
         toast.style.zIndex = '2000';
-        toast.style.boxShadow = '0 8px 30px rgba(0,0,0,0.6)';
-        toast.style.transition = 'all 0.3s ease';
+        toast.style.boxShadow = '0 6px 20px rgba(0,0,0,0.5)';
+        toast.style.transition = 'all 0.2s ease';
         document.body.appendChild(toast);
     }
-    toast.innerHTML = `<i class="bi bi-shield-check text-warning me-2"></i> ${message}`;
+    toast.innerHTML = `<i class="bi bi-check-circle-fill text-warning me-2"></i> ${message}`;
     toast.style.opacity = '1';
     toast.style.transform = 'translateY(0)';
 
     setTimeout(() => {
         toast.style.opacity = '0';
-        toast.style.transform = 'translateY(10px)';
-    }, 2800);
+        toast.style.transform = 'translateY(8px)';
+    }, 2500);
 }
 
 function initCatalogFilters() {
@@ -218,6 +217,16 @@ function initCatalogFilters() {
             });
         });
     });
+
+    // Activation automatique selon le paramètre d'URL ?cat=
+    const urlParams = new URLSearchParams(window.location.search);
+    const catParam = urlParams.get('cat');
+    if (catParam) {
+        const targetBtn = document.querySelector(`.catalog-filter-btn[data-filter="${catParam}"]`);
+        if (targetBtn) {
+            targetBtn.click();
+        }
+    }
 }
 
 function initSearchHUD() {
@@ -262,27 +271,5 @@ function initSearchHUD() {
                 item.style.display = 'none';
             }
         });
-    }
-}
-
-function initVolumeMatrix() {
-    const matrixCards = document.querySelectorAll('.matrix-card');
-    matrixCards.forEach(card => {
-        card.style.cursor = 'pointer';
-        card.addEventListener('click', () => {
-            const targetFilter = card.dataset.filter;
-            if (targetFilter) {
-                window.location.href = `produits.php?cat=${targetFilter}`;
-            }
-        });
-    });
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const catParam = urlParams.get('cat');
-    if (catParam) {
-        const targetBtn = document.querySelector(`.catalog-filter-btn[data-filter="${catParam}"]`);
-        if (targetBtn) {
-            targetBtn.click();
-        }
     }
 }

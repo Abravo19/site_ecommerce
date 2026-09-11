@@ -1,5 +1,4 @@
 :root {
-  /* Palette de Base */
   --bg-deep: #080b0e;
   --bg-base: #0d1216;
   --bg-card: #131a20;
@@ -7,42 +6,35 @@
   --bg-surface: #1c2730;
   --bg-elevated: #222f3a;
 
-  /* Lignes et Bordures Techniques */
   --border-subtle: #202a32;
   --border-medium: #2e3d48;
   --border-focus: #ff6b00;
 
-  /* Accents de Marque */
   --accent-amber: #ff6b00;
   --accent-amber-hover: #e05e00;
-  --accent-amber-glow: rgba(255, 107, 0, 0.25);
   --accent-cyan: #00d2ff;
   --accent-cyan-dim: rgba(0, 210, 255, 0.15);
   --accent-emerald: #2ecc71;
   --accent-emerald-dim: rgba(46, 204, 113, 0.15);
 
-  /* Typographie et Textes */
   --text-primary: #f0f4f8;
   --text-secondary: #9aa9b8;
   --text-muted: #5e6f7f;
   --text-amber: #ff8533;
 
-  /* Polices de Caractères */
   --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, 'Courier New', monospace;
   --font-display: 'Outfit', 'Inter', sans-serif;
 
-  /* Élévations et Ombres */
   --shadow-subtle: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.55);
-  --shadow-glow: 0 0 25px rgba(255, 107, 0, 0.2);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45);
 
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-pill: 9999px;
 
-  --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: all 0.2s ease;
 }
 
 *,
@@ -67,7 +59,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Typographie Générale */
 h1,
 h2,
 h3,
@@ -123,13 +114,10 @@ a:hover {
   height: 6px;
   background-color: var(--accent-amber);
   border-radius: 50%;
-  box-shadow: 0 0 8px var(--accent-amber);
 }
 
 .vertex-navbar {
-  background-color: rgba(13, 18, 22, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: #0d1216;
   border-bottom: 1px solid var(--border-subtle);
   padding: 14px 0;
   position: sticky;
@@ -153,10 +141,9 @@ a:hover {
 .brand-icon {
   width: 28px;
   height: 28px;
-  background: linear-gradient(135deg, var(--accent-amber) 0%, #ff9438 100%);
+  background: var(--accent-amber);
   clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
   display: inline-block;
-  box-shadow: 0 0 12px var(--accent-amber-glow);
 }
 
 .brand-sub {
@@ -192,7 +179,6 @@ a:hover {
   right: 14px;
   height: 2px;
   background-color: var(--accent-amber);
-  box-shadow: 0 0 8px var(--accent-amber);
 }
 
 /* Champ de Recherche Technique */
@@ -217,7 +203,7 @@ a:hover {
   background-color: var(--bg-surface);
   border-color: var(--accent-amber);
   outline: none;
-  box-shadow: 0 0 10px var(--accent-amber-glow);
+  box-shadow: none;
 }
 
 .tech-search-input::placeholder {
@@ -264,28 +250,26 @@ a:hover {
 }
 
 .btn-vertex-primary {
-  background: linear-gradient(135deg, var(--accent-amber) 0%, #e65c00 100%);
-  color: #000 !important;
+  background-color: var(--accent-amber);
+  color: #0b0e11 !important;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.92rem;
   letter-spacing: 0.02em;
-  padding: 12px 24px;
+  padding: 11px 22px;
   border-radius: var(--radius-sm);
   border: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 4px 18px var(--accent-amber-glow);
   transition: var(--transition);
   cursor: pointer;
   text-decoration: none;
 }
 
 .btn-vertex-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 107, 0, 0.4);
-  color: #000 !important;
+  background-color: var(--accent-amber-hover);
+  color: #0b0e11 !important;
 }
 
 .btn-vertex-outline {
@@ -441,19 +425,13 @@ a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hero-product-card:hover .hero-image-wrapper img {
-  transform: scale(1.05);
 }
 
 .hero-badge-overlay {
   position: absolute;
   top: 16px;
   right: 16px;
-  background-color: rgba(13, 18, 22, 0.85);
-  backdrop-filter: blur(8px);
+  background-color: #0d1216;
   border: 1px solid var(--border-medium);
   padding: 6px 12px;
   border-radius: var(--radius-sm);
@@ -527,8 +505,6 @@ a:hover {
 .category-card:hover {
   background-color: var(--bg-card-hover);
   border-color: var(--border-medium);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card);
 }
 
 .category-card:hover::before {
@@ -605,8 +581,6 @@ a:hover {
 
 .product-card:hover {
   border-color: var(--border-medium);
-  box-shadow: var(--shadow-card);
-  transform: translateY(-4px);
 }
 
 .product-thumb-container {
@@ -620,11 +594,6 @@ a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.product-card:hover .product-thumb-container img {
-  transform: scale(1.06);
 }
 
 .product-ref-overlay {
@@ -634,8 +603,7 @@ a:hover {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   color: var(--text-secondary);
-  background-color: rgba(13, 18, 22, 0.85);
-  backdrop-filter: blur(4px);
+  background-color: #0d1216;
   padding: 3px 8px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-subtle);
@@ -681,7 +649,6 @@ a:hover {
   overflow: hidden;
 }
 
-/* Grille des Spécifications Techniques (Volume, Poids, Matériau, Imperméabilité) */
 .product-specs-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -762,9 +729,7 @@ a:hover {
 }
 
 .team-card:hover {
-  border-color: var(--accent-amber);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card);
+  border-color: var(--border-medium);
 }
 
 .team-avatar-box {
@@ -840,7 +805,7 @@ a:hover {
   border-color: var(--accent-amber);
   color: #fff;
   outline: none;
-  box-shadow: 0 0 12px var(--accent-amber-glow);
+  box-shadow: none;
 }
 
 .form-select-tech {
@@ -889,7 +854,7 @@ a:hover {
   z-index: 1060;
   display: flex;
   flex-direction: column;
-  transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: right 0.3s ease;
 }
 
 .cart-drawer.open {
@@ -903,7 +868,6 @@ a:hover {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
   z-index: 1050;
   opacity: 0;
   visibility: hidden;

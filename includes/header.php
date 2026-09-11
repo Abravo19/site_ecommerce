@@ -1,9 +1,9 @@
 <?php
 if (!isset($page_title)) {
-    $page_title = 'VERTEX EXPEDITION | Équipement Outdoor, Sacs à Dos et Matériel de Voyage';
+    $page_title = 'VERTEX EXPEDITION | Sacs à Dos Techniques & Matériel de Montagne';
 }
 if (!isset($page_description)) {
-    $page_description = 'Sacs à dos ergonomiques à charge active, systèmes ultralégers ripstop et matériel de précision testé à -35°C dans le Mont-Blanc.';
+    $page_description = 'Sacs à dos techniques, équipements de montagne et matériel outdoor haute performance conçus pour l\'aventure et les expéditions.';
 }
 if (!isset($current_page)) {
     $current_page = '';

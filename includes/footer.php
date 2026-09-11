@@ -30,11 +30,10 @@
                     </div>
                 </div>
                 <p class="small text-secondary mb-3">
-                    Ingénierie anatomique, suspension à charge active et tissus ripstop thermo-soudés conçus pour endurer les conditions les plus rudes en haute montagne et milieu polaire.
+                    Sacs à dos techniques et équipement de montagne conçus pour durer, réparables et éprouvés sur le terrain.
                 </p>
                 <div class="tech-mono text-muted small">
-                    COORD : 45°49'57"N 6°51'51"E<br>
-                    ALTITUDE LAB : 3.842 M (Aiguille du Midi)
+                    CHAMONIX-MONT-BLANC, FRANCE
                 </div>
             </div>
 
@@ -42,19 +41,19 @@
                 <div class="footer-col-title">MATÉRIEL TECHNIQUE</div>
                 <ul class="footer-links">
                     <li><a href="produits.php?cat=expedition">Sacs d'Expédition (65L - 85L)</a></li>
-                    <li><a href="produits.php?cat=fastpacking">Fastpacking & Ultra-Trail (15L - 30L)</a></li>
-                    <li><a href="produits.php?cat=voyage">Sacs Duffel Étanche IP68</a></li>
-                    <li><a href="produits.php?cat=refuge">Abris & Bivouacs d'Urgence</a></li>
+                    <li><a href="produits.php?cat=fastpacking">Fastpacking & Trail (15L - 30L)</a></li>
+                    <li><a href="produits.php?cat=voyage">Sacs Duffel Étanche</a></li>
+                    <li><a href="produits.php?cat=refuge">Abris & Bivouac</a></li>
                 </ul>
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <div class="footer-col-title">CIRCULARITÉ & ENGAGEMENT</div>
+                <div class="footer-col-title">SERVICES & ATELIER</div>
                 <ul class="footer-links">
-                    <li><a href="contact.php">Garantie à Vie & Réparation</a></li>
-                    <li><a href="qui-sommes-nous.php">Notre Équipe de Guides et Ingénieurs</a></li>
-                    <li><a href="contact.php">Canal d'Assistance en Expédition</a></li>
-                    <li><a href="inscription.php">Créer un ID d'Expédition Officiel</a></li>
+                    <li><a href="contact.php">Garantie & Réparation</a></li>
+                    <li><a href="qui-sommes-nous.php">Notre Histoire & Équipe</a></li>
+                    <li><a href="contact.php">Service Client & Support</a></li>
+                    <li><a href="inscription.php">Créer un compte</a></li>
                 </ul>
             </div>
 
@@ -73,12 +72,12 @@
 
         <div class="footer-bottom d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
             <div>
-                © 2026 VERTEX EXPEDITION EQUIPMENT INC. // VERSION V1.0 // TOUS DROITS RÉSERVÉS.
+                © 2026 VERTEX EXPEDITION EQUIPMENT. TOUS DROITS RÉSERVÉS.
             </div>
             <div class="d-flex gap-4">
                 <a href="#" class="text-muted text-decoration-none hover-white">Mentions Légales</a>
                 <a href="#" class="text-muted text-decoration-none hover-white">Politique de Confidentialité</a>
-                <a href="#" class="text-muted text-decoration-none hover-white">Normes ISO 9001</a>
+                <a href="#" class="text-muted text-decoration-none hover-white">Conditions Générales de Vente</a>
             </div>
         </div>
     </div>
@@ -89,13 +88,13 @@
     <div class="cart-header">
         <div class="d-flex align-items-center gap-2">
             <i class="bi bi-backpack2-fill text-amber fs-5"></i>
-            <h5 class="mb-0 fw-bold">MATÉRIEL SÉLECTIONNÉ</h5>
+            <h5 class="mb-0 fw-bold">VOTRE PANIER</h5>
         </div>
         <button type="button" class="btn-close btn-close-white" id="closeCartBtn" aria-label="Fermer"></button>
     </div>
 
     <div class="p-3 border-bottom border-secondary border-opacity-25 bg-dark">
-        <div class="small mb-1 tech-mono" id="freeShippingText">Calcul des frais de port d'expédition...</div>
+        <div class="small mb-1 tech-mono" id="freeShippingText">Calcul des frais de port...</div>
         <div class="progress" style="height: 6px; background-color: #1a2228;">
             <div class="progress-bar bg-warning" id="freeShippingProgress" role="progressbar" style="width: 0%;"></div>
         </div>
@@ -106,18 +105,18 @@
 
     <div class="cart-footer">
         <div class="d-flex justify-content-between align-items-center mb-2">
-            <span class="text-muted tech-mono small">SOUS-TOTAL ESTIMÉ :</span>
+            <span class="text-muted tech-mono small">SOUS-TOTAL :</span>
             <span class="fw-bold fs-5 text-white" id="cartTotalElement">0.00 €</span>
         </div>
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted tech-mono small">CONTRIBUTION ÉCOLOGIQUE (1% GLACIERS) :</span>
+            <span class="text-muted tech-mono small">TVA (20%) :</span>
             <span class="text-success tech-mono small">INCLUSE</span>
         </div>
-        <button class="btn btn-vertex-primary w-100 justify-content-center py-3" onclick="alert('Redirection vers le paiement sécurisé d\'expédition (V2). Merci pour votre commande !');">
-            <i class="bi bi-shield-lock-fill me-2"></i> Valider la Commande Sécurisée
+        <button class="btn btn-vertex-primary w-100 justify-content-center py-3" onclick="alert('Redirection vers le paiement sécurisé (V2). Merci pour votre commande !');">
+            <i class="bi bi-shield-lock-fill me-2"></i> Valider la commande
         </button>
         <div class="text-center mt-2">
-            <span class="text-muted small tech-mono" style="font-size: 0.68rem;">PAIEMENT CHIFFRÉ SSL 256-BIT // SUIVI GPS D'EXPÉDITION</span>
+            <span class="text-muted small tech-mono" style="font-size: 0.68rem;">PAIEMENT SÉCURISÉ SSL // LIVRAISON SUIVIE</span>
         </div>
     </div>
 </div>

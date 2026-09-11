@@ -13,10 +13,10 @@ include __DIR__ . '/includes/navbar.php';
     <div class="container-fluid px-lg-5">
         <div class="row align-items-center">
             <div class="col-lg-8">
-                <span class="tech-kicker">NOTRE COLLECTION</span>
-                <h1 class="fw-bold mb-2">Équipement d'Expédition et de Traversée</h1>
+                <span class="tech-kicker">CATALOGUE TECHNIQUE</span>
+                <h1 class="fw-bold mb-2">Sacs à Dos & Équipement Outdoor</h1>
                 <p class="text-secondary mb-0" style="max-width: 680px;">
-                    Tous les articles sont soumis à des essais de fatigue mécanique en chambre climatique. Consultez les attributs spécifiques de litrage, poids sur balance de laboratoire, matériaux et imperméabilité.
+                    Conçus pour l'alpinisme, le fastpacking et les traversées engagées. Retrouvez ici les détails techniques de chaque modèle : litrage, poids, matériaux et niveau d'imperméabilité.
                 </p>
             </div>
             <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
@@ -102,12 +102,12 @@ include __DIR__ . '/includes/navbar.php';
                         </div>
                     </div>
 
-                    <!-- Volet d'Ingénierie Déroulant -->
+                    <!-- Volet de Spécifications Techniques -->
                     <div class="mb-3">
                         <button class="btn btn-sm btn-link text-secondary p-0 text-decoration-none tech-mono small" 
                                 type="button" data-bs-toggle="collapse" data-bs-target="#specsCollapse-<?php echo $item['id']; ?>" 
                                 aria-expanded="false">
-                            <i class="bi bi-cpu me-1 text-amber"></i> Déplier les spécifications d'ingénierie <i class="bi bi-chevron-down ms-1"></i>
+                            <i class="bi bi-sliders me-1 text-amber"></i> Voir les caractéristiques techniques <i class="bi bi-chevron-down ms-1"></i>
                         </button>
                         <div class="collapse mt-2" id="specsCollapse-<?php echo $item['id']; ?>">
                             <div class="p-3 bg-dark rounded border border-secondary border-opacity-25 small">
@@ -140,7 +140,7 @@ include __DIR__ . '/includes/navbar.php';
                                 data-volume="<?php echo htmlspecialchars($item['volume']); ?>"
                                 data-weight="<?php echo htmlspecialchars($item['weight']); ?>"
                                 data-image="<?php echo htmlspecialchars($item['image']); ?>">
-                            <i class="bi bi-cart-plus me-1"></i> Ajouter à l'Équipement
+                            <i class="bi bi-cart-plus me-1"></i> Ajouter au panier
                         </button>
                     </div>
                 </div>
