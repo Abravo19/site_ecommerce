@@ -9,10 +9,10 @@ include __DIR__ . '/includes/navbar.php';
 
 <div class="page-header-technical">
     <div class="container-fluid px-lg-5">
-        <span class="tech-kicker">LABORATOIRE ALPIN DE HAUTE PRÉCISIO</span>
-        <h1 class="fw-bold mb-3">Notre Mission : Dompter l'Hostilité</h1>
+        <span class="tech-kicker">ATELIER & CONCEPTION HAUTE MONTAGNE</span>
+        <h1 class="fw-bold mb-3">Concevoir du matériel fiable et réparable</h1>
         <p class="text-secondary fs-5 mb-0" style="max-width: 760px;">
-            Fondée au cœur du massif du Mont-Blanc par des guides de haute montagne et des ingénieurs en matériaux. Nous concevons les sacs à dos et l'équipement que nous exigeons lorsque le mercure chute sous les -25°C.
+            Implantée au cœur du massif du Mont-Blanc, VERTEX est née de l'exigence de guides de haute montagne et de passionnés d'itinérance technique. Nous concevons des sacs à dos robustes, légers et réparables dans notre atelier de Chamonix.
         </p>
     </div>
 </div>
@@ -27,7 +27,7 @@ include __DIR__ . '/includes/navbar.php';
         <div class="col-lg-6 col-md-6">
             <div class="team-card">
                 <div class="team-avatar-box">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Alex Vance">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Gabriel Bravo">
                 </div>
                 <div class="team-card-body">
                     <div class="team-role">Fondateur & Guide de Montagne</div>
@@ -38,5 +38,7 @@ include __DIR__ . '/includes/navbar.php';
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
 <?php include __DIR__ . '/includes/footer.php'; ?>
