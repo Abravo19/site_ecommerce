@@ -1,8 +1,3 @@
-/**
- * VERTEX EXPEDITION - Logique d'Interface et Panier Persistant (V1)
- * Gestion du drawer, des filtres dynamiques et du stockage local
- */
-
 document.addEventListener('DOMContentLoaded', () => {
     initCartSystem();
     initCatalogFilters();
@@ -10,9 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initVolumeMatrix();
 });
 
-/* ==========================================================================
-   SYSTÈME DE PANIER (DRAWER & LOCALSTORAGE)
-   ========================================================================== */
 function initCartSystem() {
     const cartDrawer = document.getElementById('cartDrawer');
     const cartBackdrop = document.getElementById('cartBackdrop');
@@ -26,7 +18,6 @@ function initCartSystem() {
 
     let cart = JSON.parse(localStorage.getItem('vertex_cart')) || [];
 
-    // Ouvrir / Fermer le tiroir
     function openCart() {
         if (cartDrawer && cartBackdrop) {
             cartDrawer.classList.add('open');
@@ -51,7 +42,6 @@ function initCartSystem() {
     if (cartCloseBtn) cartCloseBtn.addEventListener('click', closeCart);
     if (cartBackdrop) cartBackdrop.addEventListener('click', closeCart);
 
-    // Rendu dynamique du panier
     function renderCart() {
         if (!cartItemsContainer) return;
 
@@ -173,9 +163,6 @@ function initCartSystem() {
     renderCart();
 }
 
-/* ==========================================================================
-   NOTIFICATION TOAST FLOTTANTE
-   ========================================================================== */
 function showFeedbackToast(message) {
     let toast = document.getElementById('vertexToast');
     if (!toast) {
@@ -206,9 +193,6 @@ function showFeedbackToast(message) {
     }, 2800);
 }
 
-/* ==========================================================================
-   FILTRAGE DU CATALOGUE DE PRODUITS (produits.php)
-   ========================================================================== */
 function initCatalogFilters() {
     const filterButtons = document.querySelectorAll('.catalog-filter-btn');
     const productItems = document.querySelectorAll('.catalog-product-item');
@@ -236,9 +220,6 @@ function initCatalogFilters() {
     });
 }
 
-/* ==========================================================================
-   RECHERCHE TECHNIQUE HUD
-   ========================================================================== */
 function initSearchHUD() {
     const searchInputs = document.querySelectorAll('.tech-search-input');
     const productItems = document.querySelectorAll('.catalog-product-item');
@@ -284,9 +265,6 @@ function initSearchHUD() {
     }
 }
 
-/* ==========================================================================
-   MATRICE DE SÉLECTION DU VOLUME
-   ========================================================================== */
 function initVolumeMatrix() {
     const matrixCards = document.querySelectorAll('.matrix-card');
     matrixCards.forEach(card => {

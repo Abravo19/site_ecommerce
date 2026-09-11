@@ -1,13 +1,8 @@
 <?php
-/**
- * VERTEX EXPEDITION - Pied de Page Commun & Tiroir du Panier
- */
 ?>
 
-<!-- PIED DE PAGE PRINCIPAL -->
 <footer class="vertex-footer">
     <div class="container-fluid px-lg-5">
-        <!-- Newsletter -->
         <div class="row align-items-center mb-5 pb-4 border-bottom border-secondary border-opacity-25">
             <div class="col-lg-6 mb-3 mb-lg-0">
                 <span class="tech-kicker">NEWSLETTER</span>
@@ -56,8 +51,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="footer-col-title">CIRCULARITÉ & ENGAGEMENT</div>
                 <ul class="footer-links">
-                    <li><a href="qui-sommes-nous.php#dons">Programme 1% pour les Glaciers Alpins</a></li>
-                    <li><a href="qui-sommes-nous.php#reparation">Garantie à Vie & Réparation</a></li>
+                    <li><a href="contact.php">Garantie à Vie & Réparation</a></li>
                     <li><a href="qui-sommes-nous.php">Notre Équipe de Guides et Ingénieurs</a></li>
                     <li><a href="contact.php">Canal d'Assistance en Expédition</a></li>
                     <li><a href="inscription.php">Créer un ID d'Expédition Officiel</a></li>
@@ -77,7 +71,6 @@
             </div>
         </div>
 
-        <!-- Mentions Légales et Droits -->
         <div class="footer-bottom d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
             <div>
                 © 2026 VERTEX EXPEDITION EQUIPMENT INC. // VERSION V1.0 // TOUS DROITS RÉSERVÉS.
@@ -91,7 +84,6 @@
     </div>
 </footer>
 
-<!-- OFFCANVAS / TIROIR DU PANIER D'EXPÉDITION -->
 <div class="cart-drawer-backdrop" id="cartBackdrop"></div>
 <div class="cart-drawer" id="cartDrawer" aria-modal="true" role="dialog">
     <div class="cart-header">
@@ -102,7 +94,6 @@
         <button type="button" class="btn-close btn-close-white" id="closeCartBtn" aria-label="Fermer"></button>
     </div>
 
-    <!-- Barre de Livraison Gratuite -->
     <div class="p-3 border-bottom border-secondary border-opacity-25 bg-dark">
         <div class="small mb-1 tech-mono" id="freeShippingText">Calcul des frais de port d'expédition...</div>
         <div class="progress" style="height: 6px; background-color: #1a2228;">
@@ -110,12 +101,9 @@
         </div>
     </div>
 
-    <!-- Liste des Articles -->
     <div class="cart-body" id="cartItemsContainer">
-        <!-- Rendu dynamique via JS -->
     </div>
 
-    <!-- Récapitulatif et Paiement -->
     <div class="cart-footer">
         <div class="d-flex justify-content-between align-items-center mb-2">
             <span class="text-muted tech-mono small">SOUS-TOTAL ESTIMÉ :</span>

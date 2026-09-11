@@ -1,7 +1,4 @@
 <?php
-/**
- * VERTEX EXPEDITION - En-tête Commun (balises meta, polices, feuilles de style)
- */
 if (!isset($page_title)) {
     $page_title = 'VERTEX EXPEDITION | Équipement Outdoor, Sacs à Dos et Matériel de Voyage';
 }
