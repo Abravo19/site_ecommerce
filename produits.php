@@ -1,8 +1,4 @@
 <?php
-/**
- * VERTEX EXPEDITION - Liste des Articles (produits.php)
- * Limite stricte V1 : Exactement 5 articles techniques
- */
 require_once __DIR__ . '/data/produits.php';
 
 $current_page = 'produits';
@@ -13,9 +9,6 @@ include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
 ?>
 
-<!-- ==========================================================================
-     EN-TÊTE TECHNIQUE DU CATALOGUE
-     ========================================================================== -->
 <div class="page-header-technical">
     <div class="container-fluid px-lg-5">
         <div class="row align-items-center">
@@ -37,12 +30,8 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 </div>
 
-<!-- ==========================================================================
-     BARRE DE FILTRES TECHNIQUES
-     ========================================================================== -->
 <div class="container-fluid px-lg-5 mb-4">
     <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 p-3 bg-dark rounded border border-secondary border-opacity-25">
-        <!-- Boutons de Filtre par Catégorie -->
         <div class="d-flex flex-wrap gap-2">
             <button class="btn btn-warning btn-sm-tech catalog-filter-btn active" data-filter="all">
                 <i class="bi bi-grid-fill me-1"></i> Tous (5)
@@ -67,15 +56,11 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 </div>
 
-<!-- ==========================================================================
-     GRILLE DES PRODUITS (EXACTEMENT LES 5 ARTICLES)
-     ========================================================================== -->
 <div class="container-fluid px-lg-5 pb-5">
     <div class="row g-4" id="catalogProductsGrid">
         <?php foreach ($produits as $item): ?>
         <div class="col-lg-4 col-md-6 catalog-product-item" data-category="<?php echo htmlspecialchars($item['category']); ?>">
             <div class="product-card">
-                <!-- Vignette avec Badges -->
                 <div class="product-thumb-container">
                     <img src="<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
                     <span class="product-ref-overlay"><?php echo htmlspecialchars($item['ref']); ?></span>
@@ -85,8 +70,6 @@ include __DIR__ . '/includes/navbar.php';
                         </span>
                     </div>
                 </div>
-
-                <!-- Corps de la Carte -->
                 <div class="product-body">
                     <div class="d-flex align-items-center justify-content-between mb-1">
                         <span class="product-category-tag"><?php echo htmlspecialchars($item['category_label']); ?></span>
@@ -98,7 +81,6 @@ include __DIR__ . '/includes/navbar.php';
                     <h2 class="product-name fs-5"><?php echo htmlspecialchars($item['name']); ?></h2>
                     <p class="product-short-desc"><?php echo htmlspecialchars($item['short_desc']); ?></p>
 
-                    <!-- Grille des Spécifications Outdoor -->
                     <div class="product-specs-grid">
                         <div class="spec-cell">
                             <span class="spec-cell-label">LITRAGE</span>
@@ -166,8 +148,6 @@ include __DIR__ . '/includes/navbar.php';
         </div>
         <?php endforeach; ?>
     </div>
-
-    <!-- Section nouveautés retirée (contenu généré par IA) -->
 </div>
 
 <?php include __DIR__ . '/includes/footer.php'; ?>

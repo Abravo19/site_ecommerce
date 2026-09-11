@@ -11,9 +11,7 @@ include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
 ?>
 
-<!-- ==========================================================================
-     EN-TÊTE DE LA PAGE
-     ========================================================================== -->
+<!-- EN-TÊTE DE LA PAGE -->
 <div class="page-header-technical">
     <div class="container-fluid px-lg-5">
         <span class="tech-kicker">ESPACE MEMBRE</span>
@@ -24,9 +22,7 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 </div>
 
-<!-- ==========================================================================
-     FORMULAIRE GRAPHIQUE D'INSCRIPTION
-     ========================================================================== -->
+<!-- FORMULAIRE GRAPHIQUE D'INSCRIPTION -->
 <div class="container-fluid px-lg-5 pb-5">
     <div class="row g-5">
         <!-- Formulaire Graphique -->
@@ -39,7 +35,6 @@ include __DIR__ . '/includes/navbar.php';
                     </div>
                 </div>
 
-                <form id="registerFormDemo" onsubmit="event.preventDefault(); alert('Note V1 : Ce formulaire d\'inscription a été fidèlement maquetté graphiquement. La création de compte serveur interviendra dans la Version 2.');">
                     <div class="row g-3">
                         <!-- Nom et Prénom -->
                         <div class="col-md-6">

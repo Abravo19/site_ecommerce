@@ -1,7 +1,4 @@
 <?php
-/**
- * VERTEX EXPEDITION - Barre de Navigation Principale
- */
 if (!isset($current_page)) {
     $current_page = '';
 }

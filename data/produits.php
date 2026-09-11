@@ -1,9 +1,4 @@
 <?php
-/**
- * VERTEX EXPEDITION - Catalogue de Produits V1
- * Exactement 5 articles techniques avec attributs outdoor spécialisés
- */
-
 $produits = [
     1 => [
         'id' => 1,

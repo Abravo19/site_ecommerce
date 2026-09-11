@@ -1,7 +1,6 @@
 <?php
 /**
  * VERTEX EXPEDITION - Page d'Accueil (index.php)
- * Présentation de la marque, innovations alpines et produits emblématiques
  */
 require_once __DIR__ . '/data/produits.php';
 
@@ -13,9 +12,7 @@ include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
 ?>
 
-<!-- ==========================================================================
-     SECTION HERO
-     ========================================================================== -->
+<!-- SECTION HERO -->
 <section class="hero-section">
     <div class="container-fluid px-lg-5">
         <div class="row align-items-center gy-5">
@@ -94,9 +91,7 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 </section>
 
-<!-- ==========================================================================
-     CATÉGORIES TECHNIQUES SPÉCIALISÉES (01, 02, 03, 04)
-     ========================================================================== -->
+<!-- CATÉGORIES TECHNIQUES SPÉCIALISÉES (01, 02, 03, 04) -->
 <section class="categories-section">
     <div class="container-fluid px-lg-5">
         <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between mb-4">
@@ -189,9 +184,7 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 </section>
 
-<!-- ==========================================================================
-     PRODUITS PHARE (SACS À DOS HAUTE PERFORMANCE)
-     ========================================================================== -->
+<!-- PRODUITS PHARE (SACS À DOS HAUTE PERFORMANCE) -->
 <section class="products-section">
     <div class="container-fluid px-lg-5">
         <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4">
