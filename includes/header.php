@@ -17,6 +17,9 @@ if (!isset($current_page)) {
     <meta name="description" content="<?php echo htmlspecialchars($page_description); ?>">
     <title><?php echo htmlspecialchars($page_title); ?></title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
     <!-- Polices de Haute Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

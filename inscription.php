@@ -35,6 +35,7 @@ include __DIR__ . '/includes/navbar.php';
                     </div>
                 </div>
 
+                <form id="inscriptionFormDemo" onsubmit="event.preventDefault(); alert('Merci ! Votre compte a été créé avec succès. (Démonstration V1)');">
                     <div class="row g-3">
                         <!-- Nom et Prénom -->
                         <div class="col-md-6">

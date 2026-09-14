@@ -5,6 +5,20 @@ $current_page = 'produits';
 $page_title = 'Catalogue de Matériel Technique (5) | VERTEX EXPEDITION';
 $page_description = 'Catalogue complet de sacs à dos d\'expédition, fastpacking ultraléger, duffels submersibles et abris bivouac de haute montagne.';
 
+// Filtrage par recherche texte
+$search_query = isset($_GET['q']) ? trim($_GET['q']) : '';
+if ($search_query !== '') {
+    $produits_filtered = array_filter($produits, function($item) use ($search_query) {
+        $haystack = mb_strtolower(
+            $item['name'] . ' ' . $item['category_label'] . ' ' . $item['short_desc'] . ' ' . $item['material'] . ' ' . $item['tag'],
+            'UTF-8'
+        );
+        return mb_strpos($haystack, mb_strtolower($search_query, 'UTF-8'), 0, 'UTF-8') !== false;
+    });
+} else {
+    $produits_filtered = $produits;
+}
+
 include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
 ?>
@@ -23,7 +37,7 @@ include __DIR__ . '/includes/navbar.php';
                 <div class="d-inline-flex align-items-center gap-2 px-3 py-2 bg-dark rounded border border-secondary border-opacity-25 tech-mono">
                     <i class="bi bi-box2-fill text-amber"></i>
                     <span>ARTICLES AU CATALOGUE :</span>
-                    <strong class="text-white"><?php echo count($produits); ?> SUR 5</strong>
+                    <strong class="text-white"><?php echo count($produits_filtered); ?> SUR <?php echo count($produits); ?></strong>
                 </div>
             </div>
         </div>
@@ -57,8 +71,19 @@ include __DIR__ . '/includes/navbar.php';
 </div>
 
 <div class="container-fluid px-lg-5 pb-5">
+    <?php if ($search_query !== ''): ?>
+    <div class="d-flex align-items-center gap-2 mb-4 p-3 bg-dark rounded border border-info border-opacity-25">
+        <i class="bi bi-search text-info"></i>
+        <span class="tech-mono small">Résultats pour : <strong class="text-white">"<?php echo htmlspecialchars($search_query); ?>"</strong></span>
+        <span class="tech-mono small text-muted">(<?php echo count($produits_filtered); ?> trouvé<?php echo count($produits_filtered) > 1 ? 's' : ''; ?>)</span>
+        <a href="produits.php" class="btn btn-sm btn-outline-secondary ms-auto tech-mono" style="font-size: 0.7rem;">
+            <i class="bi bi-x-lg me-1"></i> Effacer
+        </a>
+    </div>
+    <?php endif; ?>
+
     <div class="row g-4" id="catalogProductsGrid">
-        <?php foreach ($produits as $item): ?>
+        <?php foreach ($produits_filtered as $item): ?>
         <div class="col-lg-4 col-md-6 catalog-product-item" data-category="<?php echo htmlspecialchars($item['category']); ?>">
             <div class="product-card">
                 <div class="product-thumb-container">

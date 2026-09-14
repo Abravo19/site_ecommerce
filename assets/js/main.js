@@ -233,6 +233,7 @@ function initSearchHUD() {
     const searchInputs = document.querySelectorAll('.tech-search-input');
     const productItems = document.querySelectorAll('.catalog-product-item');
 
+    // Recherche instantanée client-side sur la page produits
     searchInputs.forEach(input => {
         input.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
@@ -240,36 +241,16 @@ function initSearchHUD() {
             if (productItems.length > 0) {
                 productItems.forEach(item => {
                     const text = item.innerText.toLowerCase();
-                    if (text.includes(query)) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
+                    item.style.display = text.includes(query) ? 'block' : 'none';
                 });
-            }
-        });
-
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                const query = input.value.trim();
-                if (query && !window.location.pathname.includes('produits.php')) {
-                    window.location.href = `produits.php?q=${encodeURIComponent(query)}`;
-                }
             }
         });
     });
 
+    // Pré-remplir le champ de recherche avec le paramètre URL
     const urlParams = new URLSearchParams(window.location.search);
     const qParam = urlParams.get('q');
-    if (qParam && productItems.length > 0) {
+    if (qParam) {
         searchInputs.forEach(input => input.value = qParam);
-        productItems.forEach(item => {
-            const text = item.innerText.toLowerCase();
-            if (text.includes(qParam.toLowerCase())) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
     }
 }
