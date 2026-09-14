@@ -37,7 +37,7 @@ if (!isset($current_page)) {
                 <li class="nav-item">
                     <a class="nav-link nav-link-custom <?php echo ($current_page === 'produits') ? 'active' : ''; ?>" href="produits.php">
                         <i class="bi bi-grid-3x3-gap me-1"></i> Produits (5)
-                    </a>
+                    </a> 
                 </li>
                 <li class="nav-item">
                     <a class="nav-link nav-link-custom <?php echo ($current_page === 'qui-sommes-nous') ? 'active' : ''; ?>" href="qui-sommes-nous.php">
@@ -59,10 +59,10 @@ if (!isset($current_page)) {
             <!-- Moteur de Recherche et Actions -->
             <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
                 <!-- Champ de Recherche -->
-                <div class="tech-search-wrapper">
+                <form class="tech-search-wrapper" action="produits.php" method="GET" role="search">
                     <i class="bi bi-search tech-search-icon"></i>
-                    <input type="text" class="tech-search-input" placeholder="Rechercher un produit..." aria-label="Recherche">
-                </div>
+                    <input type="text" name="q" class="tech-search-input" placeholder="Rechercher un produit..." aria-label="Recherche" id="navSearchInput">
+                </form>
 
                 <!-- Bouton Panier -->
                 <button class="cart-trigger-btn d-none d-lg-inline-flex" id="openCartNavBtn" aria-label="Voir le panier">

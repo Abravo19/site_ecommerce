@@ -19,7 +19,7 @@ $produits = [
         'material' => '500D Cordura® Ripstop',
         'waterproof' => 'Imperméable IPX6',
         'temp_rating' => 'Usage 4 saisons',
-        'image' => 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80',
+        'image' => 'assets/images/produits/vertex-apex-65l-pro.jpg',
         'short_desc' => 'Armature en aluminium 7075 avec report de charge sur les hanches. Tissu ripstop haute ténacité adapté aux courses glaciaires.',
         'full_desc' => 'Développé et testé dans le massif du Mont-Blanc. Le Vertex Apex 65L Pro combine une armature tubulaire légère en aluminium 7075 avec un dos AirMesh 3D thermoformé. Il offre une excellente stabilité de portage sous charge lourde dans les passages techniques.',
         'specs' => [
@@ -55,7 +55,7 @@ $produits = [
         'material' => 'Dyneema® Composite 50D',
         'waterproof' => 'Étanche IPX7',
         'temp_rating' => 'Ultra-polyvalent',
-        'image' => 'https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=800&q=80',
+        'image' => 'assets/images/produits/chrono-25l-ultralight.jpg',
         'short_desc' => "Sac d'assaut rapide et fastpacking ultraléger. Conçu en fibre Dyneema® résistante à l'abrasion et aux intempéries.",
         'full_desc' => "Conçu pour les sorties rapides en montagne et l'ultra-trail en autonomie. Son harnais enveloppant de type gilet stabilise la charge sans ballotter, intégrant deux poches frontales pour flasques souples de 500ml et un accès direct au matériel sans dépose.",
         'specs' => [
@@ -91,7 +91,7 @@ $produits = [
         'material' => 'Nylon Balistique 840D',
         'waterproof' => 'Traitement DWR + Enduction',
         'temp_rating' => 'Conditions hivernales',
-        'image' => 'https://images.unsplash.com/photo-1509783236416-c9ad59bae472?auto=format&fit=crop&w=800&q=80',
+        'image' => 'assets/images/produits/serac-expedition-85-10.jpg',
         'short_desc' => "Grand volume et portage haute résistance pour les camps de base et les traversées de plusieurs semaines en autonomie.",
         'full_desc' => "Le modèle de référence pour les longues expéditions et les charges lourdes. Sa ceinture articulée accompagne les mouvements du bassin en montée comme en descente. Il dispose d'un compartiment inférieur dédié au sac de couchage et d'un rabat amovible.",
         'specs' => [
@@ -126,7 +126,7 @@ $produits = [
         'material' => 'TPU 840D Soudé Haute Fréquence',
         'waterproof' => 'IP68 Submersible 1m',
         'temp_rating' => 'Résistant froid & chaud',
-        'image' => 'https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=800&q=80',
+        'image' => 'assets/images/produits/bora-modular-duffel-75l.jpg',
         'short_desc' => "Sac de voyage étanche et robuste. Bretelles ergonomiques amovibles pour portage pratique en sac à dos.",
         'full_desc' => "Conçu pour résister aux conditions humides et poussiéreuses lors des transferts ou expéditions nautiques. Sa confection thermo-soudée sans piqûres traversantes garantit une imperméabilité totale face aux éléments.",
         'specs' => [
@@ -161,7 +161,7 @@ $produits = [
         'material' => 'Nylon 15D Toray® Siliconé',
         'waterproof' => "Colonne d'Eau 4000mm",
         'temp_rating' => '4 Saisons / Vent 90km/h',
-        'image' => 'https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=800&q=80',
+        'image' => 'assets/images/produits/alpine-peak-bivy-tent-1p.jpg',
         'short_desc' => "Abri individuel ultraléger pour les bivouacs en paroi et les crêtes exposées. Respirant, coupe-vent et imperméable.",
         'full_desc' => "Idéal lorsqu'une tente classique ne trouve pas d'assise sur une vire étroite. L'Alpine Peak Bivy offre une protection imperméable efficace tout en assurant une bonne respirabilité grâce à sa membrane technique 3 couches.",
         'specs' => [
