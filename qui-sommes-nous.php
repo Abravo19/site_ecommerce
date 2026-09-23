@@ -27,7 +27,7 @@ include __DIR__ . '/includes/navbar.php';
         <div class="col-lg-6 col-md-6">
             <div class="team-card">
                 <div class="team-avatar-box">
-                    <img src="assets/images/equipe/gabriel-bravo.jpg" alt="Gabriel Bravo">
+                    <img src="" alt="Gabriel Bravo">
                 </div>
                 <div class="team-card-body">
                     <div class="team-role">Fondateur & Guide de Montagne</div>
