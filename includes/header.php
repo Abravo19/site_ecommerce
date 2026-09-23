@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/session.php';
+require_once __DIR__ . '/db.php';
+
 if (!isset($page_title)) {
     $page_title = 'VERTEX EXPEDITION | Sacs à Dos Techniques & Matériel de Montagne';
 }

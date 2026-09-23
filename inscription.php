@@ -1,13 +1,117 @@
 <?php
 /**
  * VERTEX EXPEDITION - Page d'Inscription (inscription.php)
- * V1 : Maquettage graphique soigné du formulaire (non fonctionnel par directive)
+ * Formulaire fonctionnel avec insertion en BDD.
  */
 $current_page = 'inscription';
 $page_title = 'Créer un compte | VERTEX EXPEDITION';
 $page_description = 'Créez votre compte VERTEX pour enregistrer votre matériel, suivre vos commandes et bénéficier de notre service de garantie.';
 
 include __DIR__ . '/includes/header.php';
+
+// Rediriger si déjà connecté
+if (isLoggedIn()) {
+    header('Location: index.php');
+    exit;
+}
+
+// ── Charger les disciplines depuis la BDD ──────────────────────────
+$pdo = getDB();
+$stmtDisc = $pdo->query("SELECT id_discipline, libelle FROM discipline ORDER BY libelle ASC");
+$disciplines = $stmtDisc->fetchAll();
+
+// ── Traitement du formulaire ───────────────────────────────────────
+$errors = [];
+$success = false;
+$form_data = [
+    'nom'         => '',
+    'prenom'      => '',
+    'pseudo'      => '',
+    'email'       => '',
+    'discipline'  => '',
+    'newsletter'  => false,
+];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Récupération des données
+    $form_data['nom']        = trim($_POST['nom'] ?? '');
+    $form_data['prenom']     = trim($_POST['prenom'] ?? '');
+    $form_data['pseudo']     = trim($_POST['pseudo'] ?? '');
+    $form_data['email']      = trim($_POST['email'] ?? '');
+    $form_data['discipline'] = $_POST['discipline'] ?? '';
+    $form_data['newsletter'] = isset($_POST['newsletter']);
+    $password                = $_POST['password'] ?? '';
+    $password_confirm        = $_POST['password_confirm'] ?? '';
+
+    // Validations
+    if ($form_data['nom'] === '') {
+        $errors[] = 'Le nom est obligatoire.';
+    }
+    if ($form_data['prenom'] === '') {
+        $errors[] = 'Le prénom est obligatoire.';
+    }
+    if ($form_data['email'] === '' || !filter_var($form_data['email'], FILTER_VALIDATE_EMAIL)) {
+        $errors[] = 'Adresse e-mail invalide.';
+    }
+    if ($form_data['discipline'] === '') {
+        $errors[] = 'Veuillez sélectionner votre pratique principale.';
+    }
+    if (strlen($password) < 8) {
+        $errors[] = 'Le mot de passe doit contenir au moins 8 caractères.';
+    }
+    if ($password !== $password_confirm) {
+        $errors[] = 'Les mots de passe ne correspondent pas.';
+    }
+    if (!isset($_POST['terms'])) {
+        $errors[] = 'Vous devez accepter les conditions générales.';
+    }
+
+    // Vérifier unicité de l'email
+    if (empty($errors)) {
+        $stmtCheck = $pdo->prepare("SELECT COUNT(*) FROM client WHERE email = ?");
+        $stmtCheck->execute([$form_data['email']]);
+        if ($stmtCheck->fetchColumn() > 0) {
+            $errors[] = 'Un compte existe déjà avec cette adresse e-mail.';
+        }
+    }
+
+    // Insertion en BDD
+    if (empty($errors)) {
+        try {
+            $hash = password_hash($password, PASSWORD_BCRYPT);
+
+            $stmtInsert = $pdo->prepare("
+                INSERT INTO client (nom, prenom, pseudo, email, mot_de_passe_hash, id_discipline, consentement_newsletter)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            ");
+            $stmtInsert->execute([
+                $form_data['nom'],
+                $form_data['prenom'],
+                $form_data['pseudo'] !== '' ? $form_data['pseudo'] : null,
+                $form_data['email'],
+                $hash,
+                (int)$form_data['discipline'],
+                $form_data['newsletter'] ? 1 : 0,
+            ]);
+
+            // Connexion automatique après inscription
+            $newUserId = $pdo->lastInsertId();
+            $stmtUser = $pdo->prepare("SELECT * FROM client WHERE id_client = ?");
+            $stmtUser->execute([$newUserId]);
+            $newUser = $stmtUser->fetch();
+
+            if ($newUser) {
+                loginUser($newUser);
+            }
+
+            $success = true;
+        } catch (PDOException $e) {
+            error_log('Erreur inscription : ' . $e->getMessage());
+            $errors[] = 'Une erreur technique est survenue. Veuillez réessayer.';
+        }
+    }
+}
+
 include __DIR__ . '/includes/navbar.php';
 ?>
 
@@ -22,10 +126,10 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 </div>
 
-<!-- FORMULAIRE GRAPHIQUE D'INSCRIPTION -->
+<!-- FORMULAIRE D'INSCRIPTION -->
 <div class="container-fluid px-lg-5 pb-5">
     <div class="row g-5">
-        <!-- Formulaire Graphique -->
+        <!-- Formulaire -->
         <div class="col-lg-7">
             <div class="tech-form-card">
                 <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom border-secondary border-opacity-25">
@@ -35,93 +139,141 @@ include __DIR__ . '/includes/navbar.php';
                     </div>
                 </div>
 
-                <form id="inscriptionFormDemo" onsubmit="event.preventDefault(); alert('Merci ! Votre compte a été créé avec succès. (Démonstration V1)');">
-                    <div class="row g-3">
-                        <!-- Nom et Prénom -->
-                        <div class="col-md-6">
-                            <label for="regFullName" class="form-label-tech">
-                                <i class="bi bi-person-badge-fill text-amber me-1"></i> Nom et Prénom *
-                            </label>
-                            <input type="text" id="regFullName" class="form-control-tech" placeholder="Ex. Marc Soler" required>
-                        </div>
-
-                        <!-- Indicatif / Pseudo -->
-                        <div class="col-md-6">
-                            <label for="regCallsign" class="form-label-tech">
-                                <i class="bi bi-person-gear text-amber me-1"></i> Pseudo (optionnel)
-                            </label>
-                            <input type="text" id="regCallsign" class="form-control-tech" placeholder="Ex. Marc_Alpinist">
-                        </div>
-
-                        <!-- E-mail -->
-                        <div class="col-12">
-                            <label for="regEmail" class="form-label-tech">
-                                <i class="bi bi-envelope-check-fill text-amber me-1"></i> Adresse E-mail *
-                            </label>
-                            <input type="email" id="regEmail" class="form-control-tech" placeholder="votre-email@exemple.com" required>
-                        </div>
-
-                        <!-- Discipline Principale -->
-                        <div class="col-12">
-                            <label for="regDiscipline" class="form-label-tech">
-                                <i class="bi bi-compass-fill text-amber me-1"></i> Pratique principale *
-                            </label>
-                            <select id="regDiscipline" class="form-select-tech text-secondary" required>
-                                <option value="" selected disabled>Sélectionnez votre pratique...</option>
-                                <option value="alpinisme">Alpinisme & Haute Montagne</option>
-                                <option value="fastpacking">Fastpacking, Trail & Randonnée rapide</option>
-                                <option value="expedition">Expéditions & Trekking engagé</option>
-                                <option value="viaje">Voyage & Aventure en autonomie</option>
-                                <option value="vivac">Bivouac & Camp d'altitude</option>
-                            </select>
-                        </div>
-
-                        <!-- Mot de Passe -->
-                        <div class="col-md-6">
-                            <label for="regPass" class="form-label-tech">
-                                <i class="bi bi-lock-fill text-amber me-1"></i> Mot de Passe *
-                            </label>
-                            <input type="password" id="regPass" class="form-control-tech" placeholder="8 caractères minimum" required>
-                        </div>
-
-                        <!-- Confirmation Mot de Passe -->
-                        <div class="col-md-6">
-                            <label for="regPassConfirm" class="form-label-tech">
-                                <i class="bi bi-shield-lock-fill text-amber me-1"></i> Confirmer le Mot de Passe *
-                            </label>
-                            <input type="password" id="regPassConfirm" class="form-control-tech" placeholder="Répétez le mot de passe" required>
-                        </div>
-
-                        <!-- Checkboxes de Consentement -->
-                        <div class="col-12">
-                            <div class="form-check form-check-tech mb-2">
-                                <input class="form-check-input" type="checkbox" id="regConsentSafety" checked>
-                                <label class="form-check-label" for="regConsentSafety">
-                                    Je souhaite recevoir les actualités et informations sur les produits.
-                                </label>
-                            </div>
-
-                            <div class="form-check form-check-tech">
-                                <input class="form-check-input" type="checkbox" id="regConsentTerms" required>
-                                <label class="form-check-label" for="regConsentTerms">
-                                    J'ai pris connaissance et j'accepte les <a href="#" class="text-amber">Conditions Générales d'Utilisation</a> et la <a href="#" class="text-amber">Politique de Confidentialité</a>.
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Bouton d'Inscription -->
-                        <div class="col-12 pt-2">
-                            <button type="submit" class="btn btn-vertex-primary w-100 justify-content-center py-3">
-                                <i class="bi bi-person-check-fill me-2"></i> Créer mon compte
-                            </button>
-                        </div>
-
-                        <div class="col-12 text-center mt-3">
-                            <span class="small text-muted">Vous disposez déjà d'un compte ? </span>
-                            <a href="#" class="small text-amber text-decoration-none fw-bold" onclick="alert('Module de Connexion planifié pour la Version 2.');">Se Connecter</a>
-                        </div>
+                <?php if ($success): ?>
+                    <div class="p-4 bg-dark rounded border border-success border-opacity-50 text-center">
+                        <i class="bi bi-check-circle-fill text-success fs-1 mb-3 d-block"></i>
+                        <h3 class="fw-bold mb-2">Compte créé avec succès !</h3>
+                        <p class="text-secondary mb-3">
+                            Bienvenue chez VERTEX EXPEDITION, <strong class="text-white"><?php echo htmlspecialchars($form_data['prenom']); ?></strong>.
+                            Vous êtes maintenant connecté(e).
+                        </p>
+                        <a href="index.php" class="btn btn-vertex-primary">
+                            <i class="bi bi-compass me-1"></i> Explorer le catalogue
+                        </a>
                     </div>
-                </form>
+                <?php else: ?>
+                    <?php if (!empty($errors)): ?>
+                        <div class="p-3 mb-4 bg-dark rounded border border-danger border-opacity-50">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <i class="bi bi-exclamation-triangle-fill text-danger"></i>
+                                <strong class="text-danger small tech-mono">ERREUR(S) DE VALIDATION</strong>
+                            </div>
+                            <ul class="mb-0 small text-danger ps-3">
+                                <?php foreach ($errors as $err): ?>
+                                    <li><?php echo htmlspecialchars($err); ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+
+                    <form id="inscriptionForm" method="POST" action="inscription.php">
+                        <div class="row g-3">
+                            <!-- Nom -->
+                            <div class="col-md-6">
+                                <label for="regNom" class="form-label-tech">
+                                    <i class="bi bi-person-badge-fill text-amber me-1"></i> Nom *
+                                </label>
+                                <input type="text" id="regNom" name="nom" class="form-control-tech" 
+                                       placeholder="Ex. Soler" required
+                                       value="<?php echo htmlspecialchars($form_data['nom']); ?>">
+                            </div>
+
+                            <!-- Prénom -->
+                            <div class="col-md-6">
+                                <label for="regPrenom" class="form-label-tech">
+                                    <i class="bi bi-person-fill text-amber me-1"></i> Prénom *
+                                </label>
+                                <input type="text" id="regPrenom" name="prenom" class="form-control-tech" 
+                                       placeholder="Ex. Marc" required
+                                       value="<?php echo htmlspecialchars($form_data['prenom']); ?>">
+                            </div>
+
+                            <!-- Pseudo -->
+                            <div class="col-md-6">
+                                <label for="regCallsign" class="form-label-tech">
+                                    <i class="bi bi-person-gear text-amber me-1"></i> Pseudo (optionnel)
+                                </label>
+                                <input type="text" id="regCallsign" name="pseudo" class="form-control-tech" 
+                                       placeholder="Ex. Marc_Alpinist"
+                                       value="<?php echo htmlspecialchars($form_data['pseudo']); ?>">
+                            </div>
+
+                            <!-- E-mail -->
+                            <div class="col-md-6">
+                                <label for="regEmail" class="form-label-tech">
+                                    <i class="bi bi-envelope-check-fill text-amber me-1"></i> Adresse E-mail *
+                                </label>
+                                <input type="email" id="regEmail" name="email" class="form-control-tech" 
+                                       placeholder="votre-email@exemple.com" required
+                                       value="<?php echo htmlspecialchars($form_data['email']); ?>">
+                            </div>
+
+                            <!-- Discipline Principale (dynamique depuis BDD) -->
+                            <div class="col-12">
+                                <label for="regDiscipline" class="form-label-tech">
+                                    <i class="bi bi-compass-fill text-amber me-1"></i> Pratique principale *
+                                </label>
+                                <select id="regDiscipline" name="discipline" class="form-select-tech text-secondary" required>
+                                    <option value="" selected disabled>Sélectionnez votre pratique...</option>
+                                    <?php foreach ($disciplines as $disc): ?>
+                                        <option value="<?php echo $disc['id_discipline']; ?>"
+                                            <?php echo ($form_data['discipline'] == $disc['id_discipline']) ? 'selected' : ''; ?>>
+                                            <?php echo htmlspecialchars($disc['libelle']); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                            <!-- Mot de Passe -->
+                            <div class="col-md-6">
+                                <label for="regPass" class="form-label-tech">
+                                    <i class="bi bi-lock-fill text-amber me-1"></i> Mot de Passe *
+                                </label>
+                                <input type="password" id="regPass" name="password" class="form-control-tech" 
+                                       placeholder="8 caractères minimum" required minlength="8">
+                            </div>
+
+                            <!-- Confirmation Mot de Passe -->
+                            <div class="col-md-6">
+                                <label for="regPassConfirm" class="form-label-tech">
+                                    <i class="bi bi-shield-lock-fill text-amber me-1"></i> Confirmer le Mot de Passe *
+                                </label>
+                                <input type="password" id="regPassConfirm" name="password_confirm" class="form-control-tech" 
+                                       placeholder="Répétez le mot de passe" required>
+                            </div>
+
+                            <!-- Checkboxes -->
+                            <div class="col-12">
+                                <div class="form-check form-check-tech mb-2">
+                                    <input class="form-check-input" type="checkbox" id="regConsentSafety" name="newsletter"
+                                        <?php echo $form_data['newsletter'] ? 'checked' : ''; ?>>
+                                    <label class="form-check-label" for="regConsentSafety">
+                                        Je souhaite recevoir les actualités et informations sur les produits.
+                                    </label>
+                                </div>
+
+                                <div class="form-check form-check-tech">
+                                    <input class="form-check-input" type="checkbox" id="regConsentTerms" name="terms" required>
+                                    <label class="form-check-label" for="regConsentTerms">
+                                        J'ai pris connaissance et j'accepte les <a href="mentions-legales.php" class="text-amber">Conditions Générales d'Utilisation</a> et la <a href="mentions-legales.php" class="text-amber">Politique de Confidentialité</a>.
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Bouton -->
+                            <div class="col-12 pt-2">
+                                <button type="submit" class="btn btn-vertex-primary w-100 justify-content-center py-3">
+                                    <i class="bi bi-person-check-fill me-2"></i> Créer mon compte
+                                </button>
+                            </div>
+
+                            <div class="col-12 text-center mt-3">
+                                <span class="small text-muted">Vous disposez déjà d'un compte ? </span>
+                                <a href="connexion.php" class="small text-amber text-decoration-none fw-bold">Se Connecter</a>
+                            </div>
+                        </div>
+                    </form>
+                <?php endif; ?>
             </div>
         </div>
 
