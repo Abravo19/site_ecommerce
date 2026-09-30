@@ -36,7 +36,7 @@ if (!isset($current_page)) {
                 </li>
                 <li class="nav-item">
                     <a class="nav-link nav-link-custom <?php echo ($current_page === 'produits') ? 'active' : ''; ?>" href="produits.php">
-                        <i class="bi bi-grid-3x3-gap me-1"></i> Produits (5)
+                        <i class="bi bi-grid-3x3-gap me-1"></i> Produits
                     </a> 
                 </li>
                 <li class="nav-item">
@@ -49,11 +49,30 @@ if (!isset($current_page)) {
                         <i class="bi bi-chat-square-text me-1"></i> Contact
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-custom <?php echo ($current_page === 'inscription') ? 'active' : ''; ?>" href="inscription.php">
-                        <i class="bi bi-person-plus me-1"></i> Inscription
-                    </a>
-                </li>
+                <?php if (isLoggedIn()): ?>
+                    <?php $current_user_nav = getCurrentUser(); ?>
+                    <li class="nav-item">
+                        <span class="nav-link nav-link-custom disabled">
+                            <i class="bi bi-person-check-fill me-1"></i> <?php echo htmlspecialchars($current_user_nav['prenom']); ?>
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="deconnexion.php">
+                            <i class="bi bi-box-arrow-right me-1"></i> Déconnexion
+                        </a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom <?php echo ($current_page === 'connexion') ? 'active' : ''; ?>" href="connexion.php">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Connexion
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom <?php echo ($current_page === 'inscription') ? 'active' : ''; ?>" href="inscription.php">
+                            <i class="bi bi-person-plus me-1"></i> Inscription
+                        </a>
+                    </li>
+                <?php endif; ?>
             </ul>
 
             <!-- Moteur de Recherche et Actions -->

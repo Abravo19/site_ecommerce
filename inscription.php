@@ -1,26 +1,18 @@
 <?php
-/**
- * VERTEX EXPEDITION - Page d'Inscription (inscription.php)
- * Formulaire fonctionnel avec insertion en BDD.
- */
 $current_page = 'inscription';
 $page_title = 'Créer un compte | VERTEX EXPEDITION';
 $page_description = 'Créez votre compte VERTEX pour enregistrer votre matériel, suivre vos commandes et bénéficier de notre service de garantie.';
 
 include __DIR__ . '/includes/header.php';
 
-// Rediriger si déjà connecté
 if (isLoggedIn()) {
     header('Location: index.php');
     exit;
 }
-
-// ── Charger les disciplines depuis la BDD ──────────────────────────
 $pdo = getDB();
 $stmtDisc = $pdo->query("SELECT id_discipline, libelle FROM discipline ORDER BY libelle ASC");
 $disciplines = $stmtDisc->fetchAll();
 
-// ── Traitement du formulaire ───────────────────────────────────────
 $errors = [];
 $success = false;
 $form_data = [
@@ -78,11 +70,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Insertion en BDD
     if (empty($errors)) {
         try {
-            $hash = password_hash($password, PASSWORD_BCRYPT);
+            // Algorithme imposé par le sujet : SHA-256, avec un sel aléatoire propre
+            // à chaque utilisateur (stocké dans sel_mdp) pour éviter les tables de
+            // correspondance (rainbow tables).
+            $sel  = bin2hex(random_bytes(16));
+            $hash = hash('sha256', $password . $sel);
 
             $stmtInsert = $pdo->prepare("
-                INSERT INTO client (nom, prenom, pseudo, email, mot_de_passe_hash, id_discipline, consentement_newsletter)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO client (nom, prenom, pseudo, email, mot_de_passe_hash, sel_mdp, id_discipline, consentement_newsletter)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             ");
             $stmtInsert->execute([
                 $form_data['nom'],
@@ -90,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $form_data['pseudo'] !== '' ? $form_data['pseudo'] : null,
                 $form_data['email'],
                 $hash,
+                $sel,
                 (int)$form_data['discipline'],
                 $form_data['newsletter'] ? 1 : 0,
             ]);

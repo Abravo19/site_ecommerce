@@ -1,11 +1,5 @@
 <?php
-/**
- * VERTEX EXPEDITION — Chargement des Produits depuis la BDD
- * 
- * Remplace l'ancien tableau statique par des requêtes SQL.
- * Le format de sortie ($produits) reste identique pour garantir
- * la compatibilité avec index.php et produits.php.
- */
+
 
 require_once __DIR__ . '/../includes/db.php';
 
@@ -33,6 +27,7 @@ $sql = "
         p.note_moyenne,
         p.nombre_avis,
         p.quantite_stock,
+        p.featured,
         c.code       AS cat_code,
         c.libelle    AS cat_libelle
     FROM produit p
@@ -81,13 +76,13 @@ function getBadgeClass(string $catCode, string $badge): string
 }
 
 // ── Formatage du volume pour l'affichage ───────────────────────────
+// Basé sur la catégorie (colonne réelle), plus sur des mots-clés dans le nom.
 function formatVolume(array $row): string
 {
-    $nom = $row['nom'];
-    // Cas spéciaux basés sur le nom du produit
-    if (stripos($nom, '65L') !== false) return '65L (+10L)';
-    if (stripos($nom, '85+10') !== false) return '85+10L';
-    if (stripos($nom, 'BIVY') !== false || stripos($nom, 'TENT') !== false) return '1 Personne + Matériel';
+    if ($row['cat_code'] === 'refuge') {
+        $n = (int)$row['volume_litres'];
+        return $n . ' Personne' . ($n > 1 ? 's' : '') . ' + Matériel';
+    }
     return $row['volume_litres'] . ' Litres';
 }
 
@@ -120,9 +115,6 @@ foreach ($rows as $row) {
 
     // Cas spécial pour SERAC qui avait un label différent
     $catLabel = $categoryLabels[$row['cat_code']] ?? $row['cat_libelle'];
-    if ($id === 3) {
-        $catLabel = 'Haute Montagne & Expédition';
-    }
 
     $produits[$id] = [
         'id'             => $id,
@@ -148,7 +140,7 @@ foreach ($rows as $row) {
         'full_desc'      => $row['description_longue'] ?? '',
         'specs'          => $allSpecs[$id] ?? [],
         'colors'         => $allColors[$id] ?? [],
-        'featured'       => ($id <= 3),  // Les 3 premiers sont "featured"
+        'featured'       => (bool)$row['featured'],
         'rating'         => (float)$row['note_moyenne'],
         'reviews_count'  => (int)$row['nombre_avis'],
         'in_stock'       => ((int)$row['quantite_stock'] > 0),
