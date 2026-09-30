@@ -61,13 +61,10 @@ function loginUser(array $user): void
     $_SESSION['user_email']  = $user['email'];
     $_SESSION['user_role']   = $user['role'] ?? 'client';
 
-    // Regénérer l'ID de session pour prévenir le fixation de session
+    // Regénérer l'ID de session
     session_regenerate_id(true);
 }
 
-/**
- * Déconnecte l'utilisateur et détruit la session.
- */
 function logoutUser(): void
 {
     $_SESSION = [];

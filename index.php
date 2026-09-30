@@ -111,7 +111,7 @@ include __DIR__ . '/includes/navbar.php';
                     <div>
                         <div class="category-num-badge">
                             <span class="category-number">01</span>
-                            <span class="category-volume-pill">VOL : 65L - 85L</span>
+                            <span class="category-volume-pill">VOL : 50L - 100L</span>
                         </div>
                         <h3 class="category-title">Sacs d'Expédition</h3>
                         <p class="category-desc">
@@ -130,7 +130,7 @@ include __DIR__ . '/includes/navbar.php';
                     <div>
                         <div class="category-num-badge">
                             <span class="category-number">02</span>
-                            <span class="category-volume-pill">VOL : 15L - 30L</span>
+                            <span class="category-volume-pill">VOL : 12L - 40L</span>
                         </div>
                         <h3 class="category-title">Fastpacking & Trail</h3>
                         <p class="category-desc">
@@ -149,7 +149,7 @@ include __DIR__ . '/includes/navbar.php';
                     <div>
                         <div class="category-num-badge">
                             <span class="category-number">03</span>
-                            <span class="category-volume-pill">VOL : 50L - 110L</span>
+                            <span class="category-volume-pill">VOL : 25L - 110L</span>
                         </div>
                         <h3 class="category-title">Sacs Duffel Étanche</h3>
                         <p class="category-desc">
@@ -194,14 +194,14 @@ include __DIR__ . '/includes/navbar.php';
             </div>
             <div class="mt-3 mt-md-0">
                 <a href="produits.php" class="btn btn-vertex-outline btn-sm-tech">
-                    Voir tout le catalogue (5) <i class="bi bi-arrow-right ms-1"></i>
+                    Voir tout le catalogue (<?php echo count($produits); ?>) <i class="bi bi-arrow-right ms-1"></i>
                 </a>
             </div>
         </div>
 
         <div class="row g-4">
             <?php 
-            $featuredItems = array_slice($produits, 0, 3, true);
+            $featuredItems = array_slice(array_filter($produits, fn($p) => $p['featured']), 0, 3, true);
             foreach ($featuredItems as $item): 
             ?>
             <div class="col-lg-4 col-md-6">

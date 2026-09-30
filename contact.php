@@ -29,34 +29,34 @@ include __DIR__ . '/includes/navbar.php';
                     </div>
                 </div>
 
-                <form id="contactFormDemo" onsubmit="event.preventDefault(); alert('Merci pour votre message ! Ce formulaire est une démonstration V1.');">
+                <form id="contactForm" method="POST" action="contact-traitement.php">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="contactName" class="form-label-tech">
                                 <i class="bi bi-person-fill text-amber me-1"></i> Nom et Prénom *
                             </label>
-                            <input type="text" id="contactName" class="form-control-tech" placeholder="Ex. Marc Soler" required>
+                            <input type="text" id="contactName" name="nom_complet" class="form-control-tech" placeholder="Ex. Marc Soler" required>
                         </div>
 
                         <div class="col-md-6">
                             <label for="contactEmail" class="form-label-tech">
                                 <i class="bi bi-envelope-at-fill text-amber me-1"></i> Adresse E-mail *
                             </label>
-                            <input type="email" id="contactEmail" class="form-control-tech" placeholder="nom@exemple.com" required>
+                            <input type="email" id="contactEmail" name="email" class="form-control-tech" placeholder="nom@exemple.com" required>
                         </div>
 
                         <div class="col-md-6">
                             <label for="contactPhone" class="form-label-tech">
                                 <i class="bi bi-telephone-fill text-amber me-1"></i> Téléphone (optionnel)
                             </label>
-                            <input type="tel" id="contactPhone" class="form-control-tech" placeholder="+33 6 00 00 00 00">
+                            <input type="tel" id="contactPhone" name="telephone" class="form-control-tech" placeholder="+33 6 00 00 00 00">
                         </div>
 
                         <div class="col-md-6">
                             <label for="contactSubject" class="form-label-tech">
                                 <i class="bi bi-tag-fill text-amber me-1"></i> Objet de la Demande *
                             </label>
-                            <select id="contactSubject" class="form-select-tech text-secondary" required>
+                            <select id="contactSubject" name="sujet" class="form-select-tech text-secondary" required>
                                 <option value="" selected disabled>Sélectionnez le sujet...</option>
                                 <option value="litrage">Conseil sur le choix du sac et le litrage</option>
                                 <option value="reparacion">Atelier de réparation & garantie</option>
@@ -69,13 +69,13 @@ include __DIR__ . '/includes/navbar.php';
                             <label for="contactMessage" class="form-label-tech">
                                 <i class="bi bi-chat-left-text-fill text-amber me-1"></i> Votre message *
                             </label>
-                            <textarea id="contactMessage" class="form-control-tech" rows="5" placeholder="Décrivez votre besoin, votre pratique ou votre demande de réparation..." required></textarea>
+                            <textarea id="contactMessage" name="message" class="form-control-tech" rows="5" placeholder="Décrivez votre besoin, votre pratique ou votre demande de réparation..." required></textarea>
                         </div>
 
                         <!-- Consentement -->
                         <div class="col-12">
                             <div class="form-check form-check-tech">
-                                <input class="form-check-input" type="checkbox" id="contactTerms" required>
+                                <input class="form-check-input" type="checkbox" id="contactTerms" name="consentement" required>
                                 <label class="form-check-label" for="contactTerms">
                                     J'accepte que mes données soient utilisées pour traiter ma demande.
                                 </label>
