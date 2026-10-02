@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Visuel produit à venir">
+  <rect width="800" height="600" fill="#131a20"/>
+  <rect x="24" y="24" width="752" height="552" fill="none" stroke="#2e3d48" stroke-width="2" stroke-dasharray="10 8"/>
+  <path d="M250 430 L400 190 L470 300 L520 240 L610 430 Z" fill="none" stroke="#ff6b00" stroke-width="6" stroke-linejoin="round"/>
+  <circle cx="330" cy="250" r="20" fill="none" stroke="#ff6b00" stroke-width="5"/>
+  <text x="400" y="490" text-anchor="middle" font-family="monospace" font-size="30" font-weight="700" fill="#f0f4f8">VERTEX EXPEDITION</text>
+  <text x="400" y="530" text-anchor="middle" font-family="monospace" font-size="20" fill="#9aa9b8">ABRI & BIVOUAC — PHOTO À VENIR</text>
+</svg>

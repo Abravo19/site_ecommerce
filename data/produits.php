@@ -1,180 +1,118 @@
 <?php
-$produits = [
-    1 => [
-        'id' => 1,
-        'ref' => 'RÉF: VT-APEX-65P',
-        'slug' => 'vertex-apex-65l-pro',
-        'name' => 'VERTEX APEX 65L PRO',
-        'category' => 'expedition',
-        'category_label' => "Sac à Dos d'Expédition",
-        'tag' => 'Série Alpine',
-        'badge' => 'ALPINE PRO',
-        'badge_class' => 'badge-amber',
-        'price' => 385.00,
-        'old_price' => 420.00,
-        'volume' => '65L (+10L)',
-        'volume_num' => 65,
-        'weight' => '1.14 kg',
-        'weight_num' => 1140,
-        'material' => '500D Cordura® Ripstop',
-        'waterproof' => 'Imperméable IPX6',
-        'temp_rating' => 'Usage 4 saisons',
-        'image' => 'assets/images/produits/vertex-apex-65l-pro.jpg',
-        'short_desc' => 'Armature en aluminium 7075 avec report de charge sur les hanches. Tissu ripstop haute ténacité adapté aux courses glaciaires.',
-        'full_desc' => 'Développé et testé dans le massif du Mont-Blanc. Le Vertex Apex 65L Pro combine une armature tubulaire légère en aluminium 7075 avec un dos AirMesh 3D thermoformé. Il offre une excellente stabilité de portage sous charge lourde dans les passages techniques.',
-        'specs' => [
-            'Armature' => 'Tubulaire aluminium 7075 démontable',
-            'Tissu' => '500D Cordura® avec enduction TPU protectrice',
-            'Imperméabilité' => 'Coutures thermo-soudées IPX6',
-            'Zips' => 'YKK® AquaGuard® étanches avec tirettes préhensiles avec gants',
-            'Capacité' => '65 Litres extensible à 75 Litres avec fermeture roll-top',
-            'Garantie' => 'Garantie durable avec service de réparation en atelier'
-        ],
-        'colors' => ['Obsidian Black', 'Solar Orange', 'Glacier Gray'],
-        'featured' => true,
-        'rating' => 4.9,
-        'reviews_count' => 84,
-        'in_stock' => true
-    ],
-    2 => [
-        'id' => 2,
-        'ref' => 'RÉF: VT-CHRN-25U',
-        'slug' => 'chrono-25l-ultralight',
-        'name' => 'CHRONO 25L ULTRALIGHT',
-        'category' => 'fastpacking',
-        'category_label' => 'Fastpacking & Trail',
-        'tag' => 'Fast & Light Series',
-        'badge' => 'ULTRALÉGER 480G',
-        'badge_class' => 'badge-emerald',
-        'price' => 245.00,
-        'old_price' => null,
-        'volume' => '25 Litres',
-        'volume_num' => 25,
-        'weight' => '480 g',
-        'weight_num' => 480,
-        'material' => 'Dyneema® Composite 50D',
-        'waterproof' => 'Étanche IPX7',
-        'temp_rating' => 'Ultra-polyvalent',
-        'image' => 'assets/images/produits/chrono-25l-ultralight.jpg',
-        'short_desc' => "Sac d'assaut rapide et fastpacking ultraléger. Conçu en fibre Dyneema® résistante à l'abrasion et aux intempéries.",
-        'full_desc' => "Conçu pour les sorties rapides en montagne et l'ultra-trail en autonomie. Son harnais enveloppant de type gilet stabilise la charge sans ballotter, intégrant deux poches frontales pour flasques souples de 500ml et un accès direct au matériel sans dépose.",
-        'specs' => [
-            'Matériau' => 'Dyneema® Composite Fabric (DCF) 2.92 oz/yd²',
-            'Harnais' => 'Système ergonomique type gilet avec double sangle pectorale',
-            'Hydratation' => 'Compatible poche à eau 2.5L + 2 poches frontales 500ml',
-            'Attaches' => 'Porte-bâtons à accès rapide en mouvement',
-            'Poids Minimal' => '410 g (sans coussin lombaire amovible)',
-            'Sécurité' => 'Sifflet de sécurité intégré sur boucle de poitrine'
-        ],
-        'colors' => ['Ghost White Dyneema', 'Stealth Black'],
-        'featured' => true,
-        'rating' => 4.8,
-        'reviews_count' => 61,
-        'in_stock' => true
-    ],
-    3 => [
-        'id' => 3,
-        'ref' => 'RÉF: VT-SERAC-85',
-        'slug' => 'serac-expedition-85-10',
-        'name' => 'SERAC EXPEDITION 85+10',
-        'category' => 'expedition',
-        'category_label' => 'Haute Montagne & Expédition',
-        'tag' => 'Grandes Traversées',
-        'badge' => 'HAUTE MONTAGNE',
-        'badge_class' => 'badge-amber',
-        'price' => 420.00,
-        'old_price' => 460.00,
-        'volume' => '85+10L',
-        'volume_num' => 85,
-        'weight' => '2.10 kg',
-        'weight_num' => 2100,
-        'material' => 'Nylon Balistique 840D',
-        'waterproof' => 'Traitement DWR + Enduction',
-        'temp_rating' => 'Conditions hivernales',
-        'image' => 'assets/images/produits/serac-expedition-85-10.jpg',
-        'short_desc' => "Grand volume et portage haute résistance pour les camps de base et les traversées de plusieurs semaines en autonomie.",
-        'full_desc' => "Le modèle de référence pour les longues expéditions et les charges lourdes. Sa ceinture articulée accompagne les mouvements du bassin en montée comme en descente. Il dispose d'un compartiment inférieur dédié au sac de couchage et d'un rabat amovible.",
-        'specs' => [
-            'Capacité' => '85 Litres de base + extension collerette 10 Litres',
-            'Châssis' => 'Double tige titane avec armature dorsale PEHD',
-            'Attache Traîneau' => 'Anneaux renforcés pour traction de pulka',
-            'Boucles' => 'Boucles Duraflex® résistantes au gel',
-            'Compartiments' => '3 accès indépendants (supérieur, frontal et fond de sac)'
-        ],
-        'colors' => ['Deep Pine & Obsidian', 'Safety High-Vis Orange'],
-        'featured' => true,
-        'rating' => 5.0,
-        'reviews_count' => 47,
-        'in_stock' => true
-    ],
-    4 => [
-        'id' => 4,
-        'ref' => 'RÉF: VT-BORA-75D',
-        'slug' => 'bora-modular-duffel-75l',
-        'name' => 'BORA MODULAR DUFFEL 75L',
-        'category' => 'voyage',
-        'category_label' => 'Sacs Duffel Étanche',
-        'tag' => 'Voyage & Expédition',
-        'badge' => 'IP68 SUBMERSIBLE',
-        'badge_class' => 'badge-cyan',
-        'price' => 185.00,
-        'old_price' => null,
-        'volume' => '75 Litres',
-        'volume_num' => 75,
-        'weight' => '950 g',
-        'weight_num' => 950,
-        'material' => 'TPU 840D Soudé Haute Fréquence',
-        'waterproof' => 'IP68 Submersible 1m',
-        'temp_rating' => 'Résistant froid & chaud',
-        'image' => 'assets/images/produits/bora-modular-duffel-75l.jpg',
-        'short_desc' => "Sac de voyage étanche et robuste. Bretelles ergonomiques amovibles pour portage pratique en sac à dos.",
-        'full_desc' => "Conçu pour résister aux conditions humides et poussiéreuses lors des transferts ou expéditions nautiques. Sa confection thermo-soudée sans piqûres traversantes garantit une imperméabilité totale face aux éléments.",
-        'specs' => [
-            'Étanchéité' => "Fermeture TIZIP® étanche à l'eau et aux poussières",
-            'Matériau' => 'Polyester 840D haute densité avec double enduction TPU',
-            'Polyvalence' => '4 poignées de préhension latérales + bretelles matelassées amovibles',
-            'Valve' => 'Valve manuelle de compression du volume',
-            'Arrimage' => 'Passants daisy-chain pour fixation sécurisée'
-        ],
-        'colors' => ['Matte Black', 'Arctic Gray', 'Safety Orange'],
-        'featured' => false,
-        'rating' => 4.9,
-        'reviews_count' => 112,
-        'in_stock' => true
-    ],
-    5 => [
-        'id' => 5,
-        'ref' => 'RÉF: VT-BIVY-01P',
-        'slug' => 'alpine-peak-bivy-tent-1p',
-        'name' => 'ALPINE PEAK BIVY TENT 1P',
-        'category' => 'refuge',
-        'category_label' => 'Abri & Bivouac Technique',
-        'tag' => 'Bivouac Léger',
-        'badge' => '4 SAISONS 820G',
-        'badge_class' => 'badge-emerald',
-        'price' => 290.00,
-        'old_price' => 325.00,
-        'volume' => '1 Personne + Matériel',
-        'volume_num' => 15,
-        'weight' => '820 g',
-        'weight_num' => 820,
-        'material' => 'Nylon 15D Toray® Siliconé',
-        'waterproof' => "Colonne d'Eau 4000mm",
-        'temp_rating' => '4 Saisons / Vent 90km/h',
-        'image' => 'assets/images/produits/alpine-peak-bivy-tent-1p.jpg',
-        'short_desc' => "Abri individuel ultraléger pour les bivouacs en paroi et les crêtes exposées. Respirant, coupe-vent et imperméable.",
-        'full_desc' => "Idéal lorsqu'une tente classique ne trouve pas d'assise sur une vire étroite. L'Alpine Peak Bivy offre une protection imperméable efficace tout en assurant une bonne respirabilité grâce à sa membrane technique 3 couches.",
-        'specs' => [
-            'Structure' => "1 Arceau DAC Featherlite NFL aluminium léger",
-            'Toile Supérieure' => 'Membrane 3L imperméable et respirante',
-            'Tapis de Sol' => 'Nylon 40D Ripstop avec enduction PU 10 000mm',
-            'Dimensions' => 'Longueur 230 cm | Largeur épaules 85 cm | Largeur pieds 55 cm',
-            'Volume Plié' => 'Compact (28 x 10 cm dans sa housse étanche)'
-        ],
-        'colors' => ['Solar Orange / Slate'],
-        'featured' => false,
-        'rating' => 4.7,
-        'reviews_count' => 38,
-        'in_stock' => true
-    ]
-];
+/**
+ * VERTEX EXPEDITION — Chargement des produits depuis la base de données.
+ *
+ * Fournit :
+ *   $produits   : tableau [id => produit] (même format qu'avant, utilisé par index.php, produits.php, produit.php)
+ *   $categories : tableau [code => ['label' => ..., 'nb' => ...]] pour les filtres du catalogue
+ *
+ * Aucune donnée utilisateur n'entre dans ces requêtes (elles sont donc sans risque d'injection SQL).
+ */
+
+require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/helpers.php';
+
+$pdo = getDB();
+
+// ── Produits + catégorie ───────────────────────────────────────────
+$rows = $pdo->query("
+    SELECT p.id_produit, p.reference, p.slug, p.nom, p.tag, p.badge, p.prix, p.prix_promo,
+           p.volume_litres, p.poids_grammes, p.materiau, p.etancheite, p.usage_temperature,
+           p.image_principale, p.description_courte, p.description_longue,
+           p.note_moyenne, p.nombre_avis, p.quantite_stock,
+           c.code AS cat_code, c.libelle AS cat_libelle
+    FROM produit p
+    INNER JOIN categorie c ON c.id_categorie = p.id_categorie
+    ORDER BY p.id_produit ASC
+")->fetchAll();
+
+// ── Caractéristiques techniques ────────────────────────────────────
+$allSpecs = [];
+foreach ($pdo->query("SELECT id_produit, libelle_cle, valeur FROM caracteristique_produit ORDER BY id_caracteristique")->fetchAll() as $s) {
+    $allSpecs[$s['id_produit']][$s['libelle_cle']] = $s['valeur'];
+}
+
+// ── Couleurs ───────────────────────────────────────────────────────
+$allColors = [];
+foreach ($pdo->query("
+    SELECT pc.id_produit, co.nom_couleur
+    FROM produit_couleur pc INNER JOIN couleur co ON co.id_couleur = pc.id_couleur
+    ORDER BY pc.id_produit, co.id_couleur
+")->fetchAll() as $c) {
+    $allColors[$c['id_produit']][] = $c['nom_couleur'];
+}
+
+// ── Aides d'affichage ──────────────────────────────────────────────
+function getBadgeClass(string $badge): string
+{
+    $b = mb_strtolower($badge, 'UTF-8');
+    if (strpos($b, 'ip6') !== false || strpos($b, 'submersible') !== false || strpos($b, 'étanche') !== false) {
+        return 'badge-cyan';
+    }
+    if (strpos($b, 'ultra') !== false || strpos($b, 'saison') !== false || strpos($b, 'light') !== false) {
+        return 'badge-emerald';
+    }
+    return 'badge-amber';
+}
+
+function formatWeight(int $grams): string
+{
+    return $grams >= 1000 ? number_format($grams / 1000, 2, '.', '') . ' kg' : $grams . ' g';
+}
+
+// ── Construction du tableau $produits ──────────────────────────────
+$produits   = [];
+$categories = [];
+$position   = 0;
+
+foreach ($rows as $row) {
+    $id     = (int)$row['id_produit'];
+    $specs  = $allSpecs[$id] ?? [];
+    $estRefuge = ($row['cat_code'] === 'refuge');
+
+    // Volume : litres si renseignés, sinon la capacité indiquée dans les caractéristiques (abris, couchage)
+    $volume = $row['volume_litres'] !== null
+        ? $row['volume_litres'] . ' L'
+        : ($specs['Capacité'] ?? ($specs['Température confort'] ?? '—'));
+
+    $prixNormal = (float)$row['prix'];
+    $enPromo    = $row['prix_promo'] !== null;
+
+    $produits[$id] = [
+        'id'             => $id,
+        'ref'            => 'RÉF: ' . $row['reference'],
+        'slug'           => $row['slug'],
+        'name'           => $row['nom'],
+        'category'       => $row['cat_code'],
+        'category_label' => $row['cat_libelle'],
+        'tag'            => $row['tag'] ?? '',
+        'badge'          => $row['badge'] ?? '',
+        'badge_class'    => getBadgeClass($row['badge'] ?? ''),
+        'price'          => $enPromo ? (float)$row['prix_promo'] : $prixNormal,
+        'old_price'      => $enPromo ? $prixNormal : null,
+        'volume'         => $volume,
+        'volume_label'   => $row['volume_litres'] !== null ? 'LITRAGE' : ($estRefuge ? 'CAPACITÉ' : 'VOLUME'),
+        'volume_num'     => (int)$row['volume_litres'],
+        'weight'         => formatWeight((int)$row['poids_grammes']),
+        'weight_num'     => (int)$row['poids_grammes'],
+        'material'       => $row['materiau'] ?? '',
+        'waterproof'     => $row['etancheite'] ?? '',
+        'temp_rating'    => $row['usage_temperature'] ?? '',
+        'image'          => produitImage($row['image_principale'], $row['cat_code']),
+        'short_desc'     => $row['description_courte'] ?? '',
+        'full_desc'      => $row['description_longue'] ?? '',
+        'specs'          => $specs,
+        'colors'         => $allColors[$id] ?? [],
+        'featured'       => ($position < 3),   // les 3 premiers produits du catalogue sont mis en avant
+        'rating'         => (float)$row['note_moyenne'],
+        'reviews_count'  => (int)$row['nombre_avis'],
+        'stock'          => (int)$row['quantite_stock'],
+        'in_stock'       => ((int)$row['quantite_stock'] > 0),
+    ];
+    $position++;
+
+    if (!isset($categories[$row['cat_code']])) {
+        $categories[$row['cat_code']] = ['label' => $row['cat_libelle'], 'nb' => 0];
+    }
+    $categories[$row['cat_code']]['nb']++;
+}

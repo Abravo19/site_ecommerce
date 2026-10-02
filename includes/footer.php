@@ -83,48 +83,8 @@
     </div>
 </footer>
 
-<div class="cart-drawer-backdrop" id="cartBackdrop"></div>
-<div class="cart-drawer" id="cartDrawer" aria-modal="true" role="dialog">
-    <div class="cart-header">
-        <div class="d-flex align-items-center gap-2">
-            <i class="bi bi-backpack2-fill text-amber fs-5"></i>
-            <h5 class="mb-0 fw-bold">VOTRE PANIER</h5>
-        </div>
-        <button type="button" class="btn-close btn-close-white" id="closeCartBtn" aria-label="Fermer"></button>
-    </div>
-
-    <div class="p-3 border-bottom border-secondary border-opacity-25 bg-dark">
-        <div class="small mb-1 tech-mono" id="freeShippingText">Calcul des frais de port...</div>
-        <div class="progress" style="height: 6px; background-color: #1a2228;">
-            <div class="progress-bar bg-warning" id="freeShippingProgress" role="progressbar" style="width: 0%;"></div>
-        </div>
-    </div>
-
-    <div class="cart-body" id="cartItemsContainer">
-    </div>
-
-    <div class="cart-footer">
-        <div class="d-flex justify-content-between align-items-center mb-2">
-            <span class="text-muted tech-mono small">SOUS-TOTAL :</span>
-            <span class="fw-bold fs-5 text-white" id="cartTotalElement">0.00 €</span>
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted tech-mono small">TVA (20%) :</span>
-            <span class="text-success tech-mono small">INCLUSE</span>
-        </div>
-        <button class="btn btn-vertex-primary w-100 justify-content-center py-3" onclick="alert('Redirection vers le paiement sécurisé (V2). Merci pour votre commande !');">
-            <i class="bi bi-shield-lock-fill me-2"></i> Valider la commande
-        </button>
-        <div class="text-center mt-2">
-            <span class="text-muted small tech-mono" style="font-size: 0.68rem;">PAIEMENT SÉCURISÉ SSL // LIVRAISON SUIVIE</span>
-        </div>
-    </div>
-</div>
-
-<!-- Bundle JS Bootstrap 5 CDN -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Script Principal de Logique d'Interface -->
 <script src="assets/js/main.js"></script>
 
 </body>

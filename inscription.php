@@ -1,8 +1,4 @@
 <?php
-/**
- * VERTEX EXPEDITION - Page d'Inscription (inscription.php)
- * V1 : Maquettage graphique soigné du formulaire (non fonctionnel par directive)
- */
 $current_page = 'inscription';
 $page_title = 'Créer un compte | VERTEX EXPEDITION';
 $page_description = 'Créez votre compte VERTEX pour enregistrer votre matériel, suivre vos commandes et bénéficier de notre service de garantie.';
@@ -11,7 +7,6 @@ include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
 ?>
 
-<!-- EN-TÊTE DE LA PAGE -->
 <div class="page-header-technical">
     <div class="container-fluid px-lg-5">
         <span class="tech-kicker">ESPACE CLIENT</span>
@@ -22,10 +17,8 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 </div>
 
-<!-- FORMULAIRE GRAPHIQUE D'INSCRIPTION -->
 <div class="container-fluid px-lg-5 pb-5">
     <div class="row g-5">
-        <!-- Formulaire Graphique -->
         <div class="col-lg-7">
             <div class="tech-form-card">
                 <div class="d-flex align-items-center justify-content-between mb-4 pb-3 border-bottom border-secondary border-opacity-25">

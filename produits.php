@@ -2,7 +2,7 @@
 require_once __DIR__ . '/data/produits.php';
 
 $current_page = 'produits';
-$page_title = 'Catalogue de Matériel Technique (5) | VERTEX EXPEDITION';
+$page_title = 'Catalogue de Matériel Technique (' . count($produits) . ') | VERTEX EXPEDITION';
 $page_description = 'Catalogue complet de sacs à dos d\'expédition, fastpacking ultraléger, duffels submersibles et abris bivouac de haute montagne.';
 
 // Filtrage par recherche texte
@@ -21,6 +21,7 @@ if ($search_query !== '') {
 
 include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
+flashRender();
 ?>
 
 <div class="page-header-technical">
@@ -48,20 +49,13 @@ include __DIR__ . '/includes/navbar.php';
     <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 p-3 bg-dark rounded border border-secondary border-opacity-25">
         <div class="d-flex flex-wrap gap-2">
             <button class="btn btn-warning btn-sm-tech catalog-filter-btn active" data-filter="all">
-                <i class="bi bi-grid-fill me-1"></i> Tous (5)
+                <i class="bi bi-grid-fill me-1"></i> Tous (<?php echo count($produits); ?>)
             </button>
-            <button class="btn btn-vertex-outline btn-sm-tech catalog-filter-btn" data-filter="expedition">
-                Expédition (65L-85L)
+            <?php foreach ($categories as $code => $cat): ?>
+            <button class="btn btn-vertex-outline btn-sm-tech catalog-filter-btn" data-filter="<?php echo e($code); ?>">
+                <?php echo e($cat['label']); ?> (<?php echo $cat['nb']; ?>)
             </button>
-            <button class="btn btn-vertex-outline btn-sm-tech catalog-filter-btn" data-filter="fastpacking">
-                Fastpacking & Trail (25L)
-            </button>
-            <button class="btn btn-vertex-outline btn-sm-tech catalog-filter-btn" data-filter="voyage">
-                Duffel Submersible (75L)
-            </button>
-            <button class="btn btn-vertex-outline btn-sm-tech catalog-filter-btn" data-filter="refuge">
-                Abri Bivouac (1P)
-            </button>
+            <?php endforeach; ?>
         </div>
 
         <div class="small tech-mono text-muted">
@@ -87,7 +81,7 @@ include __DIR__ . '/includes/navbar.php';
         <div class="col-lg-4 col-md-6 catalog-product-item" data-category="<?php echo htmlspecialchars($item['category']); ?>">
             <div class="product-card">
                 <div class="product-thumb-container">
-                    <img src="<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
+                    <a href="produit.php?slug=<?php echo e($item['slug']); ?>"><img src="<?php echo e($item['image']); ?>" alt="<?php echo e($item['name']); ?>" loading="lazy"></a>
                     <span class="product-ref-overlay"><?php echo htmlspecialchars($item['ref']); ?></span>
                     <div class="product-badge-overlay">
                         <span class="tech-badge <?php echo htmlspecialchars($item['badge_class']); ?>">
@@ -103,12 +97,12 @@ include __DIR__ . '/includes/navbar.php';
                         </span>
                     </div>
 
-                    <h2 class="product-name fs-5"><?php echo htmlspecialchars($item['name']); ?></h2>
+                    <h2 class="product-name fs-5"><a href="produit.php?slug=<?php echo e($item['slug']); ?>" class="text-decoration-none text-reset"><?php echo htmlspecialchars($item['name']); ?></a></h2>
                     <p class="product-short-desc"><?php echo htmlspecialchars($item['short_desc']); ?></p>
 
                     <div class="product-specs-grid">
                         <div class="spec-cell">
-                            <span class="spec-cell-label">LITRAGE</span>
+                            <span class="spec-cell-label"><?php echo e($item['volume_label']); ?></span>
                             <span class="spec-cell-value text-amber"><?php echo htmlspecialchars($item['volume']); ?></span>
                         </div>
                         <div class="spec-cell">
@@ -150,7 +144,7 @@ include __DIR__ . '/includes/navbar.php';
                     </div>
 
                     <!-- Pied de Carte avec Prix et Bouton Panier -->
-                    <div class="product-footer">
+                    <div class="product-footer flex-wrap gap-2">
                         <div class="product-price-box">
                             <span class="product-price"><?php echo number_format($item['price'], 2); ?> €</span>
                             <?php if (!empty($item['old_price'])): ?>
@@ -158,15 +152,7 @@ include __DIR__ . '/includes/navbar.php';
                             <?php endif; ?>
                         </div>
 
-                        <button class="btn btn-vertex-primary btn-sm-tech btn-add-to-cart"
-                                data-id="<?php echo $item['id']; ?>"
-                                data-name="<?php echo htmlspecialchars($item['name']); ?>"
-                                data-price="<?php echo $item['price']; ?>"
-                                data-volume="<?php echo htmlspecialchars($item['volume']); ?>"
-                                data-weight="<?php echo htmlspecialchars($item['weight']); ?>"
-                                data-image="<?php echo htmlspecialchars($item['image']); ?>">
-                            <i class="bi bi-cart-plus me-1"></i> Ajouter au panier
-                        </button>
+                        <?php echo formAjoutPanier($item, 'produits.php'); ?>
                     </div>
                 </div>
             </div>
