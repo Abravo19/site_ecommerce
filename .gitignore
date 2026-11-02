@@ -1,0 +1,4 @@
+# Ne jamais versionner les identifiants de l'hébergeur : après modification de config/db.php sur le serveur,
+# ne pas le commiter (git update-index --assume-unchanged config/db.php)
+.env
+*.log

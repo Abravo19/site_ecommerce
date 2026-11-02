@@ -3,8 +3,7 @@ $current_page = 'mentions-legales';
 $page_title = 'Mentions Légales | VERTEX EXPEDITION';
 $page_description = 'Mentions légales, politique de confidentialité et conditions générales de vente de VERTEX EXPEDITION.';
 
-include __DIR__ . '/includes/header.php';
-include __DIR__ . '/includes/navbar.php';
+require_once __DIR__ . '/config/header.php';
 ?>
 
 <div class="page-header-technical">
@@ -63,7 +62,7 @@ include __DIR__ . '/includes/navbar.php';
             <p>Ces données sont utilisées uniquement pour traiter votre demande (support client, garantie, réparation, information produit). Elles ne sont ni revendues, ni transmises à des tiers sans votre consentement.</p>
 
             <strong class="text-white d-block mt-3 mb-2">Cookies</strong>
-            <p>Ce site utilise le stockage local du navigateur (localStorage) pour mémoriser le contenu de votre panier. Aucun cookie tiers n'est utilisé à des fins de traçage publicitaire.</p>
+            <p>Ce site utilise un cookie de session technique (PHPSESSID), indispensable au fonctionnement du panier et de la connexion. Il ne contient aucune donnée personnelle et n'est pas utilisé à des fins de traçage publicitaire ; aucun cookie tiers de suivi n'est déposé.</p>
 
             <strong class="text-white d-block mt-3 mb-2">Vos droits</strong>
             <p class="mb-0">Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données. Pour exercer ces droits, contactez-nous à : <span class="text-white">contact@vertex-expedition.com</span></p>
@@ -91,4 +90,4 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 </div>
 
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/config/footer.php'; ?>

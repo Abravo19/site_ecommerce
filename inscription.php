@@ -1,20 +1,22 @@
 <?php
+require_once __DIR__ . '/config/functions.php';
+require_once __DIR__ . '/config/db.php';
+require_once __DIR__ . '/config/mail.php';
+
+if (isLoggedIn()) {
+    redirect('index.php');
+}
+
 $current_page = 'inscription';
 $page_title = 'Créer un compte | VERTEX EXPEDITION';
 $page_description = 'Créez votre compte VERTEX pour enregistrer votre matériel, suivre vos commandes et bénéficier de notre service de garantie.';
 
-include __DIR__ . '/includes/header.php';
-
-if (isLoggedIn()) {
-    header('Location: index.php');
-    exit;
-}
 $pdo = getDB();
-$stmtDisc = $pdo->query("SELECT id_discipline, libelle FROM discipline ORDER BY libelle ASC");
-$disciplines = $stmtDisc->fetchAll();
+$disciplines = $pdo->query("SELECT id_discipline, libelle FROM discipline ORDER BY libelle ASC")->fetchAll();
 
 $errors = [];
 $success = false;
+$mail_envoye = false;
 $form_data = [
     'nom'         => '',
     'prenom'      => '',
@@ -36,6 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password_confirm        = $_POST['password_confirm'] ?? '';
 
     // Validations
+    if (!csrfCheck($_POST['csrf'] ?? null)) {
+        $errors[] = 'Votre session a expiré. Merci de réessayer.';
+    }
     if ($form_data['nom'] === '') {
         $errors[] = 'Le nom est obligatoire.';
     }
@@ -45,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($form_data['email'] === '' || !filter_var($form_data['email'], FILTER_VALIDATE_EMAIL)) {
         $errors[] = 'Adresse e-mail invalide.';
     }
-    if ($form_data['discipline'] === '') {
+    $ids_disciplines = array_column($disciplines, 'id_discipline');
+    if ($form_data['discipline'] === '' || !in_array((int)$form_data['discipline'], array_map('intval', $ids_disciplines), true)) {
         $errors[] = 'Veuillez sélectionner votre pratique principale.';
     }
     if (strlen($password) < 8) {
@@ -99,6 +105,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 loginUser($newUser);
             }
 
+            // Envoi du mail de bienvenue
+            $mail_envoye = envoyerMailInscription([
+                'prenom' => $form_data['prenom'],
+                'nom'    => $form_data['nom'],
+                'email'  => $form_data['email'],
+                'pseudo' => $form_data['pseudo'],
+            ]);
+
             $success = true;
         } catch (PDOException $e) {
             error_log('Erreur inscription : ' . $e->getMessage());
@@ -107,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-include __DIR__ . '/includes/navbar.php';
+require_once __DIR__ . '/config/header.php';
 ?>
 
 <!-- EN-TÊTE DE LA PAGE -->
@@ -142,6 +156,11 @@ include __DIR__ . '/includes/navbar.php';
                             Bienvenue chez VERTEX EXPEDITION, <strong class="text-white"><?php echo htmlspecialchars($form_data['prenom']); ?></strong>.
                             Vous êtes maintenant connecté(e).
                         </p>
+                        <?php if ($mail_envoye): ?>
+                            <p class="small text-secondary mb-3"><i class="bi bi-envelope-check-fill text-success me-1"></i> Un e-mail de bienvenue vient de vous être envoyé.</p>
+                        <?php else: ?>
+                            <p class="small text-secondary mb-3"><i class="bi bi-envelope-exclamation text-warning me-1"></i> Votre compte est créé, mais l'e-mail de bienvenue n'a pas pu être envoyé.</p>
+                        <?php endif; ?>
                         <a href="index.php" class="btn btn-vertex-primary">
                             <i class="bi bi-compass me-1"></i> Explorer le catalogue
                         </a>
@@ -162,6 +181,7 @@ include __DIR__ . '/includes/navbar.php';
                     <?php endif; ?>
 
                     <form id="inscriptionForm" method="POST" action="inscription.php">
+                        <?php echo csrfField(); ?>
                         <div class="row g-3">
                             <!-- Nom -->
                             <div class="col-md-6">
@@ -328,4 +348,4 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 </div>
 
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/config/footer.php'; ?>

@@ -1,120 +1,72 @@
 <?php
-
-
 require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/helpers.php';
 
 $pdo = getDB();
 
-// Requête principale : produits + catégorie
-$sql = "
-    SELECT
-        p.id_produit,
-        p.reference,
-        p.slug,
-        p.nom,
-        p.tag,
-        p.badge,
-        p.prix,
-        p.prix_promo,
-        p.volume_litres,
-        p.poids_grammes,
-        p.materiau,
-        p.etancheite,
-        p.usage_temperature,
-        p.image_principale,
-        p.description_courte,
-        p.description_longue,
-        p.note_moyenne,
-        p.nombre_avis,
-        p.quantite_stock,
-        p.featured,
-        c.code       AS cat_code,
-        c.libelle    AS cat_libelle
+// Produits + catégorie 
+$rows = $pdo->query("
+    SELECT p.id_produit, p.reference, p.slug, p.nom, p.tag, p.badge, p.prix, p.prix_promo,
+           p.volume_litres, p.poids_grammes, p.materiau, p.etancheite, p.usage_temperature,
+           p.image_principale, p.description_courte, p.description_longue,
+           p.note_moyenne, p.nombre_avis, p.quantite_stock,
+           c.code AS cat_code, c.libelle AS cat_libelle
     FROM produit p
     INNER JOIN categorie c ON c.id_categorie = p.id_categorie
     ORDER BY p.id_produit ASC
-";
+")->fetchAll();
 
-$stmt = $pdo->query($sql);
-$rows = $stmt->fetchAll();
-
-// Caractéristiques par produit
-$stmtSpecs = $pdo->query("
-    SELECT id_produit, libelle_cle, valeur
-    FROM caracteristique_produit
-    ORDER BY id_caracteristique ASC
-");
+// Caractéristiques techniques 
 $allSpecs = [];
-foreach ($stmtSpecs->fetchAll() as $spec) {
-    $allSpecs[$spec['id_produit']][$spec['libelle_cle']] = $spec['valeur'];
+foreach ($pdo->query("SELECT id_produit, libelle_cle, valeur FROM caracteristique_produit ORDER BY id_caracteristique")->fetchAll() as $s) {
+    $allSpecs[$s['id_produit']][$s['libelle_cle']] = $s['valeur'];
 }
 
-// Couleurs par produit
-$stmtColors = $pdo->query("
-    SELECT pc.id_produit, co.nom_couleur
-    FROM produit_couleur pc
-    INNER JOIN couleur co ON co.id_couleur = pc.id_couleur
-    ORDER BY pc.id_produit, co.id_couleur
-");
+// Couleurs
 $allColors = [];
-foreach ($stmtColors->fetchAll() as $color) {
-    $allColors[$color['id_produit']][] = $color['nom_couleur'];
+foreach ($pdo->query("
+    SELECT pc.id_produit, co.nom_couleur
+    FROM produit_couleur pc INNER JOIN couleur co ON co.id_couleur = pc.id_couleur
+    ORDER BY pc.id_produit, co.id_couleur
+")->fetchAll() as $c) {
+    $allColors[$c['id_produit']][] = $c['nom_couleur'];
 }
 
-// Mapping des badges CSS
-// Reproduit les classes badge de l'ancien tableau statique
-function getBadgeClass(string $catCode, string $badge): string
+// Aides d'affichage
+function getBadgeClass(string $badge): string
 {
-    $badge_lower = mb_strtolower($badge, 'UTF-8');
-    if (strpos($badge_lower, 'ip68') !== false || strpos($badge_lower, 'submersible') !== false) {
+    $b = mb_strtolower($badge, 'UTF-8');
+    if (strpos($b, 'ip6') !== false || strpos($b, 'submersible') !== false || strpos($b, 'étanche') !== false) {
         return 'badge-cyan';
     }
-    if (strpos($badge_lower, 'ultra') !== false || strpos($badge_lower, '820g') !== false || strpos($badge_lower, '480g') !== false || strpos($badge_lower, 'saison') !== false) {
+    if (strpos($b, 'ultra') !== false || strpos($b, 'saison') !== false || strpos($b, 'light') !== false) {
         return 'badge-emerald';
     }
     return 'badge-amber';
 }
 
-// Formatage du volume pour l'affichage
-// Basé sur la catégorie (colonne réelle), plus sur des mots-clés dans le nom.
-function formatVolume(array $row): string
-{
-    if ($row['cat_code'] === 'refuge') {
-        $n = (int)$row['volume_litres'];
-        return $n . ' Personne' . ($n > 1 ? 's' : '') . ' + Matériel';
-    }
-    return $row['volume_litres'] . ' Litres';
-}
-
-// Formatage du poids pour l'affichage
 function formatWeight(int $grams): string
 {
-    if ($grams >= 1000) {
-        return number_format($grams / 1000, 2, '.', '') . ' kg';
-    }
-    return $grams . ' g';
+    return $grams >= 1000 ? number_format($grams / 1000, 2, '.', '') . ' kg' : $grams . ' g';
 }
 
-// Construction du tableau $produits (format identique à l'ancien)
-$produits = [];
+// Construction du tableau $produits
+$produits   = [];
+$categories = [];
+$position   = 0;
 
 foreach ($rows as $row) {
-    $id = (int)$row['id_produit'];
+    $id     = (int)$row['id_produit'];
+    $specs  = $allSpecs[$id] ?? [];
+    $estRefuge = ($row['cat_code'] === 'refuge');
 
-    // Le prix affiché est le prix promo s'il existe, sinon le prix normal
-    $displayPrice = $row['prix_promo'] !== null ? (float)$row['prix_promo'] : (float)$row['prix'];
-    $oldPrice     = $row['prix_promo'] !== null ? (float)$row['prix'] : null;
+    // Volume : litres si renseignés, sinon la capacité indiquée dans les caractéristiques (abris, couchage)
+    $volume = $row['volume_litres'] !== null
+        ? $row['volume_litres'] . ' L'
+        : ($specs['Capacité'] ?? ($specs['Température confort'] ?? '—'));
 
-    // Mapping des catégories vers les labels d'affichage de l'ancien tableau
-    $categoryLabels = [
-        'expedition'  => "Sac à Dos d'Expédition",
-        'fastpacking' => 'Fastpacking & Trail',
-        'voyage'      => 'Sacs Duffel Étanche',
-        'refuge'      => 'Abri & Bivouac Technique',
-    ];
-
-    // Cas spécial pour SERAC qui avait un label différent
-    $catLabel = $categoryLabels[$row['cat_code']] ?? $row['cat_libelle'];
+    $prixNormal = (float)$row['prix'];
+    $enPromo    = $row['prix_promo'] !== null;
 
     $produits[$id] = [
         'id'             => $id,
@@ -122,27 +74,35 @@ foreach ($rows as $row) {
         'slug'           => $row['slug'],
         'name'           => $row['nom'],
         'category'       => $row['cat_code'],
-        'category_label' => $catLabel,
+        'category_label' => $row['cat_libelle'],
         'tag'            => $row['tag'] ?? '',
         'badge'          => $row['badge'] ?? '',
-        'badge_class'    => getBadgeClass($row['cat_code'], $row['badge'] ?? ''),
-        'price'          => $displayPrice,
-        'old_price'      => $oldPrice,
-        'volume'         => formatVolume($row),
+        'badge_class'    => getBadgeClass($row['badge'] ?? ''),
+        'price'          => $enPromo ? (float)$row['prix_promo'] : $prixNormal,
+        'old_price'      => $enPromo ? $prixNormal : null,
+        'volume'         => $volume,
+        'volume_label'   => $row['volume_litres'] !== null ? 'LITRAGE' : ($estRefuge ? 'CAPACITÉ' : 'VOLUME'),
         'volume_num'     => (int)$row['volume_litres'],
         'weight'         => formatWeight((int)$row['poids_grammes']),
         'weight_num'     => (int)$row['poids_grammes'],
         'material'       => $row['materiau'] ?? '',
         'waterproof'     => $row['etancheite'] ?? '',
         'temp_rating'    => $row['usage_temperature'] ?? '',
-        'image'          => $row['image_principale'] ?? '',
+        'image'          => produitImage($row['image_principale'], $row['cat_code']),
         'short_desc'     => $row['description_courte'] ?? '',
         'full_desc'      => $row['description_longue'] ?? '',
-        'specs'          => $allSpecs[$id] ?? [],
+        'specs'          => $specs,
         'colors'         => $allColors[$id] ?? [],
-        'featured'       => (bool)$row['featured'],
+        'featured'       => ($position < 3),   // les 3 premiers produits du catalogue sont mis en avant
         'rating'         => (float)$row['note_moyenne'],
         'reviews_count'  => (int)$row['nombre_avis'],
+        'stock'          => (int)$row['quantite_stock'],
         'in_stock'       => ((int)$row['quantite_stock'] > 0),
     ];
+    $position++;
+
+    if (!isset($categories[$row['cat_code']])) {
+        $categories[$row['cat_code']] = ['label' => $row['cat_libelle'], 'nb' => 0];
+    }
+    $categories[$row['cat_code']]['nb']++;
 }

@@ -1003,3 +1003,10 @@ a:hover {
     width: 100vw;
   }
 }
+/* Logo du menu */
+.brand-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: inline-block;
+}

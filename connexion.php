@@ -1,17 +1,17 @@
 <?php
+require_once __DIR__ . '/config/functions.php';
+require_once __DIR__ . '/config/db.php';
+
+if (isLoggedIn()) {
+    redirect('index.php');
+}
+
 $current_page = 'connexion';
 $page_title = 'Connexion | VERTEX EXPEDITION';
 $page_description = 'Connectez-vous à votre compte VERTEX EXPEDITION.';
 
-include __DIR__ . '/includes/header.php';
-
-// Rediriger si déjà connecté
-if (isLoggedIn()) {
-    header('Location: index.php');
-    exit;
-}
-
-$redirect_url = $_GET['redirect'] ?? ($_POST['redirect'] ?? 'index.php');
+// Redirection après connexion
+$redirect_url = retourSecurise($_GET['redirect'] ?? ($_POST['redirect'] ?? ''), 'index.php');
 $errors = [];
 $email_saisi = '';
 
@@ -19,11 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email_saisi = trim($_POST['email'] ?? '');
     $password    = $_POST['password'] ?? '';
 
-    if ($email_saisi === '' || $password === '') {
+    if (!csrfCheck($_POST['csrf'] ?? null)) {
+        $errors[] = 'Votre session a expiré. Merci de réessayer.';
+    } elseif ($email_saisi === '' || $password === '') {
         $errors[] = 'Veuillez renseigner votre e-mail et votre mot de passe.';
     } else {
-        $pdo = getDB();
-        $stmt = $pdo->prepare("SELECT * FROM client WHERE email = ?");
+        $stmt = getDB()->prepare("SELECT * FROM client WHERE email = ?");
         $stmt->execute([$email_saisi]);
         $user = $stmt->fetch();
 
@@ -35,15 +36,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($ok) {
             loginUser($user);
-            header('Location: ' . $redirect_url);
-            exit;
+            redirect($redirect_url);
         }
 
         $errors[] = 'E-mail ou mot de passe incorrect.';
     }
 }
 
-include __DIR__ . '/includes/navbar.php';
+require_once __DIR__ . '/config/header.php';
+
 ?>
 
 <div class="page-header-technical">
@@ -82,7 +83,8 @@ include __DIR__ . '/includes/navbar.php';
                 <?php endif; ?>
 
                 <form method="POST" action="connexion.php">
-                    <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect_url); ?>">
+                    <?php echo csrfField(); ?>
+                    <input type="hidden" name="redirect" value="<?php echo e($redirect_url); ?>">
                     <div class="row g-3">
                         <div class="col-12">
                             <label for="loginEmail" class="form-label-tech">
@@ -118,4 +120,4 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 </div>
 
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/config/footer.php'; ?>

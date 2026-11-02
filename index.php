@@ -1,36 +1,32 @@
 <?php
-/**
- * VERTEX EXPEDITION - Page d'Accueil (index.php)
- */
-require_once __DIR__ . '/data/produits.php';
+require_once __DIR__ . '/config/catalogue.php';
 
 $current_page = 'accueil';
-$page_title = 'VERTEX EXPEDITION | Sacs à Dos Techniques & Matériel de Montagne';
-$page_description = 'Sacs à dos techniques légers et robustes, testés en conditions réelles dans le massif du Mont-Blanc. Conception durable et réparable.';
+$page_title = 'VERTEX EXPEDITION | Équipement Outdoor, Sacs à Dos et Matériel de Voyage';
+$page_description = 'Sacs à dos ergonomiques à charge active, systèmes ultralégers ripstop et matériel de précision testé à -35°C dans le Mont-Blanc.';
 
-include __DIR__ . '/includes/header.php';
-include __DIR__ . '/includes/navbar.php';
+require_once __DIR__ . '/config/header.php';
 ?>
 
-<!-- SECTION HERO -->
+<!--Section Hero-->
 <section class="hero-section">
     <div class="container-fluid px-lg-5">
         <div class="row align-items-center gy-5">
             <!-- Colonne Gauche : Présentation et Spécifications -->
             <div class="col-lg-7">
                 <div class="hero-pill">
-                    <i class="bi bi-compass me-1"></i> ÉQUIPEMENT DE MONTAGNE & EXPÉDITION
+                    <i class="bi bi-shield-shaded me-1"></i> COLLECTION ALPINE LAB 2026 // TESTÉ À -35°C
                 </div>
                 <h1 class="hero-title">
-                    Sacs à dos techniques pour les terrains engagés
+                    Équipement sans compromis pour terrain hostile
                 </h1>
                 <p class="hero-lead">
-                    Conçus au cœur des Alpes avec des matières haute ténacité (Cordura®, Dyneema®). Confort de portage, robustesse à l'abrasion et réparabilité en atelier.
+                    Sacs à dos ergonomiques à charge active, systèmes modulaires ripstop ultralégers et matériel de précision testés pour supporter les exigences les plus extrêmes en haute montagne et expéditions polaires.
                 </p>
 
                 <div class="d-flex flex-wrap gap-3">
-                    <a href="produits.php" class="btn btn-vertex-primary">
-                        Découvrir nos sacs <i class="bi bi-arrow-right ms-1"></i>
+                    <a href="articles.php" class="btn btn-vertex-primary">
+                        Explorer les Sacs Pro <i class="bi bi-arrow-right ms-1"></i>
                     </a>
                 </div>
 
@@ -38,18 +34,18 @@ include __DIR__ . '/includes/navbar.php';
                 <div class="hero-specs-row">
                     <div class="hero-spec-item">
                         <span class="spec-label">TISSU PRINCIPAL</span>
-                        <span class="spec-value text-amber">CORDURA® 500D RIPSTOP</span>
-                        <span class="small text-muted" style="font-size: 0.68rem;">Haute résistance à l'abrasion</span>
+                        <span class="spec-value text-amber">500D CORDURA® RIPSTOP</span>
+                        <span class="small text-muted" style="font-size: 0.68rem;">100% Résistance Anti-abrasion</span>
                     </div>
                     <div class="hero-spec-item">
-                        <span class="spec-label">SERVICE ATELIER</span>
-                        <span class="spec-value text-white">RÉPARABILITÉ GARANTIE</span>
-                        <span class="small text-muted" style="font-size: 0.68rem;">Atelier à Chamonix</span>
+                        <span class="spec-label">POLITIQUE CIRCULAIRE</span>
+                        <span class="spec-value text-white">GARANTIE À VIE</span>
+                        <span class="small text-muted" style="font-size: 0.68rem;">Atelier de Réparation Arctique</span>
                     </div>
                     <div class="hero-spec-item">
-                        <span class="spec-label">ERGONOMIE</span>
-                        <span class="spec-value text-success">PORTAGE ÉQUILIBRÉ</span>
-                        <span class="small text-muted" style="font-size: 0.68rem;">Stabilité de charge active</span>
+                        <span class="spec-label">OPTIMISATION GRAMME</span>
+                        <span class="spec-value text-success">POIDS MOYEN &lt;950g</span>
+                        <span class="small text-muted" style="font-size: 0.68rem;">100% Répartition Anatomique</span>
                     </div>
                 </div>
             </div>
@@ -66,10 +62,10 @@ include __DIR__ . '/includes/navbar.php';
                     </div>
                     <div class="hero-card-footer">
                         <div>
-                            <div class="hero-card-meta">SAC D'EXPÉDITION // SÉRIE APEX</div>
+                            <div class="hero-card-meta">SAC D'EXPÉDITION // V.02</div>
                             <h3 class="hero-card-title"><?php echo htmlspecialchars($featuredProduct['name']); ?></h3>
                             <div class="text-success small tech-mono">
-                                <i class="bi bi-check2-circle me-1"></i> ÉPROUVÉ EN CONDITIONS HIVERNALES
+                                <i class="bi bi-check2-circle me-1"></i> TEST VALIDÉ : GROENLAND (-35°C)
                             </div>
                         </div>
                         <div class="text-end">
@@ -91,16 +87,16 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 </section>
 
-<!-- CATÉGORIES TECHNIQUES SPÉCIALISÉES (01, 02, 03, 04) -->
+<!--Section Catégories techniques spécialisées -->
 <section class="categories-section">
     <div class="container-fluid px-lg-5">
         <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between mb-4">
             <div>
                 <span class="tech-kicker">SEGMENTATION DU MATÉRIEL</span>
-                <h2 class="fw-bold mb-0">Catégories de Matériel</h2>
+                <h2 class="fw-bold mb-0">Catégories Techniques Spécialisées</h2>
             </div>
             <p class="text-muted small mb-0 mt-2 mt-md-0" style="max-width: 440px;">
-                Équipement pensé pour chaque pratique : du fastpacking ultraléger aux longues traversées en autonomie.
+                Équipement structuré selon le litrage, l'ergonomie de portage, la résistance aux températures polaires et la répartition du poids en passages alpins exposés.
             </p>
         </div>
 
@@ -111,15 +107,15 @@ include __DIR__ . '/includes/navbar.php';
                     <div>
                         <div class="category-num-badge">
                             <span class="category-number">01</span>
-                            <span class="category-volume-pill">VOL : 50L - 100L</span>
+                            <span class="category-volume-pill">VOL : 65L - 85L</span>
                         </div>
                         <h3 class="category-title">Sacs d'Expédition</h3>
                         <p class="category-desc">
-                            Châssis rigide en aluminium 7075 et charge active pour les traversées de plusieurs jours en autonomie.
+                            Châssis rigide en aluminium 7075 et charge active pour les traversées de plus de 7 jours en autonomie totale.
                         </p>
                     </div>
-                    <a href="produits.php?cat=expedition" class="category-link">
-                        VOIR EXPÉDITION <i class="bi bi-arrow-right"></i>
+                    <a href="articles.php?cat=expedition" class="category-link">
+                        EXPLORER EXPÉDITION <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -130,15 +126,15 @@ include __DIR__ . '/includes/navbar.php';
                     <div>
                         <div class="category-num-badge">
                             <span class="category-number">02</span>
-                            <span class="category-volume-pill">VOL : 12L - 40L</span>
+                            <span class="category-volume-pill">VOL : 15L - 30L</span>
                         </div>
                         <h3 class="category-title">Fastpacking & Trail</h3>
                         <p class="category-desc">
-                            Ajustement anatomique type gilet, sans rebond. Tissu Dyneema® imperméable haute ténacité.
+                            Ajustement anatomique type gilet, sans rebond vertical. Confection en Dyneema® imperméable haute ténacité.
                         </p>
                     </div>
-                    <a href="produits.php?cat=fastpacking" class="category-link">
-                        VOIR ULTRALÉGER <i class="bi bi-arrow-right"></i>
+                    <a href="articles.php?cat=fastpacking" class="category-link">
+                        EXPLORER ULTRALÉGER <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -149,15 +145,15 @@ include __DIR__ . '/includes/navbar.php';
                     <div>
                         <div class="category-num-badge">
                             <span class="category-number">03</span>
-                            <span class="category-volume-pill">VOL : 25L - 110L</span>
+                            <span class="category-volume-pill">VOL : 50L - 110L</span>
                         </div>
-                        <h3 class="category-title">Sacs Duffel Étanche</h3>
+                        <h3 class="category-title">Sacs Duffel Hermétiques</h3>
                         <p class="category-desc">
-                            Toile TPU 840D soudée haute fréquence. Protection fiable contre l'eau, la neige et la poussière.
+                            Toile TPU 840D soudée haute fréquence. Protection absolue contre l'eau, le blizzard, la boue et la poussière.
                         </p>
                     </div>
-                    <a href="produits.php?cat=voyage" class="category-link">
-                        VOIR DUFFEL <i class="bi bi-arrow-right"></i>
+                    <a href="articles.php?cat=voyage" class="category-link">
+                        EXPLORER CHARGE LOURDE <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -172,11 +168,11 @@ include __DIR__ . '/includes/navbar.php';
                         </div>
                         <h3 class="category-title">Abris & Bivouac</h3>
                         <p class="category-desc">
-                            Abris individuels et tentes techniques ultralégères de moins de 1 kg pour les nuits en altitude.
+                            Tentes d'assaut et abris bivouac techniques ultralégers de moins de 1 kg pour les nuits engagées sur vire.
                         </p>
                     </div>
-                    <a href="produits.php?cat=refuge" class="category-link">
-                        VOIR BIVOUAC <i class="bi bi-arrow-right"></i>
+                    <a href="articles.php?cat=refuge" class="category-link">
+                        EXPLORER BIVOUAC <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -184,24 +180,24 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 </section>
 
-<!-- PRODUITS PHARE -->
+<!-- Section Produits Phares-->
 <section class="products-section">
     <div class="container-fluid px-lg-5">
         <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4">
             <div>
-                <span class="tech-kicker">NOTRE SÉLECTION</span>
-                <h2 class="fw-bold mb-0">Sacs à Dos Recommandés</h2>
+                <span class="tech-kicker">MATÉRIEL PRINCIPAL // SÉRIE 9000</span>
+                <h2 class="fw-bold mb-0">Sacs à Dos de Haute Performance</h2>
             </div>
             <div class="mt-3 mt-md-0">
-                <a href="produits.php" class="btn btn-vertex-outline btn-sm-tech">
-                    Voir tout le catalogue (<?php echo count($produits); ?>) <i class="bi bi-arrow-right ms-1"></i>
+                <a href="articles.php" class="btn btn-vertex-outline btn-sm-tech">
+                    Voir le Catalogue Complet (5) <i class="bi bi-arrow-right ms-1"></i>
                 </a>
             </div>
         </div>
 
         <div class="row g-4">
             <?php 
-            $featuredItems = array_slice(array_filter($produits, fn($p) => $p['featured']), 0, 3, true);
+            $featuredItems = array_slice($produits, 0, 3, true);
             foreach ($featuredItems as $item): 
             ?>
             <div class="col-lg-4 col-md-6">
@@ -228,7 +224,7 @@ include __DIR__ . '/includes/navbar.php';
                                 <span class="spec-cell-value text-amber"><?php echo htmlspecialchars($item['volume']); ?></span>
                             </div>
                             <div class="spec-cell">
-                                <span class="spec-cell-label">POIDS</span>
+                                <span class="spec-cell-label">POIDS TECHNIQUE</span>
                                 <span class="spec-cell-value"><?php echo htmlspecialchars($item['weight']); ?></span>
                             </div>
                             <div class="spec-cell">
@@ -256,7 +252,7 @@ include __DIR__ . '/includes/navbar.php';
                                     data-volume="<?php echo htmlspecialchars($item['volume']); ?>"
                                     data-weight="<?php echo htmlspecialchars($item['weight']); ?>"
                                     data-image="<?php echo htmlspecialchars($item['image']); ?>">
-                                <i class="bi bi-cart-plus me-1"></i> Ajouter au panier
+                                <i class="bi bi-cart-plus me-1"></i> Ajouter à l'Équipement
                             </button>
                         </div>
                     </div>
@@ -267,4 +263,4 @@ include __DIR__ . '/includes/navbar.php';
     </div>
 </section>
 
-<?php include __DIR__ . '/includes/footer.php'; ?>
+<?php include __DIR__ . '/config/footer.php'; ?>
