@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/config/panier_fonctions.php';
 
+// Traitement des actions du panier (ajout, modification, suppression)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!csrfCheck($_POST['csrf'] ?? null)) {
         flashSet('danger', 'Votre session a expiré. Merci de réessayer.');

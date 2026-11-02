@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Insertion en BDD
+    // Enregistrement en base de données
     if (empty($errors)) {
         try {
             // Hashage du mot de passe en SHA-256 avec sel aléatoire
@@ -127,7 +127,6 @@ require_once __DIR__ . '/config/header.php';
 <!-- EN-TÊTE DE LA PAGE -->
 <div class="page-header-technical">
     <div class="container-fluid px-lg-5">
-        <span class="tech-kicker">ESPACE CLIENT</span>
         <h1 class="fw-bold mb-2">Créer un compte</h1>
         <p class="text-secondary fs-5 mb-0" style="max-width: 720px;">
             Enregistrez votre équipement, bénéficiez de la garantie fabricant et suivez vos commandes en toute simplicité.
@@ -185,9 +184,7 @@ require_once __DIR__ . '/config/header.php';
                         <div class="row g-3">
                             <!-- Nom -->
                             <div class="col-md-6">
-                                <label for="regNom" class="form-label-tech">
-                                    <i class="bi bi-person-badge-fill text-amber me-1"></i> Nom *
-                                </label>
+                                <label for="regNom" class="form-label-tech">Nom *</label>
                                 <input type="text" id="regNom" name="nom" class="form-control-tech" 
                                        placeholder="Ex. Soler" required
                                        value="<?php echo htmlspecialchars($form_data['nom']); ?>">
@@ -195,9 +192,7 @@ require_once __DIR__ . '/config/header.php';
 
                             <!-- Prénom -->
                             <div class="col-md-6">
-                                <label for="regPrenom" class="form-label-tech">
-                                    <i class="bi bi-person-fill text-amber me-1"></i> Prénom *
-                                </label>
+                                <label for="regPrenom" class="form-label-tech">Prénom *</label>
                                 <input type="text" id="regPrenom" name="prenom" class="form-control-tech" 
                                        placeholder="Ex. Marc" required
                                        value="<?php echo htmlspecialchars($form_data['prenom']); ?>">
@@ -205,9 +200,7 @@ require_once __DIR__ . '/config/header.php';
 
                             <!-- Pseudo -->
                             <div class="col-md-6">
-                                <label for="regCallsign" class="form-label-tech">
-                                    <i class="bi bi-person-gear text-amber me-1"></i> Pseudo (optionnel)
-                                </label>
+                                <label for="regCallsign" class="form-label-tech">Pseudo (optionnel)</label>
                                 <input type="text" id="regCallsign" name="pseudo" class="form-control-tech" 
                                        placeholder="Ex. Marc_Alpinist"
                                        value="<?php echo htmlspecialchars($form_data['pseudo']); ?>">
@@ -215,9 +208,7 @@ require_once __DIR__ . '/config/header.php';
 
                             <!-- E-mail -->
                             <div class="col-md-6">
-                                <label for="regEmail" class="form-label-tech">
-                                    <i class="bi bi-envelope-check-fill text-amber me-1"></i> Adresse E-mail *
-                                </label>
+                                <label for="regEmail" class="form-label-tech">Adresse e-mail *</label>
                                 <input type="email" id="regEmail" name="email" class="form-control-tech" 
                                        placeholder="votre-email@exemple.com" required
                                        value="<?php echo htmlspecialchars($form_data['email']); ?>">
@@ -225,9 +216,7 @@ require_once __DIR__ . '/config/header.php';
 
                             <!-- Discipline Principale (dynamique depuis BDD) -->
                             <div class="col-12">
-                                <label for="regDiscipline" class="form-label-tech">
-                                    <i class="bi bi-compass-fill text-amber me-1"></i> Pratique principale *
-                                </label>
+                                <label for="regDiscipline" class="form-label-tech">Pratique principale *</label>
                                 <select id="regDiscipline" name="discipline" class="form-select-tech text-secondary" required>
                                     <option value="" selected disabled>Sélectionnez votre pratique...</option>
                                     <?php foreach ($disciplines as $disc): ?>
@@ -241,18 +230,14 @@ require_once __DIR__ . '/config/header.php';
 
                             <!-- Mot de Passe -->
                             <div class="col-md-6">
-                                <label for="regPass" class="form-label-tech">
-                                    <i class="bi bi-lock-fill text-amber me-1"></i> Mot de Passe *
-                                </label>
+                                <label for="regPass" class="form-label-tech">Mot de passe *</label>
                                 <input type="password" id="regPass" name="password" class="form-control-tech" 
                                        placeholder="8 caractères minimum" required minlength="8">
                             </div>
 
                             <!-- Confirmation Mot de Passe -->
                             <div class="col-md-6">
-                                <label for="regPassConfirm" class="form-label-tech">
-                                    <i class="bi bi-shield-lock-fill text-amber me-1"></i> Confirmer le Mot de Passe *
-                                </label>
+                                <label for="regPassConfirm" class="form-label-tech">Confirmer le mot de passe *</label>
                                 <input type="password" id="regPassConfirm" name="password_confirm" class="form-control-tech" 
                                        placeholder="Répétez le mot de passe" required>
                             </div>

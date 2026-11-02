@@ -4,7 +4,6 @@ require_once __DIR__ . '/db.php';
 
 const PANIER_QTE_MAX = 99;
 
-/** @return array<int,int> */
 function panierGet(): array
 {
     return $_SESSION['panier'] ?? [];
@@ -23,6 +22,7 @@ function panierProduit(int $id): ?array
     return $p ?: null;
 }
 
+// Ajoute un article au panier en vérifiant le stock disponible
 function panierAjouter(int $id, int $qte): void
 {
     if ($qte < 1) {
@@ -56,6 +56,7 @@ function panierAjouter(int $id, int $qte): void
     $_SESSION['panier'] = $panier;
 }
 
+// Modifie la quantité (+1 / -1) d'un produit dans le panier
 function panierModifier(int $id, int $delta): void
 {
     $panier = panierGet();
@@ -89,9 +90,7 @@ function panierRetirer(int $id): void
     $_SESSION['panier'] = $panier;
 }
 
-/**
- * @return array{lignes: array, total: float, nb_articles: int}
- */
+// Récupère le détail des articles du panier depuis la BDD
 function panierLignes(): array
 {
     $panier = panierGet();
@@ -115,7 +114,9 @@ function panierLignes(): array
     foreach ($stmt->fetchAll() as $r) {
         $id   = (int)$r['id_produit'];
         $trouves[$id] = true;
-        $pu   = $r['prix_promo'] !== null ? (float)$r['prix_promo'] : (float)$r['prix'];
+        $prixNormal = (float)$r['prix'];
+        $prixPromo  = $r['prix_promo'] !== null ? (float)$r['prix_promo'] : null;
+        $pu   = ($prixPromo !== null && $prixPromo > 0) ? min($prixNormal, $prixPromo) : $prixNormal;
         $qte  = $panier[$id];
         $lignes[] = [
             'id'       => $id,
@@ -131,7 +132,6 @@ function panierLignes(): array
         $nb    += $qte;
     }
 
-    // Produit supprimé de la base entre-temps : on le retire du panier.
     foreach ($ids as $id) {
         if (!isset($trouves[$id])) {
             unset($panier[$id]);

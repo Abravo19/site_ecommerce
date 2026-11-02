@@ -1,21 +1,32 @@
 <?php
+// Démarrage de la session si elle n'est pas déjà active
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-/**
- * Vérifie si un utilisateur est connecté.
- * @return bool
- */
+// Vérifie si l'utilisateur est connecté
 function isLoggedIn(): bool
 {
     return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
 }
 
-/**
- * Retourne les informations de l'utilisateur connecté.
- * @return array|null  Tableau associatif avec les infos ou null si non connecté.
- */
+// Vérifie si l'utilisateur connecté est admin
+function isAdmin(): bool
+{
+    return isLoggedIn() && (($_SESSION['user_role'] ?? 'client') === 'admin');
+}
+
+// Bloque l'accès si l'utilisateur n'est pas admin
+function requireAdmin(): void
+{
+    requireLogin('admin.php');
+    if (!isAdmin()) {
+        flashSet('danger', 'Accès réservé aux administrateurs.');
+        redirect('index.php');
+    }
+}
+
+// Récupère les infos de l'utilisateur en session
 function getCurrentUser(): ?array
 {
     if (!isLoggedIn()) {
@@ -32,10 +43,6 @@ function getCurrentUser(): ?array
     ];
 }
 
-/**
- * Redirige vers la page de connexion si l'utilisateur n'est pas connecté.
- * @param string $redirect_url  URL de retour après connexion.
- */
 function requireLogin(string $redirect_url = ''): void
 {
     if (!isLoggedIn()) {
@@ -48,10 +55,7 @@ function requireLogin(string $redirect_url = ''): void
     }
 }
 
-/**
- * Connecte un utilisateur en stockant ses données en session.
- * @param array $user  Données de l'utilisateur depuis la BDD.
- */
+// Enregistre l'utilisateur en session après connexion
 function loginUser(array $user): void
 {
     $_SESSION['user_id']     = $user['id_client'];
@@ -61,7 +65,6 @@ function loginUser(array $user): void
     $_SESSION['user_email']  = $user['email'];
     $_SESSION['user_role']   = $user['role'] ?? 'client';
 
-    // Regénérer l'ID de session
     session_regenerate_id(true);
 }
 
@@ -85,11 +88,13 @@ function logoutUser(): void
     session_destroy();
 }
 
+// Raccourci pour échapper le HTML
 function e($valeur): string
 {
     return htmlspecialchars((string)$valeur, ENT_QUOTES, 'UTF-8');
 }
 
+// Gestion du token CSRF pour les formulaires
 function csrfToken(): string
 {
     if (empty($_SESSION['csrf'])) {
@@ -108,6 +113,7 @@ function csrfCheck($jeton): bool
     return isset($_SESSION['csrf']) && is_string($jeton) && hash_equals($_SESSION['csrf'], $jeton);
 }
 
+// Messages flash en session
 function flashSet(string $type, string $message): void
 {
     $_SESSION['flash'] = ['type' => $type, 'message' => $message];
@@ -136,15 +142,15 @@ function redirect(string $url): void
 
 function retourSecurise($url, string $defaut = 'panier.php'): string
 {
-    if (is_string($url) && preg_match('/^(index|articles|article|panier|contact|apropos)\.php(\?[A-Za-z0-9=&_.%\-]*)?$/', $url)) {
+    if (is_string($url) && preg_match('/^(index|articles|article|panier|contact|apropos|admin)\.php(\?[A-Za-z0-9=&_.%\-]*)?$/', $url)) {
         return $url;
     }
     return $defaut;
 }
 
+// Retourne l'image du produit ou un placeholder si elle n'existe pas
 function produitImage(?string $chemin, string $categorie): string
 {
-    // Compatibilité : anciens chemins enregistrés en base avant la réorganisation des dossiers.
     if ($chemin !== null) {
         $chemin = str_replace('assets/images/produits/', 'img/articles/', $chemin);
     }
@@ -155,6 +161,7 @@ function produitImage(?string $chemin, string $categorie): string
     return 'img/articles/placeholder-' . $cat . '.svg';
 }
 
+// Génère le bouton d'ajout au panier
 function formAjoutPanier(array $item, string $retour, string $classe = ''): string
 {
     $id  = (int)$item['id'];

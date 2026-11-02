@@ -10,7 +10,6 @@ $current_page = 'connexion';
 $page_title = 'Connexion | VERTEX EXPEDITION';
 $page_description = 'Connectez-vous à votre compte VERTEX EXPEDITION.';
 
-// Redirection après connexion
 $redirect_url = retourSecurise($_GET['redirect'] ?? ($_POST['redirect'] ?? ''), 'index.php');
 $errors = [];
 $email_saisi = '';
@@ -49,7 +48,6 @@ require_once __DIR__ . '/config/header.php';
 
 <div class="page-header-technical">
     <div class="container-fluid px-lg-5">
-        <span class="tech-kicker">ESPACE CLIENT</span>
         <h1 class="fw-bold mb-2">Connexion</h1>
         <p class="text-secondary fs-5 mb-0" style="max-width: 720px;">
             Connectez-vous pour accéder à votre compte VERTEX EXPEDITION.
@@ -87,18 +85,14 @@ require_once __DIR__ . '/config/header.php';
                     <input type="hidden" name="redirect" value="<?php echo e($redirect_url); ?>">
                     <div class="row g-3">
                         <div class="col-12">
-                            <label for="loginEmail" class="form-label-tech">
-                                <i class="bi bi-envelope-check-fill text-amber me-1"></i> Adresse E-mail *
-                            </label>
+                            <label for="loginEmail" class="form-label-tech">Adresse e-mail *</label>
                             <input type="email" id="loginEmail" name="email" class="form-control-tech"
                                    placeholder="votre-email@exemple.com" required
                                    value="<?php echo htmlspecialchars($email_saisi); ?>">
                         </div>
 
                         <div class="col-12">
-                            <label for="loginPassword" class="form-label-tech">
-                                <i class="bi bi-lock-fill text-amber me-1"></i> Mot de Passe *
-                            </label>
+                            <label for="loginPassword" class="form-label-tech">Mot de passe *</label>
                             <input type="password" id="loginPassword" name="password" class="form-control-tech"
                                    placeholder="Votre mot de passe" required>
                         </div>

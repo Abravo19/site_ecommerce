@@ -26,18 +26,15 @@ require_once __DIR__ . '/config/header.php';
     <div class="container-fluid px-lg-5">
         <div class="row align-items-center">
             <div class="col-lg-8">
-                <span class="tech-kicker">CATALOGUE TECHNIQUE</span>
-                <h1 class="fw-bold mb-2">Sacs à Dos & Équipement Outdoor</h1>
+                <h1 class="fw-bold mb-2">Catalogue des équipements</h1>
                 <p class="text-secondary mb-0" style="max-width: 680px;">
-                    Conçus pour l'alpinisme, le fastpacking et les traversées engagées. Retrouvez ici les détails techniques de chaque modèle : litrage, poids, matériaux et niveau d'imperméabilité.
+                    Sacs à dos d'alpinisme, gilets de trail, sacs étanches et matériel de bivouac. Cliquez sur un article pour consulter sa fiche complète.
                 </p>
             </div>
             <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-                <div class="d-inline-flex align-items-center gap-2 px-3 py-2 bg-dark rounded border border-secondary border-opacity-25 tech-mono">
-                    <i class="bi bi-box2-fill text-amber"></i>
-                    <span>ARTICLES AU CATALOGUE :</span>
-                    <strong class="text-white"><?php echo count($produits_filtered); ?> SUR <?php echo count($produits); ?></strong>
-                </div>
+                <span class="text-secondary small">
+                    <strong class="text-white"><?php echo count($produits_filtered); ?></strong> article<?php echo count($produits_filtered) > 1 ? 's' : ''; ?> affiché<?php echo count($produits_filtered) > 1 ? 's' : ''; ?>
+                </span>
             </div>
         </div>
     </div>
@@ -119,38 +116,23 @@ require_once __DIR__ . '/config/header.php';
                         </div>
                     </div>
 
-                    <!-- Volet de Spécifications Techniques -->
-                    <div class="mb-3">
-                        <button class="btn btn-sm btn-link text-secondary p-0 text-decoration-none tech-mono small" 
-                                type="button" data-bs-toggle="collapse" data-bs-target="#specsCollapse-<?php echo $item['id']; ?>" 
-                                aria-expanded="false">
-                            <i class="bi bi-sliders me-1 text-amber"></i> Voir les caractéristiques techniques <i class="bi bi-chevron-down ms-1"></i>
-                        </button>
-                        <div class="collapse mt-2" id="specsCollapse-<?php echo $item['id']; ?>">
-                            <div class="p-3 bg-dark rounded border border-secondary border-opacity-25 small">
-                                <p class="text-secondary small mb-2"><?php echo htmlspecialchars($item['full_desc']); ?></p>
-                                <ul class="list-unstyled mb-0">
-                                    <?php foreach ($item['specs'] as $specKey => $specVal): ?>
-                                    <li class="py-1 border-bottom border-secondary border-opacity-25 d-flex justify-content-between">
-                                        <span class="text-muted tech-mono"><?php echo htmlspecialchars($specKey); ?> :</span>
-                                        <span class="text-white text-end ps-2"><?php echo htmlspecialchars($specVal); ?></span>
-                                    </li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Pied de Carte avec Prix et Bouton Panier -->
                     <div class="product-footer flex-wrap gap-2">
                         <div class="product-price-box">
-                            <span class="product-price"><?php echo number_format($item['price'], 2); ?> €</span>
+                            <span class="product-price"><?php echo number_format($item['price'], 2, ',', ' '); ?> €</span>
                             <?php if (!empty($item['old_price'])): ?>
-                                <span class="product-old-price"><?php echo number_format($item['old_price'], 2); ?> €</span>
+                                <span class="product-old-price"><?php echo number_format($item['old_price'], 2, ',', ' '); ?> €</span>
                             <?php endif; ?>
                         </div>
 
-                        <?php echo formAjoutPanier($item, 'articles.php'); ?>
+                        <div class="d-flex align-items-center gap-2">
+                            <?php if (isAdmin()): ?>
+                                <a href="admin.php?edit=<?php echo (int)$item['id']; ?>" class="btn btn-outline-warning btn-sm-tech" title="Modifier cet article">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            <?php endif; ?>
+                            <?php echo formAjoutPanier($item, 'articles.php'); ?>
+                        </div>
                     </div>
                 </div>
             </div>

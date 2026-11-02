@@ -1,10 +1,10 @@
 <?php
+// Paramètres de connexion à la base de données
 $host     = 'localhost';
 $dbname   = 'vertex_expedition';
 $username = 'root';
 $password = '';
 
-// Mettre à true uniquement pour diagnostiquer un problème de connexion.
 $debug = false;
 
 try {
@@ -15,19 +15,15 @@ try {
     );
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); 
+    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 } catch (Exception $e) {
-    error_log('Erreur de connexion SQL : ' . $e->getMessage());
+    error_log('Erreur connexion BDD : ' . $e->getMessage());
     http_response_code(500);
-    die('Erreur de connexion SQL : ' . ($debug ? $e->getMessage() : 'service momentanément indisponible.'));
+    die('Erreur de connexion à la base de données : ' . ($debug ? $e->getMessage() : 'service indisponible.'));
 }
 
-// Rend $pdo accessible même si ce fichier est inclus depuis une fonction.
 $GLOBALS['pdo'] = $pdo;
 
-/**
- * Retourne la connexion PDO créée ci-dessus.
- */
 function getDB(): PDO
 {
     return $GLOBALS['pdo'];

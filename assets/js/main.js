@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSearch();
 });
 
+// Filtres par catégorie sur la page articles
 function initCatalogFilters() {
     const filterButtons = document.querySelectorAll('.catalog-filter-btn');
     const productItems = document.querySelectorAll('.catalog-product-item');
@@ -29,7 +30,7 @@ function initCatalogFilters() {
         });
     });
 
-    // Activation automatique selon le paramètre d'URL ?cat=
+    // Si un paramètre ?cat= est présent dans l'URL, on active le filtre correspondant
     const urlParams = new URLSearchParams(window.location.search);
     const catParam = urlParams.get('cat');
     if (catParam) {
@@ -40,11 +41,11 @@ function initCatalogFilters() {
     }
 }
 
+// Recherche rapide dans la liste des produits
 function initSearch() {
     const searchInputs = document.querySelectorAll('.tech-search-input');
     const productItems = document.querySelectorAll('.catalog-product-item');
 
-    // Recherche instantanée client-side sur la page produits
     searchInputs.forEach(input => {
         input.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
@@ -58,7 +59,6 @@ function initSearch() {
         });
     });
 
-    // Pré-remplir le champ de recherche avec le paramètre URL
     const urlParams = new URLSearchParams(window.location.search);
     const qParam = urlParams.get('q');
     if (qParam) {

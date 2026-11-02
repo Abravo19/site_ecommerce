@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/config/catalogue.php';
 
 // Recherche du produit à partir du slug
@@ -103,7 +104,14 @@ require_once __DIR__ . '/config/header.php';
                 <?php endif; ?>
             </div>
 
-            <?php echo formAjoutPanier($item, 'article.php?slug=' . $item['slug']); ?>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <?php echo formAjoutPanier($item, 'article.php?slug=' . $item['slug']); ?>
+                <?php if (isAdmin()): ?>
+                    <a href="admin.php?edit=<?php echo (int)$item['id']; ?>" class="btn btn-outline-warning btn-sm-tech">
+                        <i class="bi bi-pencil-square me-1"></i> Modifier cet article
+                    </a>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 

@@ -1,16 +1,11 @@
 <?php
-/**
- * Fonctions utilitaires communes : CSRF, messages flash, images, formulaire d'ajout au panier.
- */
 require_once __DIR__ . '/session.php';
 
-// Échappement HTML court
 function e($valeur): string
 {
     return htmlspecialchars((string)$valeur, ENT_QUOTES, 'UTF-8');
 }
 
-// Protection CSRF (un jeton par session, vérifié sur chaque POST)
 function csrfToken(): string
 {
     if (empty($_SESSION['csrf'])) {
@@ -29,7 +24,6 @@ function csrfCheck($jeton): bool
     return isset($_SESSION['csrf']) && is_string($jeton) && hash_equals($_SESSION['csrf'], $jeton);
 }
 
-// Messages flash (affichés une seule fois après une redirection)
 function flashSet(string $type, string $message): void
 {
     $_SESSION['flash'] = ['type' => $type, 'message' => $message];
@@ -50,16 +44,12 @@ function flashRender(): void
         . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button></div></div>';
 }
 
-// Redirection
 function redirect(string $url): void
 {
     header('Location: ' . $url);
     exit;
 }
 
-/**
- * N'accepte comme retour que des pages du site (évite les redirections ouvertes).
- */
 function retourSecurise($url, string $defaut = 'panier.php'): string
 {
     if (is_string($url) && preg_match('/^(index|produits|produit|panier)\.php(\?[A-Za-z0-9=&_.%\-]*)?$/', $url)) {
@@ -68,7 +58,6 @@ function retourSecurise($url, string $defaut = 'panier.php'): string
     return $defaut;
 }
 
-// Images produits (image de remplacement si le fichier n'existe pas)
 function produitImage(?string $chemin, string $categorie): string
 {
     if ($chemin !== null && $chemin !== '' && is_file(__DIR__ . '/../' . $chemin)) {
@@ -78,7 +67,6 @@ function produitImage(?string $chemin, string $categorie): string
     return 'assets/images/produits/placeholder-' . $cat . '.svg';
 }
 
-// Formulaire « Ajouter au panier » (liste et fiche produit)
 function formAjoutPanier(array $item, string $retour, string $classe = ''): string
 {
     $id  = (int)$item['id'];

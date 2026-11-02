@@ -4,7 +4,7 @@ require_once __DIR__ . '/../includes/helpers.php';
 
 $pdo = getDB();
 
-// Produits + catégorie 
+// Produits et catégories
 $rows = $pdo->query("
     SELECT p.id_produit, p.reference, p.slug, p.nom, p.tag, p.badge, p.prix, p.prix_promo,
            p.volume_litres, p.poids_grammes, p.materiau, p.etancheite, p.usage_temperature,
@@ -16,13 +16,13 @@ $rows = $pdo->query("
     ORDER BY p.id_produit ASC
 ")->fetchAll();
 
-// Caractéristiques techniques 
+// Caractéristiques techniques
 $allSpecs = [];
 foreach ($pdo->query("SELECT id_produit, libelle_cle, valeur FROM caracteristique_produit ORDER BY id_caracteristique")->fetchAll() as $s) {
     $allSpecs[$s['id_produit']][$s['libelle_cle']] = $s['valeur'];
 }
 
-// Couleurs
+// Couleurs disponibles
 $allColors = [];
 foreach ($pdo->query("
     SELECT pc.id_produit, co.nom_couleur
@@ -32,7 +32,6 @@ foreach ($pdo->query("
     $allColors[$c['id_produit']][] = $c['nom_couleur'];
 }
 
-// Aides d'affichage
 function getBadgeClass(string $badge): string
 {
     $b = mb_strtolower($badge, 'UTF-8');
@@ -50,7 +49,6 @@ function formatWeight(int $grams): string
     return $grams >= 1000 ? number_format($grams / 1000, 2, '.', '') . ' kg' : $grams . ' g';
 }
 
-// Construction du tableau $produits
 $produits   = [];
 $categories = [];
 $position   = 0;
@@ -60,7 +58,6 @@ foreach ($rows as $row) {
     $specs  = $allSpecs[$id] ?? [];
     $estRefuge = ($row['cat_code'] === 'refuge');
 
-    // Volume : litres si renseignés, sinon la capacité indiquée dans les caractéristiques (abris, couchage)
     $volume = $row['volume_litres'] !== null
         ? $row['volume_litres'] . ' L'
         : ($specs['Capacité'] ?? ($specs['Température confort'] ?? '—'));
@@ -93,7 +90,7 @@ foreach ($rows as $row) {
         'full_desc'      => $row['description_longue'] ?? '',
         'specs'          => $specs,
         'colors'         => $allColors[$id] ?? [],
-        'featured'       => ($position < 3),   // les 3 premiers produits du catalogue sont mis en avant
+        'featured'       => ($position < 3),
         'rating'         => (float)$row['note_moyenne'],
         'reviews_count'  => (int)$row['nombre_avis'],
         'stock'          => (int)$row['quantite_stock'],

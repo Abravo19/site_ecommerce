@@ -97,23 +97,14 @@ a:hover {
 .tech-kicker {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  gap: 6px;
+  font-family: var(--font-main);
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent-amber);
-  margin-bottom: 0.75rem;
-}
-
-.tech-kicker::before {
-  content: '';
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background-color: var(--accent-amber);
-  border-radius: 50%;
+  margin-bottom: 0.5rem;
 }
 
 .vertex-navbar {
@@ -779,11 +770,10 @@ a:hover {
 }
 
 .form-label-tech {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
   margin-bottom: 6px;
   display: block;
 }

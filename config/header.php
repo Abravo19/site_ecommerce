@@ -1,13 +1,13 @@
 <?php
-require_once __DIR__ . '/functions.php';   // démarre la session (avant toute sortie HTML)
-require_once __DIR__ . '/db.php';          // connexion PDO ($pdo)
+require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/panier_fonctions.php';
 
 if (!isset($page_title)) {
-    $page_title = 'VERTEX EXPEDITION | Sacs à Dos Techniques & Matériel de Montagne';
+    $page_title = 'VERTEX EXPEDITION | Sacs à Dos & Matériel de Montagne';
 }
 if (!isset($page_description)) {
-    $page_description = 'Sacs à dos techniques, équipements de montagne et matériel outdoor haute performance conçus pour l\'aventure et les expéditions.';
+    $page_description = 'Sacs à dos techniques, équipements de montagne et matériel outdoor conçus pour l\'aventure.';
 }
 if (!isset($current_page)) {
     $current_page = '';
@@ -35,7 +35,7 @@ $nb_panier = panierCount();
 </head>
 <body>
 
-<!-- BARRE DE NAVIGATION PRINCIPALE -->
+<!-- Barre de navigation -->
 <nav class="navbar navbar-expand-lg vertex-navbar">
     <div class="container-fluid px-lg-4">
         <a class="navbar-brand navbar-brand-custom" href="index.php">
@@ -46,7 +46,7 @@ $nb_panier = panierCount();
             </div>
         </a>
 
-        <!-- Boutons mobile : panier + menu -->
+        <!-- Menu mobile -->
         <div class="d-flex align-items-center gap-2 d-lg-none">
             <a href="panier.php" class="cart-trigger-btn py-1 px-2 text-decoration-none" aria-label="Voir le panier">
                 <i class="bi bi-backpack2-fill text-amber"></i>
@@ -81,6 +81,13 @@ $nb_panier = panierCount();
                 </li>
                 <?php if (isLoggedIn()): ?>
                     <?php $user_nav = getCurrentUser(); ?>
+                    <?php if (isAdmin()): ?>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom text-amber fw-bold <?php echo ($current_page === 'admin') ? 'active' : ''; ?>" href="admin.php">
+                                <i class="bi bi-shield-lock-fill me-1"></i> Admin
+                            </a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <span class="nav-link nav-link-custom disabled">
                             <i class="bi bi-person-check-fill me-1"></i> <?php echo e($user_nav['prenom']); ?>

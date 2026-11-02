@@ -8,9 +8,9 @@ $page_description = 'Contactez l\'équipe VERTEX EXPEDITION pour toute question 
 
 $labels_sujet = [
     'litrage'    => 'Conseil sur le choix du sac et le litrage',
-    'reparacion' => 'Atelier de réparation & garantie',
-    'pedido'     => 'Suivi de commande',
-    'otro'       => 'Autre demande',
+    'reparation' => 'Atelier de réparation & garantie',
+    'commande'   => 'Suivi de commande',
+    'autre'      => 'Autre demande',
 ];
 
 $errors = [];
@@ -53,7 +53,6 @@ require_once __DIR__ . '/config/header.php';
 
 <div class="page-header-technical">
     <div class="container-fluid px-lg-5">
-        <span class="tech-kicker">CONTACT & ASSISTANCE</span>
         <h1 class="fw-bold mb-2">Contactez notre équipe</h1>
         <p class="text-secondary fs-5 mb-0" style="max-width: 700px;">
             Une question sur un modèle, le choix du litrage ou notre service de réparation ? Notre équipe basée à Chamonix vous répond du lundi au vendredi.
@@ -108,30 +107,22 @@ require_once __DIR__ . '/config/header.php';
                     <?php echo csrfField(); ?>
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="contactName" class="form-label-tech">
-                                <i class="bi bi-person-fill text-amber me-1"></i> Nom et Prénom *
-                            </label>
+                            <label for="contactName" class="form-label-tech">Nom et prénom *</label>
                             <input type="text" id="contactName" name="nom_complet" class="form-control-tech" placeholder="Ex. Marc Soler" required value="<?php echo e($data['nom_complet']); ?>">
                         </div>
 
                         <div class="col-md-6">
-                            <label for="contactEmail" class="form-label-tech">
-                                <i class="bi bi-envelope-at-fill text-amber me-1"></i> Adresse E-mail *
-                            </label>
+                            <label for="contactEmail" class="form-label-tech">Adresse e-mail *</label>
                             <input type="email" id="contactEmail" name="email" class="form-control-tech" placeholder="nom@exemple.com" required value="<?php echo e($data['email']); ?>">
                         </div>
 
                         <div class="col-md-6">
-                            <label for="contactPhone" class="form-label-tech">
-                                <i class="bi bi-telephone-fill text-amber me-1"></i> Téléphone (optionnel)
-                            </label>
+                            <label for="contactPhone" class="form-label-tech">Téléphone (optionnel)</label>
                             <input type="tel" id="contactPhone" name="telephone" class="form-control-tech" placeholder="+33 6 00 00 00 00" value="<?php echo e($data['telephone']); ?>">
                         </div>
 
                         <div class="col-md-6">
-                            <label for="contactSubject" class="form-label-tech">
-                                <i class="bi bi-tag-fill text-amber me-1"></i> Objet de la Demande *
-                            </label>
+                            <label for="contactSubject" class="form-label-tech">Objet de la demande *</label>
                             <select id="contactSubject" name="sujet" class="form-select-tech text-secondary" required>
                                 <option value="" <?php echo $data['sujet'] === '' ? 'selected' : ''; ?> disabled>Sélectionnez le sujet...</option>
                                 <?php foreach ($labels_sujet as $val => $lib): ?>
@@ -141,9 +132,7 @@ require_once __DIR__ . '/config/header.php';
                         </div>
 
                         <div class="col-12">
-                            <label for="contactMessage" class="form-label-tech">
-                                <i class="bi bi-chat-left-text-fill text-amber me-1"></i> Votre message *
-                            </label>
+                            <label for="contactMessage" class="form-label-tech">Votre message *</label>
                             <textarea id="contactMessage" name="message" class="form-control-tech" rows="5" placeholder="Décrivez votre besoin, votre pratique ou votre demande de réparation..." required><?php echo e($data['message']); ?></textarea>
                         </div>
 
